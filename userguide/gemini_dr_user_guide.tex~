@@ -1,0 +1,128 @@
+\documentclass[12pt]{report}
+\usepackage{graphicx,amssymb,amsmath,amsthm,ctable,booktabs,graphics}
+\usepackage[colorlinks]{hyperref}
+\usepackage{gensymb}
+\usepackage{xcolor}
+\usepackage{savetrees}
+%\renewcommand{\familydefault}{\sfdefault}
+\usepackage[english]{babel}
+%\usepackage[T1]{fontenc}
+%\usepackage{helvet}
+\usepackage{multicol}
+\usepackage[utf8x]{inputenc}
+
+\newcommand{\ty}[1]{\textcolor{teal}{\texttt{#1}}}
+\begin{document}
+
+\title{Gemini-South IFU Data Reduction User Manual}
+\author{Elaine M. Snyder\\
+Dept. of Physics \& Astronomy\\
+University of North Carolina at Chapel Hill \\
+\texttt{emsnyder@live.unc.edu}}
+\date{February 22, 2016}
+\maketitle
+
+\hypersetup{linkcolor=magenta}
+\tableofcontents
+\listoftables
+\listoffigures
+
+%\begin{multicols*}{2}
+
+\chapter{Introduction}
+Greetings, Gemini-South GMOS IFU data reduction pipeline user! Before beginning your data reduction journey, it is important to understand the structure of an integral field unit (IFU) and the way the Gemini IFU data is stored. If you are familiar with this already, feel free to skip ahead. Most of this information can be found online on \url{https://www.gemini.edu}, but I've compiled it all here for easy reference and so that I may use it in the context of the RESOLVE survey's instrument setups. For more information on RESOLVE see \url{http://www.resolve.astro.unc.edu}. 
+
+\section{Observing Setups}
+There are two main setups for RESOLVE's IFU observations. Similarly to our SOAR observations, there is a blue setup for absorption line galaxies and red setup for emission line galaxies. To determine which galaxy is best for which setup, we ideally like to use the SOAR broad spectrum as a guide. Seeing strong emission in the broad spectrum will point to the emission line setup on Gemini being best, while no emission will point to the absorption line setup being preferred. Table 1 highlights the main differences in the two setups.
+
+\begin{table}
+\centering
+\begin{tabular}[b]{|c|c|c|}
+  \hline
+  & blue setup & red setup \\ \hline \hline
+wavelength range & & \\ \hline
+used for & absorption line galaxies & emission line galaxies \\ \hline
+\end{tabular}
+\caption{Comparison of RESOLVE's red and blue observation setups for the Gemini-South IFU.}
+\label{table:1}
+\end{table}
+
+There are also
+
+\section{Observing Patterns}
+
+\chapter{Setting Up Your Workspace}
+
+There are some things you'll need to install (or update) before using this pipeline. I highly recommend working in the Ureka environment, which includes easy-to-install versions of IRAF, Python, and Pyraf. Since this code is written for Pyraf, Ureka is indeed quite handy. Instructions on how to download Ureka can be found here: \url{http://ssb.stsci.edu/ureka/}. I am currently using version 1.5.1 on cielo. Follow the instructions for making IRAF, and check your login screen to make sure it says you're using IRAF 2.16:
+
+\begin{verbatim}
+NOAO/IRAF PC-IRAF Revision 2.16 EXPORT Thu May 24 15:41:17 MST 2012
+  This is the EXPORT version of IRAF V2.16 supporting PC systems.
+\end{verbatim}
+
+There is also an updated IRAF Gemini package you'll want to install. This version is not included in the Ureka download, but includes some updated tasks you will be using. Here's the link to this newest version as of February 2016: \url{https://www.gemini.edu/?q=node/11823}. You'll also want to check this when you're done by loading the `gemini' package in IRAF:
+
+\begin{verbatim}
+--> gemini
+
+     +------------------- Gemini IRAF Package -------------------+
+     |             Version 1.13.1, December 7, 2015              |
+     |             Requires IRAF v2.14.1 or greater              |
+     |              Tested with Ureka IRAF v2.16                 |
+     |             Gemini Observatory, Hilo, Hawaii              |
+     |    Please use the help desk for submission of questions   |
+     |  http://www.gemini.edu/sciops/helpdesk/helpdeskIndex.html |
+     +-----------------------------------------------------------+
+\end{verbatim}
+
+
+If you are new to data reduction in general, you will want to download ds9, an astronomical imaging application that you'll use to view our data as you progess through the pipeline. Download ds9 from this site: \url{http://ds9.si.edu/site/Home.html}.
+
+Next, you'll want data to actually reduce! You should have flats, arcs, science frames, response flats (from the standard star data), and a bias image before getting started. There should also be an observing log to inspect (RESOLVE data has obslog.txt or just log.txt). Place all of these images in the same folder, since that's where the pipeline looks for them. 
+
+Lastly, you'll want to download the actual pipeline. You can access the code and this handy user guide at \url{https://github.com/emsnyder/geminiDRpipeline}. Always be on the lookout for updates in the future! You can place the code anywhere you like, but a nice folder structure would be to have individual folders for each galaxy with the pipeline code a level above. Now you should be all set, congrats!
+
+\chapter{Data Reduction Guide}
+
+\section{Entering and Exiting the Pipeline}
+Here are the basic start up commands: 
+\begin{enumerate}
+\item cd to the directory where you put your data
+\item enter the Ureka environment by typing \ty{ur\_setup} in the command line 
+\item enter PyRAF by typing \ty{pyraf} in the command line
+\item open a ds9 windown by typing \ty{!ds9 \&} at the prompt
+\item enter the pipeline by typing \ty{execfile(`/path/to/your/code/gemreductionpipeline.py')}
+\end{enumerate}
+
+\noindent To end your session:
+\begin{enumerate}
+\item type \ty{CTRL-C} to exit the pipeline, if not out already
+\item enter \ty{.exit} to exit PyRAF
+\item use \ty{ur\_forget} to exit the Ureka environment
+\end{enumerate}
+
+\section{Organizing and Identifying Your Data}
+
+\noindent The first thing the pipeline does is look in your folder and identify which files are there. It will print out the files it found and whether there are arcs/flats/science/etc. It is good to check this against your observing log! If you find mistakes, please email Elaine!
+
+\section{Reduction of the Flats}
+\section{Reduction of the Arcs}
+\section{Wavelength Calibration of the Arcs}
+\subsection{Find the Wavelenth Calibration}
+\subsection{Apply the Calibration to the Arcs}
+
+
+
+
+\chapter{Derivation of Kinematics}
+
+\section{Deriving Velocity Dispersions}
+\section{Deriving Rotation Curves}
+
+\chapter{Timeline of Pipeline Updates}
+
+
+%\end{multicols*}
+
+
+\end{document}

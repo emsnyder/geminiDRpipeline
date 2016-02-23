@@ -1,0 +1,17 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}Introduction}{4}{chapter.1}
+\contentsline {section}{\numberline {1.1}Observing Setups}{4}{section.1.1}
+\contentsline {section}{\numberline {1.2}Observing Patterns}{4}{section.1.2}
+\contentsline {chapter}{\numberline {2}Setting Up Your Workspace}{5}{chapter.2}
+\contentsline {chapter}{\numberline {3}Data Reduction Guide}{6}{chapter.3}
+\contentsline {section}{\numberline {3.1}Entering and Exiting the Pipeline}{6}{section.3.1}
+\contentsline {section}{\numberline {3.2}Organizing and Identifying Your Data}{6}{section.3.2}
+\contentsline {section}{\numberline {3.3}Reduction of the Flats}{6}{section.3.3}
+\contentsline {section}{\numberline {3.4}Reduction of the Arcs}{6}{section.3.4}
+\contentsline {section}{\numberline {3.5}Wavelength Calibration of the Arcs}{6}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Find the Wavelenth Calibration}{6}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.2}Apply the Calibration to the Arcs}{6}{subsection.3.5.2}
+\contentsline {chapter}{\numberline {4}Derivation of Kinematics}{7}{chapter.4}
+\contentsline {section}{\numberline {4.1}Deriving Velocity Dispersions}{7}{section.4.1}
+\contentsline {section}{\numberline {4.2}Deriving Rotation Curves}{7}{section.4.2}
+\contentsline {chapter}{\numberline {5}Timeline of Pipeline Updates}{8}{chapter.5}
