@@ -9,11 +9,25 @@ import glob
 import time 
 from astropy.io import fits as fits
 
-print '----------------------------------------------'
-print 'Welcome to the Gemini data reduction pipeline!'
-print '----------------------------------------------'
-print ' '
-print ' '
+print "    .         *             .     . +    .     .          .       "
+print "             .      .    .             .         \|/              "
+print "        *                       +          `    - * -         `   "
+print "  `         .     `       +   .    *          .  /|\              "
+print "                   +                 .     .             +      . "
+print "  .      .  *           *     +     .     .        *              "
+print "    .      .     .          .   .           .        .        *   "
+print "          ----------------------------------------------          "
+print "  *       Welcome to the Gemini data reduction pipeline!   `      "
+print "          ----------------------------------------------          "
+print "    .    _     *       \|/   .       .      -*-              +    "
+print "      .` \\`.     +     -*-     *   .         `       .   *       "
+print "   .  |__''_|  .       /|\ +         .    +       .           |   "
+print "      |     | .                                        .     -o-  "
+print "      |     |           `  .        `           ,'`.   *   .  |   "
+print "    _.'-----'-._     *         +    ,'`. ,'`. ,'    `.            "
+print "  /             \__.__.--._________'    `.   `.       `._________ "
+
+
 
 ############################
 #find where user is working#
@@ -81,28 +95,28 @@ n = np.size(sciimage1)
 if n <= 1:
     sci11 = sciimage1[0]
     sci11base = sci11.split('.')[0]
-    sci11done = 'erg' + sci11
+    sci11done = 'erg' + sci11base
 else:
     sci11 = sciimage1[0]
     sci12 = sciimage1[1]
     sci11base = sci11.split('.')[0]
     sci12base = sci12.split('.')[0]
-    sci11done = 'erg' + sci11
-    sci12done = 'erg' + sci12
+    sci11done = 'erg' + sci11base
+    sci12done = 'erg' + sci12base
 
 selsci2 = (obsclass == 'science') & (wave == waves[1])
 sciimage2 = np.extract(selsci2,files)
 if n <= 1:
     sci21 = sciimage2[0]
     sci21base = sci21.split('.')[0]
-    sci21done = 'erg' + sci21
+    sci21done = 'erg' + sci21base
 else:
     sci21 = sciimage2[0]
     sci22 = sciimage2[1]
     sci21base = sci21.split('.')[0]
     sci22base = sci22.split('.')[0]
-    sci21done = 'erg' + sci21
-    sci22done = 'erg' + sci22
+    sci21done = 'erg' + sci21base
+    sci22done = 'erg' + sci22base
 
 #~~~~pull out arcs and define done parameters
 
@@ -112,17 +126,17 @@ n = np.size(arc1)
 if n <= 1:
     arc11 = arc1[0]
     arc11base = arc11.split('.')[0]
-    arc11done = 'erg' + arc11
-    arc11wt   = 'terg' + arc11
+    arc11done = 'erg' + arc11base
+    arc11wt   = 'terg' + arc11base
 else:
     arc11 = arc1[0]
     arc12 = arc1[1]
     arc11base = arc11.split('.')[0]
     arc12base = arc12.split('.')[0]
-    arc11done = 'erg' + arc11
-    arc12done = 'erg' + arc12
-    arc11wt   = 'terg' + arc11 #see if wavetran applied to arc
-    arc12wt   = 'terg' + arc12
+    arc11done = 'erg' + arc11base
+    arc12done = 'erg' + arc12base
+    arc11wt   = 'terg' + arc11base #see if wavetran applied to arc
+    arc12wt   = 'terg' + arc12base
 
 selarc2 = (wave == waves[1]) & (obstype == 'ARC')
 arc2 = np.extract(selarc2, files)
@@ -130,15 +144,15 @@ n = np.size(arc2)
 if n <= 1:
     arc21 = arc2[0]
     arc21base = arc21.split('.')[0]
-    arc21done = 'erg' + arc21
-    arc21wt   = 'terg' + arc21
+    arc21done = 'erg' + arc21base
+    arc21wt   = 'terg' + arc21base
 else:
     arc21 = arc2[0]
     arc22 = arc2[1]
     arc21base = arc21.split('.')[0]
     arc22base = arc22.split('.')[0]
-    arc21done = 'erg' + arc21
-    arc22done = 'erg' + arc22
+    arc21done = 'erg' + arc21base
+    arc22done = 'erg' + arc22base
     arc21wt   = 'terg' + arc21
     arc22wt   = 'terg' + arc22
 
@@ -147,11 +161,11 @@ else:
 selflat1 = (wave == waves[0]) & (obstype == 'FLAT')
 flat1 = np.extract(selflat1, files)[0]
 flat1base = flat1.split('.')[0]
-flat1done = 'erg' + flat1
+flat1done = 'erg' + flat1base
 selflat2 = (wave == waves[1]) & (obstype == 'FLAT')
 flat2 = np.extract(selflat2, files)[0]
 flat2base = flat2.split('.')[0]
-flat2done = 'erg' + flat2
+flat2done = 'erg' + flat2base
 
 #~~~~pull out date
 
@@ -220,11 +234,23 @@ if ans == '0':
     sys.exit()
 else:
     print('Alright, on to the reduction...')
-    time.sleep(3)
+    time.sleep(2)
 
-###############################
-#define all the IRAF functions#
-###############################
+#################
+#start reduction#
+#################
+
+#~~~~load iraf packages
+iraf.load('gemini')
+time.sleep(2)
+iraf.load('gmos')
+
+#~~~~flat 1 reduction
+
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+print('starting flat reduction and fiber identification')
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+time.sleep(2)
 
 def run_gfreduce(inimage,biasimage,refimage,slit,cr,wt,ss,inter,os,tr,bi,ex,fl,ap,weight,trac,rec,orde):
     iraf.gemini.gmos.gfreduce(inimage, \
@@ -247,135 +273,387 @@ def run_gfreduce(inimage,biasimage,refimage,slit,cr,wt,ss,inter,os,tr,bi,ex,fl,a
                               logfile=galname[0]+'.log', \
                               bias=biasimage)
 
-def plot_spaxels(inimage,verinfo):
-    iraf.gemini.gmos.gfdisplay(inimage, ver=verinfo)
-
-def wave_cal(inimage):
-    iraf.gemini.gmos.gswavelength(inimage, fl_inter=yes, nlost=10)
-#add coordlist!
-
-def wave_trans(inimage,wavtranimage):
-    iraf.gemini.gmos.gftransform('erg'+inimage, wavtran=wavtranimage)
-
-def qe_corr(inimage,refimage):
-    iraf.gemini.gmos.gqecorr(inimage, refimges=refimage, fl_keep=yes)
-
-
-#################
-#start reduction#
-#################
-
-#~~~~load iraf packages
-iraf.load('gemini')
-time.sleep(3)
-iraf.load('gmos')
-print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
-print('starting flat reduction and fiber identification')
-print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
-time.sleep(3)
-
-
-
-#~~~~flat 1 reduction
-
-#if os.path.isfile(flat1done) == False: #if the output file isn't done yet, do this step
-
-#    flat1done = False
-#    while (flat1done == False): 
-#        run_gfreduce(flat1,bias1,'',slit,'no','no','no','yes','yes','yes','yes','yes','no','no','none','no','no','INDEF')
-#        check1 = os.path.isfile('erg' + flat1base + '_1.fits')
-#        check2 = os.path.isfile('erg' + flat1base + '_2.fits')
-#        if (check1 == True) or (check2 == True):
-#            print('Looks like you did not get all the way through, would you like to start over?')
-#            print('1=yes')
-#            print('0=no')
-#            ans = raw_input('your choice:   ')
-#            if ans == 1:
-#                delete(foldername + 'database/' + 'aperg' + flat1base + '_1')
-#                delete(foldername + 'database/' + 'aperg' + flat1base + '_2')
-#                delete(foldername + 'erg' + flat1base + '_1.fits')
-#                delete(foldername + 'erg' + flat1base + '_2.fits')
-#                delete(foldername + 'erg' + flat1)
-#                delete(foldername + 'rg' + flat1)
-#                delete(foldername + 'g' + flat1)
-#            else: flat1done = True
-#        else: flat1done = True
-
-#else:
-#    print('the first flat is already done, moving on')
-
-#~~~~flat 2 reduction
-
-#if os.path.isfile(flat2done) == False:
-
-#    flat2done = False
-#    while (flat2done == False):
-#        run_gfreduce(flat2,bias1,'',slit,'no','no','no','yes','yes','yes','yes','yes','no','no','none','no','no','')
-#        check1 = os.path.isfile('erg' + flat2base + '_1.fits')
-#        check2 = os.path.isfile('erg' + flat2base + '_2.fits')
-#        if (check1 == True) or (check2 == True):
-#            print('Looks like you did not get all the way through, would you like to start over?')
-#            print('1=yes')
-#            print('0=no')
-#            ans = raw_input('your choice:   ')
-#            if ans == 1:
-#                delete(foldername + 'database/' + 'aperg' + flat2base + '_1')
-#                delete(foldername + 'database/' + 'aperg' + flat2base + '_2')
-#                delete(foldername + 'erg' + flat2base + '_1.fits')
-#                delete(foldername + 'erg' + flat2base + '_2.fits')
-#                delete(foldername + 'erg' + flat2)
-#                delete(foldername + 'rg' + flat2)
-#                delete(foldername + 'g' + flat2)
-#            else: flat2done = True
-#        else: flat2done = True
-
-#else:
-#    print('the second flat is already done, moving on')
-
-
-if os.path.isfile(flat1done) == False: #if the output file isn't done yet, do this step
+if os.path.isfile(flat1done+'.fits') == False: #if the output file isn't done yet, do this step
     run_gfreduce(flat1,bias1,'',slit,'no','no','no','yes','yes','yes','yes','yes','no','no','none','yes','yes','default')
+    print('>>> flat 1 complete, on to flat 2')
+    time.sleep(2)
+else:
+    print('>>> flat 1 already done, moving on')
+    time.sleep(2)
 
-print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
-print('flat 1 complete, on to flat 2')
-print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
-time.sleep(3)
-
-if os.path.isfile(flat2done) == False:
+if os.path.isfile(flat2done+'.fits') == False:
     run_gfreduce(flat2,bias1,'',slit,'no','no','no','yes','yes','yes','yes','yes','no','no','none','yes','yes','default')
+    print('>>> flat 2 complete')
+    time.sleep(2)
+else:
+    print('>>> flat 2 already done, moving on')
+    time.sleep(2)
 
-print('%%%%%%%%%%%%%%%')
-print('flat 2 complete')
-print('%%%%%%%%%%%%%%%')
+#~~~~basic arc reduction
+
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+print('starting basic arc reduction')
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 time.sleep(2)
-print('%%%%%%%%%%%%%%%%%%%%%%%%')
-print('starting arc 1 reduction')
-print('%%%%%%%%%%%%%%%%%%%%%%%%')
-time.sleep(2)
 
-#~~~~arc reduction
+def reduce_arcs(inimage, refimage, slit):
+    iraf.gemini.gmos.gfreduce(inimage, fl_wavtran='no', fl_inter='no', ref=refimage, recenter='no', \
+                              trace='no', fl_skysub='no', fl_gscrrej='no', fl_bias='no', fl_over='yes', \
+                              order='1', weights='none', slits=slit)
 
-if os.path.isfile(arc11done) == False:
-    run_gfreduce(arc11,bias1,flat1done,slit,'no','no','no','no','yes','yes','yes','yes','no','no','none','no','no','1')
-
+if os.path.isfile(arc11done+'.fits') == False:
+    reduce_arcs(arc11base,flat1done,slit)
+    print('>>> arc 1 reduction complete')
+    time.sleep(2)
+else:
+    print('>>> arc 1 already done, moving on')
+    time.sleep(2)
+   
 try:
     arc12
 except NameError:
     pass
 else:
-    if os.path.isfile(arc12done) == False:
-        run_gfreduce(arc12,bias1,flat1done,slit,'no','no','no','no','yes','no','no','yes','no','no','none','no','no','1')
+    if os.path.isfile(arc12done+'.fits') == False:
+        reduce_arcs(arc12base,flat1done,slit)
+        print('>>> arc 12 reduction complete')
+        time.sleep(2)
+    else:
+        print('>>> arc 12 already done, moving on')
+        time.sleep(2)
 
-if os.path.isfile(arc21done) == False:
-    run_gfreduce(arc21,bias1,flat2done,slit,'no','no','no','no','yes','no','no','yes','no','no','none','no','no','1')
+if os.path.isfile(arc21done+'.fits') == False:
+    reduce_arcs(arc21base,flat2done,slit)
+    print('>>> arc 2 reduction complete')
+    time.sleep(2)
+else:
+    print('>>> arc 2 already done, moving on')
+    time.sleep(2)
 
 try:
     arc22
 except NameError:
     pass
 else:
-    if os.path.isfile(arc22done) == False:
-        run_gfreduce(arc22,bias1,flat2done,slit,'no','no','no','no','yes','no','no','yes','no','no','none','no','no','1')
+    if os.path.isfile(arc22done+'.fits') == False:
+        reduce_arcs(arc22base,flat2done,slit)
+        print('>>> arc 22 reduction complete')
+        time.sleep(2)
+    else:
+        print('>>> arc 22 already done, moving on')
+        time.sleep(2)
 
-#~~~~wavelength solution
+#~~~~find the wavelength solution for the arcs
+
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+print('starting wavelength solution')
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+time.sleep(2)
+
+def wave_cal(inimage):
+    iraf.gemini.gmos.gswavelength(inimage, fl_inter=yes, nlost=10)
+
+if os.path.isfile(arc11wt+'.fits') == False:
+    wave_cal('erg' + arc11base)
+    print('>>> arc 1 wavelength solution done')
+    time.sleep(2)
+else:
+    print('>>> arc 1 already done, moving on')
+    time.sleep(2)
+
+try:
+    arc12
+except NameError:
+    pass
+else:
+    if os.path.isfile(arc12wt+'.fits') == False:
+        wave_cal('erg' + arc12base)
+        print('>>> arc 12 wavelength solution done')
+        time.sleep(2)
+    else:
+        print('>>> arc 12 already done, moving on')
+        time.sleep(2)
+
+if os.path.isfile(arc21wt+'.fits') == False:
+    wave_cal('erg' + arc21base)
+    print('>>> arc 2 wavelength solution done')
+    time.sleep(2)
+else:
+    print('>>> arc 2 already done, moving on')
+    time.sleep(2)
+
+try:
+    arc22
+except NameError:
+    pass
+else:
+    if os.path.isfile(arc22wt+'.fits') == False:
+        wave_cal('erg' + arc22base)
+        print('>>> arc 22 wavelength solution done')
+        time.sleep(2)
+    else:
+        print('>>> arc 22 already done, moving on')
+        time.sleep(2)
+
+#~~~~wavelength calibration of the arcs
+
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+print('starting wavelength tranformation of arcs')
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+time.sleep(2)
+
+def wave_trans(inimage,wavtranimage):
+    iraf.gemini.gmos.gftransform(inimage, wavtran=wavtranimage)
+
+if os.path.isfile(arc11wt+'.fits') == False:
+    wave_trans('erg' + arc11base, 'erg' + arc11base)
+    print('>>> arc 1 wavelength transformation done')
+    time.sleep(2)
+else:
+    print('>>> arc 1 already done, moving on')
+    time.sleep(2)
+
+try:
+    arc12
+except NameError:
+    pass
+else:
+    if os.path.isfile(arc12wt+'.fits') == False:
+        wave_trans('erg' + arc12base,'erg' + arc12base)
+        print('>>> arc 12 wavelength transformation done')
+        time.sleep(2)
+    else:
+        print('>>> arc 12 already done, moving on')
+        time.sleep(2)
+
+
+if os.path.isfile(arc21wt+'.fits') == False:
+    wave_trans('erg' + arc21base,'erg' + arc21base)
+    print('>>> arc 2 wavelength transformation done')
+    time.sleep(2)
+else:
+    print('>>> arc 2 already done, moving on')
+    time.sleep(2)
+
+try:
+    arc22
+except NameError:
+    pass
+else:
+    if os.path.isfile(arc22wt+'.fits') == False:
+        wave_trans('erg' + arc22base,'erg' + arc22base)
+        print('>>> arc 22 wavelength transformation done')
+        time.sleep(2)
+    else:
+        print('>>> arc 22 already done, moving on')
+        time.sleep(2)
+
+#~~~~qe correct the flats
+
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+print('starting quantum efficiency correction of flats')
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+time.sleep(2)
+
+def qe_corr(inimage,refimage):
+    iraf.gemini.gmos.gqecorr(inimage, refimages=refimage, fl_keep=yes)
+
+if os.path.isfile('qrg' + flat1base + '.fits') == False:
+    qe_corr('rg' + flat1base, arc11done)
+    print('>>> flat 1 QE correction done')
+    time.sleep(2)
+else:
+    print('>>> flat 1 already done, moving on')
+    time.sleep(2)
+
+if os.path.isfile('qrg' + flat2base + '.fits') == False:
+    qe_corr('rg' + flat2base, arc21done)
+    print('>>> flat 2 QE correction done')
+    time.sleep(2)
+else:
+    print('>>> flat 2 already done, moving on')
+    time.sleep(2)
+
+#~~~~re-extract the qe-corrected flats
+
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+print('starting re-extraction of flats')
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+time.sleep(2)
+
+def extract(inimage, refimage):
+    iraf.gemini.gmos.gfextract(inimage,ref=refimage)
+
+if os.path.isfile('eqrg' + flat1base + '.fits') == False:
+    extract('qrg' + flat1base, flat1done)
+    print('>>> flat 1 re-extraction done')
+    time.sleep(2)
+else:
+    print('>>> flat 1 already done, moving on')
+    time.sleep(2)
+
+if os.path.isfile('eqrg' + flat2base + '.fits') == False:
+    extract('qrg' + flat2base, flat2done)
+    print('>>> flat 2 re-extraction done')
+    time.sleep(2)
+else:
+    print('>>> flat 2 already done, moving on')
+    time.sleep(2)
+
+#~~~~bias and overscan subtract the science data
+
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+print('starting bias and overscan subtraction of science')
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+time.sleep(2)
+
+def sci_red_bias(inimage,slit):
+    iraf.gemini.gmos.gfreduce(inimage, slits=slit, fl_inter='no', fl_over='yes', fl_trim='yes', fl_bias='yes', \
+                              fl_flux='no', fl_gscrrej='no', fl_extract='no', fl_gsappwave='no', fl_wavtran='no', \
+                              fl_skysub='no', weights='none', bias=bias1)
+
+if os.path.isfile('rg' + sci11base + '.fits') == False:
+    sci_red_bias(sci11base,slit)
+    print('>>> sci 1 basic reduction done')
+    time.sleep(2)
+else:
+    print('>>> sci 1 already done, moving on')
+    time.sleep(2)
+
+try:
+    sci12
+except NameError:
+    pass
+else:
+    if os.path.isfile('rg' + sci12base + '.fits') == False:
+        sci_red_bias(sci12base,slit)
+        print('>>> sci 11 basic reduction done')
+        time.sleep(2)
+    else:
+        print('>>> sci 11 already done, moving on')
+        time.sleep(2)
+
+if os.path.isfile('rg' + sci21base + '.fits') == False:
+    sci_red_bias(sci21base,slit)
+    print('>>> sci 2 basic reduction done')
+    time.sleep(2)
+else:
+    print('>>> sci 2 already done, moving on')
+    time.sleep(2)
+
+try:
+    sci22
+except NameError:
+    pass
+else:
+    if os.path.isfile('rg' + sci22base + '.fits') == False:
+        sci_red_bias(sci22base,slit)
+        print('>>> sci 22 basic reduction done')
+        time.sleep(2)
+    else:
+        print('>>> sci 22 already done, moving on')
+        time.sleep(2)
+
+#~~~~remove scattered light
+
+#~~~~remove the cosmic rays
+
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+print('starting cosmic ray rejection on science')
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+time.sleep(2)
+
+def gem_crspec(inimage, outimage):
+    iraf.gemini.gmos.gemcrspec(inimage, outiamge)
+
+if os.path.isfile('xrg' + sci11base + '.fits') == False:
+    gem_crspec('rg' + sci11base,'xrg' + sci22base)
+    print('>>> sci 1 cosmic ray rejection done')
+    time.sleep(2)
+else:
+    print('>>> sci 1 already done, moving on')
+    time.sleep(2)
+
+try:
+    sci12
+except NameError:
+    pass
+else:
+    if os.path.isfile('xrg' + sci12base + '.fits') == False:
+        gem_crspec('rg' + sci12base,'xrg' + sci22base)
+        print('>>> sci 11 cosmic ray rejection done')
+        time.sleep(2)
+    else:
+        print('>>> sci 11 already done, moving on')
+        time.sleep(2)
+
+if os.path.isfile('xrg' + sci21base + '.fits') == False:
+    gem_crspec('rg' + sci21base,'xrg' + sci22base)
+    print('>>> sci 2 cosmic ray rejection done')
+    time.sleep(2)
+else:
+    print('>>> sci 2 already done, moving on')
+    time.sleep(2)
+
+try:
+    sci22
+except NameError:
+    pass
+else:
+    if os.path.isfile('xrg' + sci22base + '.fits') == False:
+        gem_crspec('rg' + sci22base,'xrg' + sci22base)
+        print('>>> sci 22 cosmic ray rejection done')
+        time.sleep(2)
+    else:
+        print('>>> sci 22 already done, moving on')
+        time.sleep(2)
+
+#~~~~qe correct the science data
+
+def sciqe_corr(inimage,refimage,corr):
+    iraf.gemini.gmos.gqecorr(inimage, refimages=refimage, corrimages=corr)
+
+if os.path.isfile('qxrg' + sci11base + '.fits') == False:
+    sciqe_corr('xrg' + sci11base,arc11done,'qecorr'+arc11done+'.fits')
+    print('>>> sci 1 QE correction done')
+    time.sleep(2)
+else:
+    print('>>> sci 1 already done, moving on')
+    time.sleep(2)
+
+try:
+    sci12
+except NameError:
+    pass
+else:
+    if os.path.isfile('qxrg' + sci12base + '.fits') == False:
+        sciqe_corr('xrg' + sci12base,arc12done,'qecorr'+arc12done+'.fits')
+        print('>>> sci 11 QE correction done')
+        time.sleep(2)
+    else:
+        print('>>> sci 11 already done, moving on')
+        time.sleep(2)
+
+if os.path.isfile('qxrg' + sci21base + '.fits') == False:
+    sciqe_corr('xrg' + sci21base,arc21done,'qecorr'+arc21done+'.fits')
+    print('>>> sci 2 QE correction  done')
+    time.sleep(2)
+else:
+    print('>>> sci 2 already done, moving on')
+    time.sleep(2)
+
+try:
+    sci22
+except NameError:
+    pass
+else:
+    if os.path.isfile('qxrg' + sci22base + '.fits') == False:
+        sciqe_corr('xrg' + sci22base,arc21done,'qecorr'+arc21done+'.fits')
+        print('>>> sci 22 QE correction  done')
+        time.sleep(2)
+    else:
+        print('>>> sci 22 already done, moving on')
+        time.sleep(2)
+
+#~~~~Flat field and extract spectra!
 
