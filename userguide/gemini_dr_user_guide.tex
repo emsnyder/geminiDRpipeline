@@ -31,9 +31,13 @@ University of North Carolina at Chapel Hill \\
 %\begin{multicols*}{2}
 
 \chapter{Introduction}
-Greetings, Gemini Multi-Object Spectrograph (GMOS) integral field unit (IFU) data reduction pipeline user! Before beginning your data reduction journey, it will be important to understand the structure of an IFU and the way the Gemini IFU data is stored. If you are familiar with this already, feel free to skip ahead. Most of this information can be found online on \url{https://www.gemini.edu}, but I've compiled it all here for easy reference and so that I may reference it in the context of the RESOLVE\footnote{\url{http://www.resolve.astro.unc.edu}} survey's instrument setups.
+Greetings, Gemini Multi-Object Spectrograph (GMOS) integral field unit (IFU) data reduction pipeline user! Before beginning your data reduction journey, it will be important to understand the structure of an IFU and the way the Gemini IFU data is stored in the fits files you'll be reducing. If you are familiar with this already, feel free to skip ahead. Most of this information can be found online on \url{https://www.gemini.edu}, but I've compiled it all here for easy reference and so that I may reference it in the context of the RESOLVE\footnote{\url{http://www.resolve.astro.unc.edu}} survey's instrument setups.
 
-The basic idea of any IFU is that you obtain multiple spectra over the face of a galaxy, instead of getting one spectrum as you would using a long slit, which enables spatial analysis of the kinematics/metallicities/whatever you want to get out of your spectra. In the case of the GMOS IFU setups for RESOLVE observations, you will have either 750 or 1500 fibers that cover a region on the sky $5''\times3.5''$ or $7''\times5''$ (each fiber covers $0.2''$). The GMOS IFU is designed in such a way that not all of those fibers are centered on the object. Either 250 or 500 of the fibers are positioned on a region of sky away from the target (but not too far away), which enables the sky level to be later subtracted during data reduction (you will do this soon!). The sky level can be affected by moon illumination, clouds, etc. so it is important to be able to subtract any extra sky light there may be. Note that sometimes in online documents, the fibers may be called ``spaxels'', which is short for ``spectral pixels'' -- don't be confused by this hip IFU lingo. The top portion of \autoref{figure:1} shows the positions of the fibers over an example galaxy.
+\section{What is an IFU and why would we want to use one?}
+
+The basic idea of any spectrograph is that incoming light from an object goes through a slit, is dispersed by a grating/prism/grism, and then focused onto your detector to create an image of your spectrum. Most of the time the slit is long and narrow ($\sim0.5-2''$ typically), and most astronomers would align it along a galaxy's major axis. that has spectral information in the x direction and spatial information in the y direction. The GMOS IFU is different in that instead of having one slit aligned along a galaxy's major axis, you will have multiple fibers that cover the entire galaxy. These fibers act as ``mini slits'', and each one will be dispersed and refocused onto the detector. This means you receive spectral information from all parts of the galaxy, not just where a single slit falls, and therefore are getting x, y, and wavelength at once. Thus, the main benefit of using an IFU is that it enables the 3D spatial analysis of the kinematics, metallicities, or whatever you want to derive from your spectra.
+
+In the case of the GMOS IFU setups for RESOLVE observations, you will have either 750 or 1500 hexagonal fibers (depending on which setup was used) that cover an on-sky area of $5''\times3.5''$ or $7''\times5''$. See the top portion of \autoref{figure:1}, which shows the positions of the fibers over an example galaxy. As \autoref{figure:1} shows, the GMOS IFU is designed in such a way that not all of the fibers are centered on the object -- either 250 or 500 of the fibers are positioned on a region of sky away from the target (but not too far away), which enables the sky level to be later subtracted during data reduction. The sky level can be affected by moon illumination, clouds, etc. so it is important to be able to subtract any extra sky light there may be. Note that sometimes in online documents, the fibers may be called ``spaxels'', which is short for ``spectral pixels'' -- don't be confused by this hip IFU lingo.
 
 \begin{figure}[h]
 \centering
@@ -43,11 +47,13 @@ The basic idea of any IFU is that you obtain multiple spectra over the face of a
 \end{figure}
 
 \section{Observing Setups}
-There are two main setups for RESOLVE's IFU observations. Similarly to our SOAR observations, there is a blue setup for absorption line galaxies and red setup for emission line galaxies. \autoref{table:1} highlights the main differences in the two setups. To determine which galaxy is best for which setup, we ideally like to use the SOAR broad spectrum as a guide. Seeing strong emission in the broad spectrum will point to the emission line setup on Gemini being best, while no emission will point to the absorption line setup being preferred. However, since there is not always a SOAR (or even SDSS) spectrum available, we often rely on their photometric colors as an indicator of whether emission or absorption is more likely.
+There are two main setups for RESOLVE's IFU observations. Similarly to our SOAR observations, there is a blue setup for absorption line galaxies and red setup for emission line galaxies. \autoref{table:1} highlights the main differences between the two setups. To determine which galaxy is best for which setup, we ideally like to use the SOAR broad spectrum as a guide. Seeing strong emission in the broad spectrum will point to the emission line setup on Gemini being best, while no emission will point to the absorption line setup being preferred. However, since there is not always a SOAR (or even a SDSS) spectrum available, we often rely on their photometric colors as an indicator of whether emission or absorption is more likely.
 
-We estimate exposure times for both setups using the online Integration Time Calculators\footnote{\url{http://www.gemini.edu/node/10479}} (ITC). We use an elliptical galaxy SED template for estimates in the blue setup, and the H$\alpha$ line with an estimate of the line flux and continuum flux density for estimates in the red setup. We bin all our spectra by 2 spectrally to increase the signal-to-noise. For the blue setup, we set our exposure time calculations to achieve signal-to-noise 25 per \AA\ when we bin all the fibers out to the effective radius of the galaxy. For the red setup, we set up our exposure times to achieve a centroiding accuracy of $\sim5.3$ km s$^{-1}$.
+Using the GMOS IFU is ideal for RESOLVE's purposes for two different reasons. In the red setup, our goal is to obtain velocity fields for RESOLVE's smallest emission line galaxies. Thus, the spatial information we receive from the IFU spectra is ideal for this purpose. On the other hand, for the blue setup, our goal is to derive velocity dispersions. The small, absorption line galaxies we target with the IFU in the blue setup are often quite faint, so instead of focusing on the spatial information the IFU gives, we sum all the spaxels out to the effective radius of the galaxy, thereby summing the light enough to derive accurate dispersion measurements. 
 
-We also use the ITC to select central wavelength positions that ensure our features of interest do not fall in a chip gap (see bottom of \autoref{figure:1}).  
+We estimate exposure times for both setups using the online Integration Time Calculators\footnote{\url{http://www.gemini.edu/node/10479}} (ITC) supplied by Gemini. We use an elliptical galaxy SED template for time estimates in the blue setup and adjust our exposure time calculations so that we may achieve a signal-to-noise ratio of 25 per \AA\ when we bin all the fibers out to the effective radius of the galaxy. We use a model H$\alpha$ line with estimates of the line flux and continuum flux density for time estimates in the red setup, and adjust our exposure times to achieve a centroiding accuracy of $\sim5.3$ km s$^{-1}$. For both setups, we bin our spectra by 2 in the spectral direction to increase the signal-to-noise as well.
+
+We also use the ITC to select central wavelength positions that ensure our features of interest do not fall in a chip gap (see bottom of \autoref{figure:1}). We choose two different central wavelengths so that we can fill in the chip gaps as well -- this is sometimes referred to as ``spectal dithering''. The central wavelength positions selected for our setups are listed in \autoref{table:1}.
 
 \begin{table}
 \centering
@@ -55,7 +61,8 @@ We also use the ITC to select central wavelength positions that ensure our featu
   \hline
 quantity  & blue setup & red setup \\ \hline
 wavelength range & 4200 -- 5600 \AA\ &  5500 -- 6900 \AA\ \\ 
-used for & absorption line galaxies & emission line galaxies \\ 
+used for & absorption line galaxies & emission line galaxies \\
+central wavelengths & 4850, 4900 \AA\ & 6300, 6400 \AA\ \\
 features of interest & H$\beta$, Mgb, Fe5270, Fe5335 & H$\alpha$, [NII], NaD \\ 
 grating & B1200 & B600 \\ 
 filter & none & r-G0326 \\
@@ -69,7 +76,7 @@ field of view & $3.5''\times5''$ & $5''\times7''$ \\ \hline
 \section{Observing Patterns}
 In 2-slit, aka red setup, mode, we oftentimes will tile the IFU field of view in order to cover the entire extent of the galaxy. The $5''\times7''$ field of view can either be tiled to $10''\times7''$ for larger, rounder galaxies or to  $5''\times14''$ for longer, skinnier galaxies. This doesn't make a large difference to the reduction routine, but there will be more science frames to reduce and more data cubes to stack at the end.
 
-The basic observation sequence is different for each mode. Both will start with acquisition images to ensure the IFU field of view is centered on the galaxy. Then flats, arcs, and science frames are taken in each central wavelength position together. For example, 
+The basic observation sequence is different for each mode. Both will start with acquisition images to ensure the IFU field of view is centered on the galaxy. Then flats, arcs, and science frames are taken in each dither. For example, a flat, arc, science, and arc frame will be taken at one central wavelegth, and then an arc, science, arc, flat frame will be taken at the other central wavelength, in that order. For reduction, we will want to flat field and wavelength transform the science images using the arcs and flats taken in the same dither. Once the data cubes are made, we can then sum the data cubes, both spatially and spectrally.
 
 \section{How the Gemini Data is Stored}
 Why 12 extensions?
@@ -190,28 +197,28 @@ Review extracted spectra from ergS20151108S0053_1?
 
 \begin{figure}[h]
 \centering
-\includegraphics{overscan_example.eps}
+\includegraphics{overscan_example}
 \label{fig:overscan}
 \caption[Overscan Subtraction Example]{An example of the overscan subtraction window that PyRaf will open during the reduction of the flats step. The solid line represents the data, while the dashed line shows the fit to that data. The diamonds are data points that are being rejected from our fit.}
 \end{figure}
 
 \begin{figure}[h]
 \centering
-\includegraphics{apertures1.eps}
+\includegraphics{apertures1}
 \label{fig:ap1}
 \caption[Zoomed Out Fiber ID Example]{An example of the fiber ID window that PyRaf will open during the reduction of the flats step.}
 \end{figure}
 
 \begin{figure}[h]
 \centering
-\includegraphics{apertures2.eps}
+\includegraphics{apertures2}
 \label{fig:ap2}
 \caption[Zoomed In Fiber ID Example]{An example of the fiber ID window that PyRaf will open during the reduction of the flats step.}
 \end{figure}
 
 \begin{figure}[h]
 \centering
-\includegraphics{badfiber.eps}
+\includegraphics{badfiber}
 \label{fig:bad}
 \caption[Example Image of a Bad Fiber]{For this image, fiber 138 is bad. The MDF knows this though, and that number is skipped during the identification routine.}
 \end{figure}

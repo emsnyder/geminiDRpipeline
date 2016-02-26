@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.8.7)  26 FEB 2016 12:00
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.8.7)  26 FEB 2016 17:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -40,10 +40,18 @@ Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
 File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
-Package graphics Info: Driver file: dvips.def on input line 91.
+Package graphics Info: Driver file: pdftex.def on input line 91.
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvips.def
-File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count88
 ))
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
@@ -79,13 +87,13 @@ Package: amsbsy 1999/11/29 v1.2d
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count88
+\inf@bad=\count89
 LaTeX Info: Redefining \frac on input line 210.
-\uproot@=\count89
-\leftroot@=\count90
+\uproot@=\count90
+\leftroot@=\count91
 LaTeX Info: Redefining \overline on input line 306.
-\classnum@=\count91
-\DOTSCASE@=\count92
+\classnum@=\count92
+\DOTSCASE@=\count93
 LaTeX Info: Redefining \ldots on input line 378.
 LaTeX Info: Redefining \dots on input line 381.
 LaTeX Info: Redefining \cdots on input line 466.
@@ -94,15 +102,15 @@ LaTeX Info: Redefining \cdots on input line 466.
 \big@size=\dimen107
 LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
-\macc@depth=\count93
-\c@MaxMatrixCols=\count94
+\macc@depth=\count94
+\c@MaxMatrixCols=\count95
 \dotsspace@=\muskip10
-\c@parentequation=\count95
-\dspbrk@lvl=\count96
+\c@parentequation=\count96
+\dspbrk@lvl=\count97
 \tag@help=\toks17
-\row@=\count97
-\column@=\count98
-\maxfields@=\count99
+\row@=\count98
+\column@=\count99
+\maxfields@=\count100
 \andhelp@=\toks18
 \eqnshift@=\dimen108
 \alignsep@=\dimen109
@@ -135,7 +143,7 @@ able and figure floats using key/value directives
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is not detected.
+Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
 (/usr/share/texmf/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
@@ -143,8 +151,9 @@ Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
-Package xcolor Info: Driver file: dvips.def on input line 225.
+Package xcolor Info: Driver file: pdftex.def on input line 225.
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
 Package xcolor Info: Model `RGB' extended on input line 1353.
 Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
 Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
@@ -159,7 +168,7 @@ Package: xkeyval 2012/10/14 v2.6b package option processing (HA)
 (/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
 \XKV@toks=\toks27
 \XKV@tempa@toks=\toks28
-\XKV@depth=\count100
+\XKV@depth=\count101
 File: xkeyval.tex 2012/10/14 v2.6b key=value parser (HA)
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
@@ -177,7 +186,7 @@ Package: tabularx 1999/01/07 v2.07 `tabularx' package (DPC)
 \TX@old@col=\dimen118
 \TX@target=\dimen119
 \TX@delta=\dimen120
-\TX@cols=\count101
+\TX@cols=\count102
 \TX@ftn=\toks30
 )
 (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
@@ -192,12 +201,12 @@ Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \cmidrulesep=\dimen128
 \cmidrulekern=\dimen129
 \defaultaddspace=\dimen130
-\@cmidla=\count102
-\@cmidlb=\count103
+\@cmidla=\count103
+\@cmidlb=\count104
 \@aboverulesep=\dimen131
 \@belowrulesep=\dimen132
-\@thisruleclass=\count104
-\@lastruleclass=\count105
+\@thisruleclass=\count105
+\@lastruleclass=\count106
 \@thisrulewidth=\dimen133
 )
 (/usr/share/texlive/texmf-dist/tex/latex/rotating/rotating.sty
@@ -206,17 +215,19 @@ Package: rotating 2009/03/28 v2.16a rotated objects in LaTeX
 (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
-\c@r@tfl@t=\count106
+\c@r@tfl@t=\count107
 \rotFPtop=\skip51
 \rotFPbot=\skip52
 \rot@float@box=\box28
 \rot@mess@toks=\toks31
 )
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/transparent.sty
+Package: transparent 2007/01/08 v1.0 Transparency via pdfTeX's color stack (HO)
 
-Package ctable Warning: 
-(ctable)                Transparency disabled: pdfTeX is not running in PDF mod
-e .
 
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
+))
 \@ctblframesep=\dimen134
 \@defaultctblframesep=\dimen135
 \@ctblframerule=\dimen136
@@ -237,7 +248,8 @@ e .
 \@ctbloldrule=\dimen151
 \ctbl@t=\box29
 \@ctblcurftwidth=\dimen152
-) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
@@ -247,8 +259,8 @@ Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
 Package: hobsub-generic 2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
 Package: hobsub 2012/05/28 v1.13 Construct package bundles (HO)
-Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
-Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
 Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
@@ -267,7 +279,7 @@ Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode is ignored in DVI mode.
+Package pdftexcmds Info: \pdfdraftmode found.
 Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
 Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
 )
@@ -287,20 +299,17 @@ Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
-Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
-)
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
 \@linkdim=\dimen153
-\Hy@linkcounter=\count107
-\Hy@pagecounter=\count108
+\Hy@linkcounter=\count108
+\Hy@pagecounter=\count109
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
 )
-\Hy@SavedSpaceFactor=\count109
+\Hy@SavedSpaceFactor=\count110
 
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
@@ -313,7 +322,7 @@ Package hyperref Info: Plain pages OFF on input line 4458.
 Package hyperref Info: Backreferencing OFF on input line 4463.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4688.
-\c@Hy@tempcnt=\count110
+\c@Hy@tempcnt=\count111
 
 (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
@@ -321,7 +330,7 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5041.
 \XeTeXLinkMargin=\dimen154
-\Fld@menulength=\count111
+\Fld@menulength=\count112
 \Field@Width=\dimen155
 \Fld@charsize=\dimen156
 Package hyperref Info: Hyper figures OFF on input line 6295.
@@ -333,23 +342,15 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6320.
 Package hyperref Info: PDF/A mode OFF on input line 6325.
 LaTeX Info: Redefining \ref on input line 6365.
 LaTeX Info: Redefining \pageref on input line 6369.
-\Hy@abspage=\count112
-\c@Item=\count113
-\c@Hfootnote=\count114
+\Hy@abspage=\count113
+\c@Item=\count114
+\c@Hfootnote=\count115
 )
 
-Package hyperref Message: Driver (default): hdvips.
+Package hyperref Message: Driver (autodetected): hpdftex.
 
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hdvips.def
-File: hdvips.def 2012/11/06 v6.83m Hyperref driver for dvips
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
-File: pdfmark.def 2012/11/06 v6.83m Hyperref definitions for pdfmark specials
-\pdf@docset=\toks32
-\pdf@box=\box30
-\pdf@toks=\toks33
-\pdf@defaulttoks=\toks34
-\HyField@AnnotCount=\count115
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
 \Fld@listcount=\count116
 \c@bookmark@seq@number=\count117
 
@@ -359,7 +360,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
 \Hy@SectionHShift=\skip53
-))
+)
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/hypcap.sty
 Package: hypcap 2011/02/16 v1.11 Adjusting the anchors of captions (HO)
 )
@@ -371,12 +372,12 @@ Package: savetrees 2004/07/17 v1.1 Pack as much text as possible onto each page
 
 (/usr/share/texlive/texmf-dist/tex/latex/titlesec/titlesec.sty
 Package: titlesec 2011/12/15 v2.10.0 Sectioning titles
-\ttl@box=\box31
+\ttl@box=\box30
 \beforetitleunit=\skip54
 \aftertitleunit=\skip55
 \ttl@plus=\dimen157
 \ttl@minus=\dimen158
-\ttl@toksa=\toks35
+\ttl@toksa=\toks32
 \titlewidth=\dimen159
 \titlewidthlast=\dimen160
 \titlewidthfirst=\dimen161
@@ -396,7 +397,7 @@ Package: geometry 2010/09/12 v5.6 Page Geometry
 \Gm@layoutheight=\dimen167
 \Gm@layouthoffset=\dimen168
 \Gm@layoutvoffset=\dimen169
-\Gm@dimlist=\toks36
+\Gm@dimlist=\toks33
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
@@ -429,7 +430,7 @@ File: babel.def 2013/12/03 3.9h Babel common definitions
 (/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2011/06/27 v1.7a multicolumn formatting (FMi)
 \c@tracingmulticols=\count125
-\mult@box=\box32
+\mult@box=\box31
 \multicol@leftmargin=\dimen173
 \c@unbalance=\count126
 \c@collectmore=\count127
@@ -442,12 +443,13 @@ Package: multicol 2011/06/27 v1.7a multicolumn formatting (FMi)
 \postmulticols=\dimen177
 \multicolsep=\skip60
 \multicolbaselineskip=\skip61
-\partial@page=\box33
-\last@line=\box34
-\mult@rightbox=\box35
-\mult@grightbox=\box36
-\mult@gfirstbox=\box37
-\mult@firstbox=\box38
+\partial@page=\box32
+\last@line=\box33
+\mult@rightbox=\box34
+\mult@grightbox=\box35
+\mult@gfirstbox=\box36
+\mult@firstbox=\box37
+\@tempa=\box38
 \@tempa=\box39
 \@tempa=\box40
 \@tempa=\box41
@@ -464,20 +466,19 @@ Package: multicol 2011/06/27 v1.7a multicolumn formatting (FMi)
 \@tempa=\box52
 \@tempa=\box53
 \@tempa=\box54
-\@tempa=\box55
 \c@columnbadness=\count131
 \c@finalcolumnbadness=\count132
 \last@try=\dimen178
 \multicolovershoot=\dimen179
 \multicolundershoot=\dimen180
-\mult@nat@firstbox=\box56
-\colbreak@box=\box57
+\mult@nat@firstbox=\box55
+\colbreak@box=\box56
 \multicol@sort@counter=\count133
 )
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2008/03/30 v1.1d Input encoding file
-\inpenc@prehook=\toks37
-\inpenc@posthook=\toks38
+\inpenc@prehook=\toks34
+\inpenc@posthook=\toks35
 
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/utf8x.def
 File: utf8x.def 2004/10/17 UCS: Input encoding UTF-8
@@ -489,9 +490,9 @@ Package: ucs 2013/05/11 v2.2 UCS: Unicode input support
 File: uni-global.def 2013/05/13 UCS: Unicode global data
 )
 \uc@secondtry=\count134
-\uc@combtoks=\toks39
-\uc@combtoksb=\toks40
-\uc@temptokena=\toks41
+\uc@combtoks=\toks36
+\uc@combtoksb=\toks37
+\uc@temptokena=\toks38
 )
 (./gemini_dr_user_guide.aux)
 \openout1 = `gemini_dr_user_guide.aux'.
@@ -510,6 +511,35 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
 LaTeX Font Info:    ... okay on input line 16.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 16.
 LaTeX Font Info:    ... okay on input line 16.
+
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count135
+\scratchdimen=\dimen181
+\scratchbox=\box57
+\nofMPsegments=\count136
+\nofMParguments=\count137
+\everyMPshowfont=\toks39
+\MPscratchCnt=\count138
+\MPscratchDim=\dimen182
+\MPnumerator=\count139
+\makeMPintoPDFobject=\count140
+\everyMPtoPDFconversion=\toks40
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+)
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
 \AtBeginShipoutBox=\box58
 Package hyperref Info: Link coloring ON on input line 16.
 
@@ -519,7 +549,7 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count135
+\c@section@level=\count141
 )
 LaTeX Info: Redefining \ref on input line 16.
 LaTeX Info: Redefining \pageref on input line 16.
@@ -542,9 +572,9 @@ Package gensymb Info: Using \Omega for \ohm on input line 16.
 Package gensymb Warning: Not defining \micro.
 
 *geometry* driver: auto-detecting
-*geometry* detected driver: dvips
+*geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
-* driver: dvips
+* driver: pdftex
 * paper: <default>
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
@@ -589,12 +619,17 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 25.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-]
-(./gemini_dr_user_guide.toc)
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./gemini_dr_user_guide.to
+c)
 \tf@toc=\write4
 \openout4 = `gemini_dr_user_guide.toc'.
 
- [1
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.28 \listoftables
+                   [1
 
 ] (./gemini_dr_user_guide.lot)
 \tf@lot=\write5
@@ -611,29 +646,19 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 ]
 Chapter 1.
+<fiber_examples.jpeg, id=134, 503.481pt x 618.40125pt>
+File: fiber_examples.jpeg Graphic file (type jpg)
 
-! LaTeX Error: Cannot determine size of graphic in fiber_examples.jpeg (no Boun
-dingBox).
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.40 ...[width=0.8\textwidth]{fiber_examples.jpeg}
-                                                  
-? 
-File: fiber_examples.jpeg Graphic file (type eps)
-<fiber_examples.jpeg>
-Overfull \hbox (44.20015pt too wide) in paragraph at lines 42--42
-[][][][][][] 
- []
+<use fiber_examples.jpeg>
+Package pdftex.def Info: fiber_examples.jpeg used on input line 44.
+(pdftex.def)             Requested size: 411.43756pt x 505.35608pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [4
 
-] [5] [6]
+] [5] [6 <./fiber_examples.jpeg>]
 Chapter 2.
 [7
 
@@ -642,60 +667,94 @@ Chapter 3.
 [8
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 152--153
+Underfull \hbox (badness 10000) in paragraph at lines 159--160
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 154--155
+Underfull \hbox (badness 10000) in paragraph at lines 161--162
 
  []
 
-File: overscan_example.eps Graphic file (type eps)
-<overscan_example.eps>
+<overscan_example.pdf, id=194, 469.755pt x 313.17pt>
+File: overscan_example.pdf Graphic file (type pdf)
+
+<use overscan_example.pdf>
+Package pdftex.def Info: overscan_example.pdf used on input line 200.
+(pdftex.def)             Requested size: 469.75386pt x 313.16922pt.
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-File: apertures1.eps Graphic file (type eps)
-<apertures1.eps>
+<apertures1.pdf, id=195, 469.755pt x 313.17pt>
+File: apertures1.pdf Graphic file (type pdf)
+ <use apertures1.pdf>
+Package pdftex.def Info: apertures1.pdf used on input line 207.
+(pdftex.def)             Requested size: 469.75386pt x 313.16922pt.
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-File: apertures2.eps Graphic file (type eps)
-<apertures2.eps>
+<apertures2.pdf, id=196, 469.755pt x 313.17pt>
+File: apertures2.pdf Graphic file (type pdf)
+ <use apertures2.pdf>
+Package pdftex.def Info: apertures2.pdf used on input line 214.
+(pdftex.def)             Requested size: 469.75386pt x 313.16922pt.
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-File: badfiber.eps Graphic file (type eps)
-<badfiber.eps>
+<badfiber.pdf, id=197, 469.755pt x 313.17pt>
+File: badfiber.pdf Graphic file (type pdf)
+ <use badfiber.pdf>
+Package pdftex.def Info: badfiber.pdf used on input line 221.
+(pdftex.def)             Requested size: 469.75386pt x 313.16922pt.
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[9] [10] [11] [12] [13]
+[9] [10 <./overscan_example.pdf>] [11 <./apertures1.pdf>] [12 <./apertures2.pdf
+>] [13 <./badfiber.pdf>]
 Chapter 4.
 [14
 
 ]
 Chapter 5.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 247.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 254.
 [15
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 247.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 254.
  (./gemini_dr_user_guide.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 247.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 247.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 254.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 254.
 Package rerunfilecheck Info: File `gemini_dr_user_guide.out' has not changed.
-(rerunfilecheck)             Checksum: 55D341290D5EAC2EDDFDDF0F959B8CD0;1183.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 247.
+(rerunfilecheck)             Checksum: 8473878A5F1005595941E86944F595EE;1278.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 254.
  ) 
 Here is how much of TeX's memory you used:
- 8252 strings out of 494986
- 117230 string characters out of 6180383
- 237764 words of memory out of 5000000
- 11328 multiletter control sequences out of 15000+600000
+ 8840 strings out of 494985
+ 125913 string characters out of 6180357
+ 240269 words of memory out of 5000000
+ 11837 multiletter control sequences out of 15000+600000
  12948 words of font info for 52 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 31i,10n,53p,1481b,454s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 31i,10n,53p,1166b,448s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt
+12.pfb>
+Output written on gemini_dr_user_guide.pdf (16 pages, 397608 bytes).
+PDF statistics:
+ 287 PDF objects out of 1000 (max. 8388607)
+ 249 compressed objects within 3 object streams
+ 56 named destinations out of 1000 (max. 500000)
+ 170 words of extra memory for PDF output out of 10000 (max. 10000000)
 
-Output written on gemini_dr_user_guide.dvi (16 pages, 57748 bytes).
