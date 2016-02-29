@@ -610,6 +610,11 @@ else:
 
 #~~~~qe correct the science data
 
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+print('starting QE corretion on science')
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+time.sleep(2)
+
 def sciqe_corr(inimage,refimage,corr):
     iraf.gemini.gmos.gqecorr(inimage, refimages=refimage, corrimages=corr)
 
@@ -627,7 +632,7 @@ except NameError:
     pass
 else:
     if os.path.isfile('qxrg' + sci12base + '.fits') == False:
-        sciqe_corr('xrg' + sci12base,arc12done,'qecorr'+arc12done+'.fits')
+        sciqe_corr('xrg' + sci12base,arc11done,'qecorr'+arc12done+'.fits')
         print('>>> sci 11 QE correction done')
         time.sleep(2)
     else:
@@ -656,4 +661,266 @@ else:
         time.sleep(2)
 
 #~~~~Flat field and extract spectra!
+
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+print('starting flat fielding and extraction of science')
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+time.sleep(2)
+
+def sci_extract(inimage,refimage,slit,response):
+    iraf.gemini.gmos.gfreduce(inimage, fl_inter='no', fl_addmdf='no', fl_over='no', fl_trim='no', fl_bias='no', \
+                              fl_gscrrej='no', fl_extract='yes', fl_wavtran='no', fl_sky='no', fl_flux='no', \
+                              slits=slit, trace='no', verb='yes', refer=refimage, response=response, weights='none')
+
+if os.path.isfile('eqxrg' + sci11base + '.fits') == False:
+    sci_extract('qxrg' + sci11base,flat1done,slit,response1)
+    print('>>> sci 1 extraction done')
+    time.sleep(2)
+else:
+    print('>>> sci 1 already done, moving on')
+    time.sleep(2)
+
+try:
+    sci12
+except NameError:
+    pass
+else:
+    if os.path.isfile('eqxrg' + sci12base + '.fits') == False:
+        sci_extract('qxrg' + sci12base,flat1done,slit,response1)
+        print('>>> sci 11 extraction done')
+        time.sleep(2)
+    else:
+        print('>>> sci 11 already done, moving on')
+        time.sleep(2)
+
+if os.path.isfile('eqxrg' + sci21base + '.fits') == False:
+    sci_extract('qxrg' + sci21base,flat2done,slit,response1)
+    print('>>> sci 2 extraction  done')
+    time.sleep(2)
+else:
+    print('>>> sci 2 already done, moving on')
+    time.sleep(2)
+
+try:
+    sci22
+except NameError:
+    pass
+else:
+    if os.path.isfile('eqxrg' + sci22base + '.fits') == False:
+        sci_extract('qxrg' + sci22base,flat2done,slit,response1)
+        print('>>> sci 22 extraction  done')
+        time.sleep(2)
+    else:
+        print('>>> sci 22 already done, moving on')
+        time.sleep(2)
+
+#~~~~wavelength calibrate science frames!
+
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+print('starting wavelength calibration of science')
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+time.sleep(2)
+
+def sci_wave(inimage,refimage):
+    iraf.gemini.gmos.gftransform(inimage, wavtran=refimage)
+
+if os.path.isfile('teqxrg' + sci11base + '.fits') == False:
+    sci_wave('eqxrg' + sci11base,arc11done)
+    print('>>> sci 1 wavelength transformation done')
+    time.sleep(2)
+else:
+    print('>>> sci 1 already done, moving on')
+    time.sleep(2)
+
+try:
+    sci12
+except NameError:
+    pass
+else:
+    if os.path.isfile('teqxrg' + sci12base + '.fits') == False:
+        sci_wave('eqxrg' + sci12base,arc11done)
+        print('>>> sci 11 wavelength transformation done')
+        time.sleep(2)
+    else:
+        print('>>> sci 11 already done, moving on')
+        time.sleep(2)
+
+if os.path.isfile('teqxrg' + sci21base + '.fits') == False:
+    sci_wave('eqxrg' + sci21base,arc21done)
+    print('>>> sci 2 wavelength transformation done')
+    time.sleep(2)
+else:
+    print('>>> sci 2 already done, moving on')
+    time.sleep(2)
+
+try:
+    sci22
+except NameError:
+    pass
+else:
+    if os.path.isfile('teqxrg' + sci22base + '.fits') == False:
+        sci_wave('eqxrg' + sci22base,arc21done)
+        print('>>> sci 22 wavelength transformation done')
+        time.sleep(2)
+    else:
+        print('>>> sci 22 already done, moving on')
+        time.sleep(2)
+
+#~~~~subtract the sky!
+
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+print('starting sky subtraction of science')
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+time.sleep(2)
+
+def sci_sky(inimage,slit):
+    iraf.gemini.gmos.gfreduce(inimage, fl_inter='no', fl_addmdf='no', fl_over='no', fl_trim='no', fl_bias='no', \
+                              fl_gscrrej='no', fl_extract='no', fl_wavtran='no', fl_sky='yes', fl_flux='no', \
+                              slits=slit, verb='yes', weights='none')
+
+if os.path.isfile('steqxrg' + sci11base + '.fits') == False:
+    sci_sky('teqxrg' + sci11base)
+    print('>>> sci 1 sky subtraction done')
+    time.sleep(2)
+else:
+    print('>>> sci 1 already done, moving on')
+    time.sleep(2)
+
+try:
+    sci12
+except NameError:
+    pass
+else:
+    if os.path.isfile('steqxrg' + sci12base + '.fits') == False:
+        sci_sky('teqxrg' + sci12base)
+        print('>>> sci 11 sky subtraction done')
+        time.sleep(2)
+    else:
+        print('>>> sci 11 already done, moving on')
+        time.sleep(2)
+
+if os.path.isfile('steqxrg' + sci21base + '.fits') == False:
+    sci_sky('teqxrg' + sci21base)
+    print('>>> sci 2 sky subtraction  done')
+    time.sleep(2)
+else:
+    print('>>> sci 2 already done, moving on')
+    time.sleep(2)
+
+try:
+    sci22
+except NameError:
+    pass
+else:
+    if os.path.isfile('steqxrg' + sci22base + '.fits') == False:
+        sci_sky('teqxrg' + sci22base)
+        print('>>> sci 22 sky subtraction  done')
+        time.sleep(2)
+    else:
+        print('>>> sci 22 already done, moving on')
+        time.sleep(2)
+
+#~~~~flux calibration!
+
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+print('starting flux calibration of science')
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+time.sleep(2)
+
+def sci_flux(inimage,sfunc):
+    iraf.gemini.gmos.gscalibrate(inimage, sfunctio=sfunc, observa="Gemini-South", fluxscal=1)
+
+if os.path.isfile('csteqxrg' + sci11base + '.fits') == False:
+    sci_flux('steqxrg' + sci11base,sfunc)
+    print('>>> sci 1 flux calibration done')
+    time.sleep(2)
+else:
+    print('>>> sci 1 already done, moving on')
+    time.sleep(2)
+
+try:
+    sci12
+except NameError:
+    pass
+else:
+    if os.path.isfile('csteqxrg' + sci12base + '.fits') == False:
+        sci_flux('steqxrg' + sci12base,sfunc)
+        print('>>> sci 11 flux calibration done')
+        time.sleep(2)
+    else:
+        print('>>> sci 11 already done, moving on')
+        time.sleep(2)
+
+if os.path.isfile('csteqxrg' + sci21base + '.fits') == False:
+    sci_flux('steqxrg' + sci21base,sfunc)
+    print('>>> sci 2 flux calibration done')
+    time.sleep(2)
+else:
+    print('>>> sci 2 already done, moving on')
+    time.sleep(2)
+
+try:
+    sci22
+except NameError:
+    pass
+else:
+    if os.path.isfile('csteqxrg' + sci22base + '.fits') == False:
+        sci_fkux('steqxrg' + sci22base,sfunc)
+        print('>>> sci 22 flux calibration  done')
+        time.sleep(2)
+    else:
+        print('>>> sci 22 already done, moving on')
+        time.sleep(2)
+
+#~~~~create data cubes!
+
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+print('starting data cube creation from science')
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+time.sleep(2)
+
+def sci_cube(inimage,sam):
+    iraf.gemini.gmos.gfcube(inimage, ssample=sam)
+
+if os.path.isfile('dcsteqxrg' + sci11base + '.fits') == False:
+    sci_cube('csteqxrg' + sci11base,sam)
+    print('>>> sci 1 flux calibration done')
+    time.sleep(2)
+else:
+    print('>>> sci 1 already done, moving on')
+    time.sleep(2)
+
+try:
+    sci12
+except NameError:
+    pass
+else:
+    if os.path.isfile('dcsteqxrg' + sci12base + '.fits') == False:
+        sci_cube('csteqxrg' + sci12base,sam)
+        print('>>> sci 11 flux calibration done')
+        time.sleep(2)
+    else:
+        print('>>> sci 11 already done, moving on')
+        time.sleep(2)
+
+if os.path.isfile('dcsteqxrg' + sci21base + '.fits') == False:
+    sci_cube('csteqxrg' + sci21base,sam)
+    print('>>> sci 2 flux calibration done')
+    time.sleep(2)
+else:
+    print('>>> sci 2 already done, moving on')
+    time.sleep(2)
+
+try:
+    sci22
+except NameError:
+    pass
+else:
+    if os.path.isfile('dcsteqxrg' + sci22base + '.fits') == False:
+        sci_cube('csteqxrg' + sci22base,sam)
+        print('>>> sci 22 flux calibration  done')
+        time.sleep(2)
+    else:
+        print('>>> sci 22 already done, moving on')
+        time.sleep(2)
 
