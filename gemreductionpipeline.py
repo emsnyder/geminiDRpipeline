@@ -106,6 +106,7 @@ else:
 
 selsci2 = (obsclass == 'science') & (wave == waves[1])
 sciimage2 = np.extract(selsci2,files)
+n = np.size(sciimage2)
 if n <= 1:
     sci21 = sciimage2[0]
     sci21base = sci21.split('.')[0]
@@ -200,7 +201,7 @@ else:
     print(arc12 + '  arc       ' + waves[0])
 print(arc21 + '  arc          ' + waves[1])
 try:
-    arc12
+    arc22
 except NameError:
     pass 
 else:
@@ -258,7 +259,7 @@ def run_gfreduce(inimage,biasimage,refimage,slit,cr,wt,ss,inter,os,tr,bi,ex,fl,a
                               fl_over=os, \
                               fl_trim=tr, \
                               fl_bias=bi, \
-                              fl_flux=fl, \
+                              fl_fluxcal=fl, \
                               fl_extract=ex, \
                               fl_gscrrej=cr, \
                               fl_wavtran=wt,
@@ -345,13 +346,15 @@ else:
 
 #~~~~find the wavelength solution for the arcs
 
+coordlistloc = raw_input('Where is your line list?     ')
+
 print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 print('starting wavelength solution')
 print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 time.sleep(2)
 
 def wave_cal(inimage):
-    iraf.gemini.gmos.gswavelength(inimage, fl_inter=yes, nlost=10)
+    iraf.gemini.gmos.gswavelength(inimage, fl_inter=yes, nlost=10,coordli=coordlistloc)
 
 if os.path.isfile(arc11wt+'.fits') == False:
     wave_cal('erg' + arc11base)
@@ -673,7 +676,7 @@ def sci_extract(inimage,refimage,slit,response):
                               slits=slit, trace='no', verb='yes', refer=refimage, response=response, weights='none')
 
 if os.path.isfile('eqxrg' + sci11base + '.fits') == False:
-    sci_extract('qxrg' + sci11base,flat1done,slit,response1)
+    sci_extract('qxrg' + sci11base,'eqrg'+flat1base,slit,response1)
     print('>>> sci 1 extraction done')
     time.sleep(2)
 else:
@@ -686,7 +689,7 @@ except NameError:
     pass
 else:
     if os.path.isfile('eqxrg' + sci12base + '.fits') == False:
-        sci_extract('qxrg' + sci12base,flat1done,slit,response1)
+        sci_extract('qxrg' + sci12base,'eqrg'+flat1base,slit,response1)
         print('>>> sci 11 extraction done')
         time.sleep(2)
     else:
@@ -694,7 +697,7 @@ else:
         time.sleep(2)
 
 if os.path.isfile('eqxrg' + sci21base + '.fits') == False:
-    sci_extract('qxrg' + sci21base,flat2done,slit,response1)
+    sci_extract('qxrg' + sci21base,'eqrg'+flat2base,slit,response2)
     print('>>> sci 2 extraction  done')
     time.sleep(2)
 else:
@@ -707,7 +710,7 @@ except NameError:
     pass
 else:
     if os.path.isfile('eqxrg' + sci22base + '.fits') == False:
-        sci_extract('qxrg' + sci22base,flat2done,slit,response1)
+        sci_extract('qxrg' + sci22base,'eqrg'+flat2base,slit,response2)
         print('>>> sci 22 extraction  done')
         time.sleep(2)
     else:
