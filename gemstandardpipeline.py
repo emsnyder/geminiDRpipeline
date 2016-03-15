@@ -420,7 +420,7 @@ def qe_corr2(inimage, refimage, corrimage):
     iraf.gemini.gmos.gqecorr(inimage, refimages=refimage, corrimages=corrimage,logfile=starname+'.log')
 
 if os.path.isfile('qrg' + twi1base + '.fits') == False:
-    qe_corr2('rg' + twi1base, arc1done, 'gqecorr'+arc1done)
+    qe_corr2('rg' + twi1base, arc1done, 'qecorr'+arc1done)
     print('>>> twilight 1 QE correction done')
     time.sleep(2)
 else:
@@ -428,7 +428,7 @@ else:
     time.sleep(2)
 
 if os.path.isfile('qrg' + twi2base + '.fits') == False:
-    qe_corr2('rg' + twi2base, arc2done, 'gqecorr'+arc2done)
+    qe_corr2('rg' + twi2base, arc2done, 'qecorr'+arc2done)
     print('>>> twilight 2 QE correction done')
     time.sleep(2)
 else:
@@ -491,21 +491,47 @@ else:
 response1 = 'resp'+twi1base+'.fits'
 response2 = 'resp'+twi2base+'.fits'
 
-#~~~~flatfield, remove cosmic rays, bias/overscan subtract science frames
+#~~~~flatfield, bias/overscan subtract science frames
 
-print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
-print('starting flat fielding and CR rejection of science')
-print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+print('starting flat fielding of science')
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 time.sleep(2)
 
 def sci_reduce(inimage,refimage,slit,response):
     iraf.gemini.gmos.gfreduce(inimage, fl_inter='no', fl_addmdf='yes', fl_over='yes', fl_trim='yes', fl_bias='yes', \
                               fl_gscrrej='no', fl_extract='no', fl_wavtran='no', fl_sky='no', fl_fluxcal='no', \
                               slits=slit, trace='no', verb='yes', refer=refimage, response=response, weights='none', \
-                              fl_qecorr='yes', fl_crspec='yes',logfile=starname+'.log', bias=bias1)
+                              fl_qecorr='no', fl_crspec='no',logfile=starname+'.log', bias=bias1)
+
+if os.path.isfile('rg' + sci1base + '.fits') == False:
+    sci_reduce(sci1base,'eqrg'+flat1base,slit,response1)
+    print('>>> sci 1 flat fielding done')
+    time.sleep(2)
+else:
+    print('>>> sci 1 already done, moving on')
+    time.sleep(2)
+
+if os.path.isfile('rg' + sci2base + '.fits') == False:
+    sci_reduce(sci2base,'eqrg'+flat2base,slit,response2)
+    print('>>> sci 2 flat fielding done')
+    time.sleep(2)
+else:
+    print('>>> sci 2 already done, moving on')
+    time.sleep(2)
+
+#~~~~ remove cosmic rays in science frames
+
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+print('starting CR rejection of science')
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+time.sleep(2)
+
+def sci_cr(inimage,outimage):
+    iraf.gemini.gemcrspec(inimage,outimage,sigclip='3',fl_vardq='yes')
 
 if os.path.isfile('xrg' + sci1base + '.fits') == False:
-    sci_reduce(sci1base,'eqrg'+flat1base,slit,response1)
+    sci_cr('rg'+sci1base,'xrg'+sci1base)
     print('>>> sci 1 CR rejection done')
     time.sleep(2)
 else:
@@ -513,12 +539,14 @@ else:
     time.sleep(2)
 
 if os.path.isfile('xrg' + sci2base + '.fits') == False:
-    sci_reduce(sci2base,'eqrg'+flat2base,slit,response2)
+    sci_cr('rg'+sci2base,'xrg'+sci2base)
     print('>>> sci 2 CR rejection done')
     time.sleep(2)
 else:
     print('>>> sci 2 already done, moving on')
     time.sleep(2)
+
+#~~~~QE correct science frames
 
 print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 print('starting quantum efficiency correction of science frames')
@@ -529,24 +557,24 @@ def qe_corr2(inimage, refimage, corrimage):
     iraf.gemini.gmos.gqecorr(inimage, refimages=refimage, corrimages=corrimage,logfile=starname+'.log')
 
 if os.path.isfile('qxrg' + sci1base + '.fits') == False:
-    qe_corr2('xrg' + sci1base, arc1done, 'gqecorr'+arc1done)
-    print('>>> twilight 1 QE correction done')
+    qe_corr2('xrg' + sci1base, arc1done, 'qecorr'+arc1done)
+    print('>>> science 1 QE correction done')
     time.sleep(2)
 else:
-    print('>>> twilight 1 already done, moving on')
+    print('>>> science 1 already done, moving on')
     time.sleep(2)
 
 if os.path.isfile('qxrg' + sci2base + '.fits') == False:
-    qe_corr2('xrg' + sci2base, arc2done, 'gqecorr'+arc2done)
-    print('>>> twilight 2 QE correction done')
+    qe_corr2('xrg' + sci2base, arc2done, 'qecorr'+arc2done)
+    print('>>> science 2 QE correction done')
     time.sleep(2)
 else:
-    print('>>> twilight 2 already done, moving on')
+    print('>>> science 2 already done, moving on')
     time.sleep(2)
 
-print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
-print('starting extraction of twilights')
-print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+print('starting extraction of science')
+print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 time.sleep(2)
 
 def extract(inimage, refimage):
@@ -554,18 +582,18 @@ def extract(inimage, refimage):
 
 if os.path.isfile('eqxrg' + sci1base + '.fits') == False:
     extract('qxrg' + sci1base, flat1done)
-    print('>>> twilight 1 re-extraction done')
+    print('>>> science 1 extraction done')
     time.sleep(2)
 else:
-    print('>>> twilight 1 already done, moving on')
+    print('>>> science 1 already done, moving on')
     time.sleep(2)
 
 if os.path.isfile('eqxrg' + sci2base + '.fits') == False:
     extract('qxrg' + sci2base, flat2done)
-    print('>>> twilight 2 re-extraction done')
+    print('>>> science 2 extraction done')
     time.sleep(2)
 else:
-    print('>>> twilight 2 already done, moving on')
+    print('>>> science 2 already done, moving on')
     time.sleep(2)
 
 #~~~~wavelength calibrate science frames!
@@ -594,6 +622,8 @@ else:
     print('>>> sci 2 already done, moving on')
     time.sleep(2)
 
+quit
+
 #~~~~subtract the sky!
 
 print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
@@ -601,10 +631,8 @@ print('starting sky subtraction of science')
 print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 time.sleep(2)
 
-def sci_sky(inimage,slit):
-    iraf.gemini.gmos.gfreduce(inimage, fl_inter='no', fl_addmdf='no', fl_over='no', fl_trim='no', fl_bias='no', \
-                              fl_gscrrej='no', fl_extract='no', fl_wavtran='no', fl_sky='yes', fl_flux='no', \
-                              slits=slit, verb='yes', weights='none',logfile=starname+'.log')
+def sci_sky(inimage):
+    iraf.gemini.gmos.gfskysub(inimage, fl_inter='yes', verb='yes', weight='none',sepslits='yes',logfile=starname+'.log')
 
 if os.path.isfile('steqxrg' + sci1base + '.fits') == False:
     sci_sky('teqxrg' + sci1base)
@@ -651,12 +679,12 @@ else:
 
 # 2--make the curve
 
-def standard(inimage, sfile, sfunction, star):
+def sci_standard(inimage, sfile, sfunction, star):
     iraf.gemini.gmos.gsstandard(inimage, sfile=sfile, sfunctio=sfunction, starname=star, fl_inte='no', \
                                 observa="Gemini-South", functio="chebyshev", order="4", caldir="onedstds$ctionewcal/",logfile=starname+'.log')
 
 if os.path.isfile('sfunction_steqxrg' + sci1base + '.fits') == False:
-    sum_aps('apsum_steqxrg' + sci1base + '.fits','sfile_steqxrg' + sci1base + '.fits','sfunction_steqxrg' + sci1base + '.fits',starnameshort)
+    sci_standard('apsum_steqxrg' + sci1base + '.fits','sfile_steqxrg' + sci1base + '.fits','sfunction_steqxrg' + sci1base + '.fits',starnameshort)
     print('>>> sci 1 sensitivity curve created')
     time.sleep(2)
 else:
@@ -664,7 +692,7 @@ else:
     time.sleep(2)
 
 if os.path.isfile('sfunction_steqxrg' + sci2base + '.fits') == False:
-    sum_aps('apsum_steqxrg' + sci2base + '.fits','sfile_steqxrg' + sci2base + '.fits','sfunction_steqxrg' + sci2base + '.fits',starnameshort)
+    sci_standard('apsum_steqxrg' + sci2base + '.fits','sfile_steqxrg' + sci2base + '.fits','sfunction_steqxrg' + sci2base + '.fits',starnameshort)
     print('>>> sci 2 sensitivity curve created')
     time.sleep(2)
 else:
@@ -678,16 +706,24 @@ print('starting flux calibration of science')
 print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 time.sleep(2)
 
-def calibrate(inimage, sfunc):
-    iraf.gemini.gmos.gscalibrate(inimage,sfuncti=sfunc,observa="Gemini-South",fluxscal='1',fl_flux='yes',logfile=starname+'.log')
+def sci_calibrate(inimage, sfunc):
+    iraf.gemini.gmos.gscalibrate(inimage,sfuncti=sfunc,observa="Gemini-South",fluxscal='1',logfile=starname+'.log')
 
-#if os.path.isfile('sfunction_steqxrg' + sci1base + '.fits') == False:
-sum_aps('apsum_steqxrg' + sci1base + '.fits','sfunction_steqxrg' + sci1base + '.fits')
-print('>>> sci 1 sensitivity curve created')
-time.sleep(2)
-#else:
-#    print('>>> sci 1 already done, moving on')
-#    time.sleep(2)
+if os.path.isfile('capsum_steqxrg' + sci1base + '.fits') == False:
+    sci_calibrate('apsum_steqxrg' + sci1base + '.fits','sfunction_steqxrg' + sci1base + '.fits')
+    print('>>> sci 1 flux calibration done')
+    time.sleep(2)
+else:
+    print('>>> sci 1 already done, moving on')
+    time.sleep(2)
+
+if os.path.isfile('capsum_steqxrg' + sci2base + '.fits') == False:
+    sci_calibrate('apsum_steqxrg' + sci2base + '.fits','sfunction_steqxrg' + sci2base + '.fits')
+    print('>>> sci 2 flux calibration done')
+    time.sleep(2)
+else:
+    print('>>> sci 2 already done, moving on')
+    time.sleep(2)
 
 #~~~~create data cubes
 
@@ -699,7 +735,7 @@ time.sleep(2)
 def sci_cube(inimage,sam):
     iraf.gemini.gmos.gfcube(inimage, ssample=sam,logfile=starname+'.log')
 
-if os.path.isfile('dcsteqxrg' + sci11base + '.fits') == False:
+if os.path.isfile('dsteqxrg' + sci11base + '.fits') == False:
     sci_cube('csteqxrg' + sci11base,'0.2')
     print('>>> sci 1 flux calibration done')
     time.sleep(2)

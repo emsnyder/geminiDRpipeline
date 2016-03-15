@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.8.7)  26 FEB 2016 17:43
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.8.7)  11 MAR 2016 17:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**gemini_dr_user_guide.tex
+**gemini_dr_user_guide
 (./gemini_dr_user_guide.tex
 LaTeX2e <2011/06/27>
 Babel <3.9h> and hyphenation patterns for 4 languages loaded.
@@ -412,6 +412,30 @@ LaTeX Info: Redefining \addtolength on input line 77.
 \calc@Ccount=\count123
 \calc@Cskip=\skip59
 ))
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen172
+\captionmargin@=\dimen173
+\captionwidth=\dimen174
+\caption@tempdima=\dimen175
+\caption@indent=\dimen176
+\caption@parindent=\dimen177
+\caption@hangindent=\dimen178
+)
+\c@ContinuedFloat=\count124
+Package caption Info: hyperref package is loaded.
+Package caption Info: hypcap package is loaded.
+Package caption Info: rotating package is loaded.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
+\c@subfigure=\count125
+\c@subtable=\count126
+)
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2013/12/03 3.9h The Babel package
 
@@ -420,8 +444,8 @@ Language: english 2012/08/20 v3.3p English support from the babel system
 
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2013/12/03 3.9h Babel common definitions
-\babel@savecnt=\count124
-\U@D=\dimen172
+\babel@savecnt=\count127
+\U@D=\dimen179
 )
 \l@canadian = a dialect from \language\l@american 
 \l@australian = a dialect from \language\l@british 
@@ -429,18 +453,18 @@ File: babel.def 2013/12/03 3.9h Babel common definitions
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2011/06/27 v1.7a multicolumn formatting (FMi)
-\c@tracingmulticols=\count125
+\c@tracingmulticols=\count128
 \mult@box=\box31
-\multicol@leftmargin=\dimen173
-\c@unbalance=\count126
-\c@collectmore=\count127
-\doublecol@number=\count128
-\multicoltolerance=\count129
-\multicolpretolerance=\count130
-\full@width=\dimen174
-\page@free=\dimen175
-\premulticols=\dimen176
-\postmulticols=\dimen177
+\multicol@leftmargin=\dimen180
+\c@unbalance=\count129
+\c@collectmore=\count130
+\doublecol@number=\count131
+\multicoltolerance=\count132
+\multicolpretolerance=\count133
+\full@width=\dimen181
+\page@free=\dimen182
+\premulticols=\dimen183
+\postmulticols=\dimen184
 \multicolsep=\skip60
 \multicolbaselineskip=\skip61
 \partial@page=\box32
@@ -466,14 +490,14 @@ Package: multicol 2011/06/27 v1.7a multicolumn formatting (FMi)
 \@tempa=\box52
 \@tempa=\box53
 \@tempa=\box54
-\c@columnbadness=\count131
-\c@finalcolumnbadness=\count132
-\last@try=\dimen178
-\multicolovershoot=\dimen179
-\multicolundershoot=\dimen180
+\c@columnbadness=\count134
+\c@finalcolumnbadness=\count135
+\last@try=\dimen185
+\multicolovershoot=\dimen186
+\multicolundershoot=\dimen187
 \mult@nat@firstbox=\box55
 \colbreak@box=\box56
-\multicol@sort@counter=\count133
+\multicol@sort@counter=\count136
 )
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2008/03/30 v1.1d Input encoding file
@@ -489,7 +513,7 @@ Package: ucs 2013/05/11 v2.2 UCS: Unicode input support
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-global.def
 File: uni-global.def 2013/05/13 UCS: Unicode global data
 )
-\uc@secondtry=\count134
+\uc@secondtry=\count137
 \uc@combtoks=\toks36
 \uc@combtoksb=\toks37
 \uc@temptokena=\toks38
@@ -497,33 +521,33 @@ File: uni-global.def 2013/05/13 UCS: Unicode global data
 (./gemini_dr_user_guide.aux)
 \openout1 = `gemini_dr_user_guide.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count135
-\scratchdimen=\dimen181
+\scratchcounter=\count138
+\scratchdimen=\dimen188
 \scratchbox=\box57
-\nofMPsegments=\count136
-\nofMParguments=\count137
+\nofMPsegments=\count139
+\nofMParguments=\count140
 \everyMPshowfont=\toks39
-\MPscratchCnt=\count138
-\MPscratchDim=\dimen182
-\MPnumerator=\count139
-\makeMPintoPDFobject=\count140
+\MPscratchCnt=\count141
+\MPscratchDim=\dimen189
+\MPnumerator=\count142
+\makeMPintoPDFobject=\count143
 \everyMPtoPDFconversion=\toks40
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
@@ -541,7 +565,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box58
-Package hyperref Info: Link coloring ON on input line 16.
+Package hyperref Info: Link coloring ON on input line 21.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -549,25 +573,25 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count141
+\c@section@level=\count144
 )
-LaTeX Info: Redefining \ref on input line 16.
-LaTeX Info: Redefining \pageref on input line 16.
-LaTeX Info: Redefining \nameref on input line 16.
+LaTeX Info: Redefining \ref on input line 21.
+LaTeX Info: Redefining \pageref on input line 21.
+LaTeX Info: Redefining \nameref on input line 21.
 
 (./gemini_dr_user_guide.out) (./gemini_dr_user_guide.out)
 \@outlinefile=\write3
 \openout3 = `gemini_dr_user_guide.out'.
 
-LaTeX Info: Redefining \celsius on input line 16.
-Package gensymb Info: Faking symbols for \degree and \celsius on input line 16.
+LaTeX Info: Redefining \celsius on input line 21.
+Package gensymb Info: Faking symbols for \degree and \celsius on input line 21.
 
 
 
 Package gensymb Warning: Not defining \perthousand.
 
-LaTeX Info: Redefining \ohm on input line 16.
-Package gensymb Info: Using \Omega for \ohm on input line 16.
+LaTeX Info: Redefining \ohm on input line 21.
+Package gensymb Info: Using \Omega for \ohm on input line 21.
 
 Package gensymb Warning: Not defining \micro.
 
@@ -605,15 +629,17 @@ Package gensymb Warning: Not defining \micro.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 25.
+LaTeX Font Info:    Try loading font information for U+msa on input line 30.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 25.
+LaTeX Font Info:    Try loading font information for U+msb on input line 30.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -628,7 +654,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.28 \listoftables
+l.33 \listoftables
                    [1
 
 ] (./gemini_dr_user_guide.lot)
@@ -646,11 +672,11 @@ l.28 \listoftables
 
 ]
 Chapter 1.
-<fiber_examples.jpeg, id=134, 503.481pt x 618.40125pt>
+<fiber_examples.jpeg, id=161, 503.481pt x 618.40125pt>
 File: fiber_examples.jpeg Graphic file (type jpg)
 
 <use fiber_examples.jpeg>
-Package pdftex.def Info: fiber_examples.jpeg used on input line 44.
+Package pdftex.def Info: fiber_examples.jpeg used on input line 49.
 (pdftex.def)             Requested size: 411.43756pt x 505.35608pt.
 
 
@@ -658,88 +684,156 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [4
 
-] [5] [6 <./fiber_examples.jpeg>]
+] [5]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 93.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 93.
+
+<mecube_raw.jpeg, id=191, 385.44pt x 153.57375pt>
+File: mecube_raw.jpeg Graphic file (type jpg)
+ <use mecube_raw.jpeg>
+Package pdftex.def Info: mecube_raw.jpeg used on input line 104.
+(pdftex.def)             Requested size: 385.43906pt x 153.57336pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<raw_flat.jpeg, id=192, 208.78pt x 369.5625pt>
+File: raw_flat.jpeg Graphic file (type jpg)
+ <use raw_flat.jpeg>
+Package pdftex.def Info: raw_flat.jpeg used on input line 111.
+(pdftex.def)             Requested size: 208.77946pt x 369.5616pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[6] [7 <./fiber_examples.jpeg>] [8 <./mecube_raw.jpeg> <./raw_flat.jpeg>]
 Chapter 2.
-[7
+[9
 
-]
+] [10]
 Chapter 3.
-[8
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 159--160
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 161--162
-
- []
-
-<overscan_example.pdf, id=194, 469.755pt x 313.17pt>
+<overscan_example.pdf, id=225, 469.755pt x 313.17pt>
 File: overscan_example.pdf Graphic file (type pdf)
 
 <use overscan_example.pdf>
-Package pdftex.def Info: overscan_example.pdf used on input line 200.
+Package pdftex.def Info: overscan_example.pdf used on input line 187.
 (pdftex.def)             Requested size: 469.75386pt x 313.16922pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<apertures1.pdf, id=195, 469.755pt x 313.17pt>
+[11
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 205--206
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 207--208
+
+ []
+
+[12 <./overscan_example.pdf>] <apertures1.pdf, id=253, 469.755pt x 313.17pt>
 File: apertures1.pdf Graphic file (type pdf)
- <use apertures1.pdf>
-Package pdftex.def Info: apertures1.pdf used on input line 207.
-(pdftex.def)             Requested size: 469.75386pt x 313.16922pt.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<apertures2.pdf, id=196, 469.755pt x 313.17pt>
+<use apertures1.pdf>
+Package pdftex.def Info: apertures1.pdf used on input line 248.
+(pdftex.def)             Requested size: 252.00737pt x 168.00542pt.
+ <apertures2.pdf, id=254, 469.755pt x 313.17pt>
 File: apertures2.pdf Graphic file (type pdf)
- <use apertures2.pdf>
-Package pdftex.def Info: apertures2.pdf used on input line 214.
-(pdftex.def)             Requested size: 469.75386pt x 313.16922pt.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<badfiber.pdf, id=197, 469.755pt x 313.17pt>
+<use apertures2.pdf>
+Package pdftex.def Info: apertures2.pdf used on input line 252.
+(pdftex.def)             Requested size: 252.00737pt x 168.00542pt.
+ <badfiber.pdf, id=255, 469.755pt x 313.17pt>
 File: badfiber.pdf Graphic file (type pdf)
- <use badfiber.pdf>
-Package pdftex.def Info: badfiber.pdf used on input line 221.
-(pdftex.def)             Requested size: 469.75386pt x 313.16922pt.
+
+<use badfiber.pdf>
+Package pdftex.def Info: badfiber.pdf used on input line 260.
+(pdftex.def)             Requested size: 375.80452pt x 250.53633pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[9] [10 <./overscan_example.pdf>] [11 <./apertures1.pdf>] [12 <./apertures2.pdf
->] [13 <./badfiber.pdf>]
+[13 <./apertures1.pdf> <./apertures2.pdf>]
+Overfull \hbox (10.58026pt too wide) in paragraph at lines 309--309
+[]          \OT1/cmtt/m/n/12 Image Data    Found          Fit   Pix Shift    Us
+er Shift Z Shift      RMS[] 
+ []
+
+
+Overfull \hbox (10.58026pt too wide) in paragraph at lines 309--309
+[]\OT1/cmtt/m/n/12 ergS20151108S0106_001 - Ap 440 10/10   10/10   -0.00557     
+0.00522  1.82E-6   0.0749[] 
+ []
+
+[14 <./badfiber.pdf>]
+Overfull \hbox (10.58026pt too wide) in paragraph at lines 309--309
+[]\OT1/cmtt/m/n/12 ergS20151108S0106_001 - Ap 441 10/10   10/10    -0.0793     
+  0.081  1.36E-5   0.0731[] 
+ []
+
+
+Overfull \hbox (10.58026pt too wide) in paragraph at lines 309--309
+[]\OT1/cmtt/m/n/12 ergS20151108S0106_001 - Ap 442 10/10   10/10    -0.0694     
+ 0.0711  1.12E-5    0.034[] 
+ []
+
+
+Overfull \hbox (10.58026pt too wide) in paragraph at lines 309--309
+[]\OT1/cmtt/m/n/12 ergS20151108S0106_001 - Ap 443 10/10   10/10   -0.00833     
+0.00873  9.11E-7   0.0476[] 
+ []
+
+
+Overfull \hbox (10.58026pt too wide) in paragraph at lines 309--309
+[]\OT1/cmtt/m/n/12 ergS20151108S0106_001 - Ap 444 10/10   10/10     0.0222     
+-0.0225  -4.0E-6     0.07[] 
+ []
+
+
+Overfull \hbox (10.58026pt too wide) in paragraph at lines 309--309
+[]\OT1/cmtt/m/n/12 ergS20151108S0106_001 - Ap 445 10/10   10/10     0.0256     
+-0.0259  -4.7E-6   0.0896[] 
+ []
+
+
+Overfull \hbox (10.58026pt too wide) in paragraph at lines 309--309
+[]\OT1/cmtt/m/n/12 ergS20151108S0106_001 - Ap 446 10/10   10/10      0.084     
+-0.0855  -1.4E-5    0.126[] 
+ []
+
+[15]
 Chapter 4.
-[14
+[16
 
 ]
 Chapter 5.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 254.
-[15
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 327.
+[17
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 254.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 327.
  (./gemini_dr_user_guide.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 254.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 254.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 327.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 327.
 Package rerunfilecheck Info: File `gemini_dr_user_guide.out' has not changed.
-(rerunfilecheck)             Checksum: 8473878A5F1005595941E86944F595EE;1278.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 254.
+(rerunfilecheck)             Checksum: B188A76CC5A6A689F40F0457AC1E821F;1667.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 327.
  ) 
 Here is how much of TeX's memory you used:
- 8840 strings out of 494985
- 125913 string characters out of 6180357
- 240269 words of memory out of 5000000
- 11837 multiletter control sequences out of 15000+600000
+ 9944 strings out of 494985
+ 145965 string characters out of 6180357
+ 261631 words of memory out of 5000000
+ 12919 multiletter control sequences out of 15000+600000
  12948 words of font info for 52 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 31i,10n,53p,1166b,448s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 53i,10n,92p,1153b,554s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
@@ -751,10 +845,10 @@ ic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt
 12.pfb>
-Output written on gemini_dr_user_guide.pdf (16 pages, 397608 bytes).
+Output written on gemini_dr_user_guide.pdf (18 pages, 442911 bytes).
 PDF statistics:
- 287 PDF objects out of 1000 (max. 8388607)
- 249 compressed objects within 3 object streams
- 56 named destinations out of 1000 (max. 500000)
- 170 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 335 PDF objects out of 1000 (max. 8388607)
+ 293 compressed objects within 3 object streams
+ 65 named destinations out of 1000 (max. 500000)
+ 220 words of extra memory for PDF output out of 10000 (max. 10000000)
 

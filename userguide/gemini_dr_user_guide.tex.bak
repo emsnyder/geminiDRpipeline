@@ -47,8 +47,8 @@ In the case of the GMOS IFU setups for RESOLVE observations, you will have eithe
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.8\textwidth]{fiber_examples.jpeg}
-\caption[IFU Fibers and Data Format]{The top part of this image shows the IFU field of view over NGC221 (not a part of RESOLVE). The left portion of the image shows the sky spaxels, and the right portion shows the light of the galaxy. This is a 2D representation of the data we are getting -- the third dimension is in the wavelength direction, and the darkness over where the galaxy is from summing the light inside each spaxel there. The bottom portion of this image shows the raw fits data from the above galaxies.  \footnotesize{Image from \url{https://www.gemini.edu/sciops/instruments/gmos/spectroscopy/integral-field-spectroscopy/field-slit-mapping}}}
 \label{figure:1}
+\caption[IFU Fibers and Data Format]{The top part of this image shows the IFU field of view over NGC221 (not a part of RESOLVE). The left portion of the image shows the sky spaxels, and the right portion shows the light of the galaxy. This is a 2D representation of the data we are getting -- the third dimension is in the wavelength direction, and the darkness over where the galaxy is from summing the light inside each spaxel there. The bottom portion of this image shows the raw fits data from the above galaxies.  \footnotesize{Image from \url{https://www.gemini.edu/sciops/instruments/gmos/spectroscopy/integral-field-spectroscopy/field-slit-mapping}}}
 \end{figure}
 
 \section{Observing setups}
@@ -102,26 +102,24 @@ Lastly, we'll want a bias image in order to perform the bias subtraction. Each n
 \begin{figure}[h]
 \centering
 \includegraphics{mecube_raw.jpeg}
-\caption[Example of DS9 cube diaglog box]{}
 \label{fig:mecube}
+\caption[Example of DS9 cube diaglog box]{}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics{raw_flat.jpeg}
-\caption[Example of DS9 cube diaglog box]{}
 \label{fig:rawflat}
+\caption[Example of DS9 cube diaglog box]{}
 \end{figure}
 
 \subsection{What is an MDF file?}
 
 \chapter{Setting Up Your Workspace}
 
-There are some things you'll need to install (or update) before using this pipeline. I highly recommend working in the Ureka environment, which includes easy-to-install versions of IRAF, Python, and PyRAF. Since this code is written for PyRAF, Ureka is indeed quite handy. Instructions on how to download Ureka can be found here: \url{http://ssb.stsci.edu/ureka/}. I am currently using version 1.5.1 on cielo. Follow the instructions for making IRAF, and check your login screen to make sure it says you're using IRAF 2.16:
+There are some things you'll need to install (or update) before using this pipeline. I highly recommend working in the Ureka environment, which includes easy-to-install versions of IRAF, Python, and Pyraf. Since this code is written for Pyraf, Ureka is indeed quite handy. Instructions on how to download Ureka can be found here: \url{http://ssb.stsci.edu/ureka/}. I am currently using version 1.5.1 on cielo. Follow the instructions for making IRAF, and check your login screen to make sure it says you're using IRAF 2.16:
 
 \begin{verbatim}
-> pyraf
-
 NOAO/IRAF PC-IRAF Revision 2.16 EXPORT Thu May 24 15:41:17 MST 2012
   This is the EXPORT version of IRAF V2.16 supporting PC systems.
 \end{verbatim}
@@ -141,13 +139,8 @@ There is also an updated IRAF Gemini package you'll want to install. This versio
      +-----------------------------------------------------------+
 \end{verbatim}
 
-This pipeline also makes use of a PyRAF script called PyFU which was written by James Turner, a support scientist at Gemini. The code will align and sum the data cubes we make during the reduction process. The package is available at the Gemini Data Reduction Forum (\url{http://drforum.gemini.edu/topic/pyfu-datacube-mosaicking-package/}), and comes with instructions on how to install and point to the package from your login.cl file.
 
-You may also need to download L.A.Cosmic, an algorithm that finds and removes cosmic rays. You can read more about it at \url{http://www.astro.yale.edu/dokkum/lacosmic/}. You can download the IRAF spectroscopic version from that website, and will need to add a line in your login.cl: ``task lacos\_spec = /path/to/where/you/put/it/lacos\_spec.cl''. The pipeline will call this task during the cosmic ray removal step.
-
-(For future, may add Voronoi binning algorithm download, too.)
-
-If you are new to data reduction in general, you will want to download DS9, an astronomical imaging application that you'll use to view our data as you progess through the pipeline. Download DS9 from this site: \url{http://ds9.si.edu/site/Home.html}.
+If you are new to data reduction in general, you will want to download ds9, an astronomical imaging application that you'll use to view our data as you progess through the pipeline. Download ds9 from this site: \url{http://ds9.si.edu/site/Home.html}.
 
 Next, you'll want data to actually reduce! You should have flats, arcs, science frames, and a bias image before getting started. You should also have response flats from the baseline twilights and a flux calibration from the standard star data. See \autoref{files} for more info on how to get your data and on each specific file you'll need. There should also be an observing log to inspect (RESOLVE data has obslog.txt or just log.txt) as well as an alternative line list file ``smalllinelist.dat'' that will be helpful during the wavelength calibration steps. Place all of these files in the same folder, since that's where the pipeline looks for them. 
 
@@ -161,7 +154,7 @@ Here are the basic start up commands:
 \item cd to the directory where you put your data
 \item enter the Ureka environment by typing \ty{ur\_setup} in the command line 
 \item enter PyRAF by typing \ty{pyraf} in the command line
-\item open a DS9 window by typing \ty{!ds9 \&} at the prompt
+\item open a ds9 window by typing \ty{!ds9 \&} at the prompt
 \item enter the pipeline by typing \ty{execfile(`/path/to/your/code/gemreductionpipeline.py')}
 \end{enumerate}
 
@@ -182,17 +175,9 @@ This very first step is often (in the author's experience) the most time-consumi
 
 The package used here is a main part of the Gemini IRAF package and is called `gfreduce'. It has many different options, but for the flat, we are just going to attach the MDF file, do a bias subtraction, overscan subtraction, and fiber ID so that we may extract all the spectra.
 
-\begin{figure}[h]
-\centering
-\includegraphics{overscan_example}
-\caption[Overscan Subtraction Example]{An example of the overscan subtraction window that PyRAF will open during the reduction of the flats step. The solid line represents the data, while the dashed line shows the fit to that data. The diamonds are data points that are being rejected from our fit.}
-\label{fig:overscan}
-\end{figure}
-
-
 \begin{enumerate}
 \item The MDF attachment is done without user input needed. A file is produced in your working directory with the prefix `g'.
-\item The bias and overscan subtraction is mostly done without user input needed. For the overscan subtraction, a PyRAF window will open with the overscan level being plotted.There is a also fit to the overscan level being plotting, and this normally looks fine as is. Press \ty{q} inside the PyRAF window to move on. There is a plot for each amplifier in the CCDs, so you will see 12 individual plots. If the fit does not look fine, you can type \ty{:order \#} and then \ty{f} inside the PyRAF window to change the order of the fit to a different number (with that number instead of \# in the previous command). Higher orders typically do better at fitting any strange features. Unless something is very wrong, you probably won't need to worry about this. See Figure \autoref{fig:overscan} for an example of what you should be seeing. This step produces a file with the prefix `rg', where the `g' comes from the previous step, i.e. the `rg' is both overscan and bias subtracted and has the MDF attached.
+\item The bias and overscan subtraction is mostly done without user input needed. For the overscan subtraction, a PyRAF window will open with the overscan level being plotted.There is a also fit to the overscan level being plotting, and this normally looks fine as is. Press \ty{q} inside the PyRAF window to move on. There is a plot for each amplifier in the CCDs, so you will see 12 individual plots. If the fit does not look fine, you can type \ty{:order \#} and then \ty{f} inside the PyRAF window to change the order of the fit to a different number (with that number instead of \# in the previous command).Higher orders typically do better at fitting any strange features. Unless something is very wrong, you probably won't need to worry about this. See Figure \ref{fig:overscan} for an example of what you should be seeing. This step produces a file with the prefix `rg', where the `g' comes from the previous step, i.e. the `rg' is both overscan and bias subtracted and has the MDF attached.
 \item Lastly, we must tackle the fiber identification. Your command window is going to ask you a few questions:
 \begin{verbatim}
 Extracting slit 1
@@ -202,9 +187,9 @@ Here I recommend saying `yes', as usually IRAF will be able to identify the fibe
 \begin{verbatim}
 Edit apertures for ergS20151108S0053_1? (`yes'): 
 \end{verbatim}
-Say `yes' to this one as well, so we can inspect the fiber IDs and make sure everything looks correct. \autoref{fig:aps} shows what this will look like -- a complete mess! But we can zoom in by typing \ty{w} in the PyRAF window, and then typing \ty{e} at the bottom-left of the first `fiber bundle' and again at its top-right. [Note: use \ty{w} and \ty{a} to un-zoom the window.] You should now have a screen that looks like \autoref{fig:aps}. I find that making this plot full-screen helps immensely. Each `bundle' contains a set of 50 fibers, which you will see numbered at the top of your screen (though not very apparent in \autoref{fig:aps}). Your job is to make sure each fiber is identified correctly -- this means no repeated numbers or missing fibers. Often I find that the low level of fiber 50 makes it get skipped in IRAF's auto-finding scheme, which makes the first fiber of the second `bundle' start at 50 instead of 51. If this happens, you can use \ty{d} in the plot window to delete the IDs for fibers 50--750, and then use \ty{m} to re-mark the fibers. This is where it can get frustrating! \\
+Say `yes' to this one as well, so we can inspect the fiber IDs and make sure everything looks correct. Figure \ref{fig:ap1} shows what this will look like -- a complete mess! But we can zoom in by typing \ty{w} in the PyRAF window, and then typing \ty{e} at the bottom-left of the first `fiber bundle' and again at its top-right. [Note: use \ty{w} and \ty{a} to un-zoom the window.] You should now have a screen that looks like Figure \ref{fig:ap2}. I find that making this plot full-screen helps immensely. Each `bundle' contains a set of 50 fibers, which you will see numbered at the top of your screen (though not very apparent in Figure \ref{fig:ap2}). Your job is to make sure each fiber is identified correctly -- this means no repeated numbers or missing fibers. Often I find that the low level of fiber 50 makes it get skipped in IRAF's auto-finding scheme, which makes the first fiber of the second `bundle' start at 50 instead of 51. If this happens, you can use \ty{d} in the plot window to delete the IDs for fibers 50--750, and then use \ty{m} to re-mark the fibers. This is where it can get frustrating! \\
 
-Figure \autoref{fig:bad} shows an example of a bad fiber not being marked in the identification process. This is exactly what we want to happen in this case. If you find another fiber that looks bad, you will have to edit the MDF file to `turn off' that fiber number. For the 2014-2015B slit-1 data, you will end with either fiber 742 or 743 (the rest up to 750 are bad). \\
+Figure \ref{fig:bad} shows an example of a bad fiber not being marked in the identification process. This is exactly what we want to happen in this case. If you find another fiber that looks bad, you will have to edit the MDF file to `turn off' that fiber number. For the 2014-2015B slit-1 data, you will end with either fiber 742 or 743 (the rest up to 750 are bad). \\
 
 If you are pleased with your IDs, type \ty{q}. More questions will appear in the terminal, but it will want your answer inside the PyRAF graphics window.
 
@@ -238,46 +223,42 @@ Review extracted spectra from ergS20151108S0053_1?
 
 \ty{NO}
 
-If you're in the blue setup (1-slit mode), this is the end of IDing for you! If you're in the red setup (2-slit mode), you'll have to repeat this process for fibers 751--1500 (usually fibers 1493 and above are missing for this group). Once complete, IRAF will extract all the spectra and create a file with the prefix `e', so in full you should have an `ergS....fits' file in your working directory. Since we have two different wavelength dithers, you'll have to repeat this process for the second flat, but after that, we'll use these files to identify the fibers for the rest of the bunch.
+If you're in the blue setup (1-slit mode), this is the end of IDing for you! If you're in the red setup (2-slit mode), you'll have to repeat this process for fibers 751--1500 (usually fibers 1493 and above are missing for this group). Once complete, IRAF will extract all the spectra and create a file with the prefix 'e', so in full you should have an 'ergS....fits' file in your working directory. Since we have two different wavelength dithers, you'll have to do this process again for the second flat, but after that, we'll use these files to identify the fibers for the rest of the bunch.
 
 \end{enumerate}
 
-\begin{figure}[t]
+\begin{figure}[h]
 \centering
-\begin{subfigure}[t]{0.49\textwidth}
-\includegraphics[width=\textwidth]{apertures1}
-\end{subfigure}
-\hfill
-\begin{subfigure}[t]{0.49\textwidth}
-\includegraphics[width=\textwidth]{apertures2}
-\end{subfigure}
-\caption[Examples of the Fiber ID Step]{\textbf{(a).} A zoomed-out example of the fiber ID window that PyRAF will open during the reduction of the flats step. \textbf{(b).} An example of the fiber ID window that is zoomed-in on one set of fiber bundles.}
-\label{fig:aps}
+\includegraphics{overscan_example}
+\label{fig:overscan}
+\caption[Overscan Subtraction Example]{An example of the overscan subtraction window that PyRaf will open during the reduction of the flats step. The solid line represents the data, while the dashed line shows the fit to that data. The diamonds are data points that are being rejected from our fit.}
 \end{figure}
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.8]{badfiber}
-\caption[Example Image of a Bad Fiber]{For this image, fiber 138 is bad. The MDF knows this though, and that number is skipped during the identification routine.}
+\includegraphics{apertures1}
+\label{fig:ap1}
+\caption[Zoomed Out Fiber ID Example]{An example of the fiber ID window that PyRaf will open during the reduction of the flats step.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics{apertures2}
+\label{fig:ap2}
+\caption[Zoomed In Fiber ID Example]{An example of the fiber ID window zoomed in on one of the fiber bundles. Each fiber should have a number above it, even though the image above doesn't display it well.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics{badfiber}
 \label{fig:bad}
+\caption[Example Image of a Bad Fiber]{For this image, fiber 138 is bad. The MDF knows this though, and that number is skipped during the identification routine.}
 \end{figure}
 
 
 \section{Reduction of the Arcs}
 
-The next step is to add the MDF and overscan subtract the arcs. A bias subtraction isn't needed here since the arcs are read out ``faster'' than the bias frames. There is nothing interactive for this step.
-
-\section{Identifying and Removing Bad Pixels from the Flats and Arcs}
-
-Before we get too into the reduction, we must look at our bias-subtracted images and find any hot pixels that could later affect the reduction. The pixels affected could be different for images taken at different exposure times, so we'll need to create a bad pixel map (BPM) for the flats, arc, and science frames separately (though the separate dithers can use the same BPM).
-
-The pipeline will open a DS9 window with one of the flats first. It will then prompt you to look through all twelve extensions and identify any bad columns or other sections you see. If you don't see any bad pixels, you can enter \ty{0} and move on to the arcs. If you do see some bad areas, enter \ty{1}, which will bring up another prompt for you to enter the extension number, and x and y values of the bad region. The extension number will be 1-12, and x and y can extend to the size of your image. To enter a bad rectangle, you can say x = 132:140 and y = 444:450. For a full column, you can enter *.
-
-It is important to discern between cosmic rays and bad pixels too. I usually find that cosmic rays will be curved and erratic looking, while actual bad pixels will be in straight lines and will be much larger. See figure \#\# for examples. You will repeat this for an arc image, and later in the reduction will do this for the science frames as well.
-
-\section{Extracting the Arcs}
-
-This step will use the fiber IDs you created from the flat images to extract the spectra from the arcs. There is nothing interactive for this step.
+The next step is to overscan subtract the arcs. A bias subtraction isn't waranted here since the arcs are read out ``faster'' than the bias frames. There is nothing interactive for this step.
 
 \section{Wavelength Calibration of the Arcs}
 
@@ -285,25 +266,22 @@ This step is twofold: first we must find the wavelength solution for each arc la
 
 \subsection{Find the Wavelenth Calibration}
 
-Now we are going to 
-
-
 \begin{verbatim}
           Image Data    Found          Fit   Pix Shift    User Shift Z Shift      RMS
 ergS20151108S0106_001 - Ap 440 10/10   10/10   -0.00557     0.00522  1.82E-6   0.0749
-Fit dispersion function interactively? (no|yes|NO|YES) (`no'): 
+Fit dispersion function interactively? (no|yes|NO|YES) ('no'): 
 ergS20151108S0106_001 - Ap 441 10/10   10/10    -0.0793       0.081  1.36E-5   0.0731
-Fit dispersion function interactively? (no|yes|NO|YES) (`no'): 
+Fit dispersion function interactively? (no|yes|NO|YES) ('no'): 
 ergS20151108S0106_001 - Ap 442 10/10   10/10    -0.0694      0.0711  1.12E-5    0.034
-Fit dispersion function interactively? (no|yes|NO|YES) (`no'): 
+Fit dispersion function interactively? (no|yes|NO|YES) ('no'): 
 ergS20151108S0106_001 - Ap 443 10/10   10/10   -0.00833     0.00873  9.11E-7   0.0476
-Fit dispersion function interactively? (no|yes|NO|YES) (`no'): 
+Fit dispersion function interactively? (no|yes|NO|YES) ('no'): 
 ergS20151108S0106_001 - Ap 444 10/10   10/10     0.0222     -0.0225  -4.0E-6     0.07
-Fit dispersion function interactively? (no|yes|NO|YES) (`no'): 
+Fit dispersion function interactively? (no|yes|NO|YES) ('no'): 
 ergS20151108S0106_001 - Ap 445 10/10   10/10     0.0256     -0.0259  -4.7E-6   0.0896
-Fit dispersion function interactively? (no|yes|NO|YES) (`no'): 
+Fit dispersion function interactively? (no|yes|NO|YES) ('no'): 
 ergS20151108S0106_001 - Ap 446 10/10   10/10      0.084     -0.0855  -1.4E-5    0.126
-Fit dispersion function interactively? (no|yes|NO|YES) (`no'): yes
+Fit dispersion function interactively? (no|yes|NO|YES) ('no'): yes
 
 
 \end{verbatim}

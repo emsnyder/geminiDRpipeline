@@ -1,11 +1,12 @@
 \select@language {english}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces IFU Fibers and Data Format}}{6}{figure.1.1}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces IFU Fibers and Data Format}}{7}{figure.caption.4}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Example of DS9 cube diaglog box}}{8}{figure.caption.6}
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Example of DS9 cube diaglog box}}{8}{figure.caption.7}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Overscan Subtraction Example}}{10}{figure.3.1}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Zoomed Out Fiber ID Example}}{11}{figure.3.2}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Zoomed In Fiber ID Example}}{12}{figure.3.3}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Example Image of a Bad Fiber}}{13}{figure.3.4}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Overscan Subtraction Example}}{12}{figure.caption.8}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Examples of the Fiber ID Step}}{13}{figure.caption.9}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Example Image of a Bad Fiber}}{14}{figure.caption.10}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
