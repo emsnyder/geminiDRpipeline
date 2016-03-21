@@ -30,8 +30,11 @@ University of North Carolina at Chapel Hill \\
 
 \hypersetup{linkcolor=magenta}
 \tableofcontents
-\listoftables
 \listoffigures
+\begingroup
+\let\clearpage\relax
+\listoftables
+\endgroup
 
 %\begin{multicols*}{2}
 
@@ -96,24 +99,27 @@ We also obtain a suite of baseline standards each semester -- one standard for b
 
 Lastly, we'll want a bias image in order to perform the bias subtraction. Each night after observing is complete, a standard set of bias frames are observed by the Gemini South operators. They are a little tricky to find in the online database, but you can go to the ``View Associated Calibrations'' tab to find all of the biases taken. Usually, searching on the observation date, the correct binning (CCDSUM 2 1), and the correct filter (see \autoref{table:1}) will yield 5 bias frames to download and process with the Gemini IRAF routine, gbias. I have downloaded these already for the RESOLVE data, and have trimmed, overscan subtracted, and stacked them.
 
-\section{How the data is Stored}
+\section{How the data is stored}
 \subsection{The raw fits files}
+
+Simply opening one of the S....fits files with DS9 will yield a strange result. You'll see a very long and skinny image appear. What you are actually seeing is 1/12th of the full image. This is because there are 3 CCDs and each one has 4 individual amplifiers that are read out into different extensions in your fits file. To see all the extensions, type \ty{ds9 -mecube S....fits}, which will open a cube dialog box that lets you scroll through each extension in the file. See \autoref{fig:mecube} and \autoref{fig:rawflat} as an example of what you'll see when you open a raw image. A part of the data reduction is to mosaic all of these extensions onto one single large image.
 
 \begin{figure}[h]
 \centering
 \includegraphics{mecube_raw.jpeg}
-\caption[Example of DS9 cube diaglog box]{}
+\caption[Example of DS9 cube diaglog box]{This is an example of the cube box that will open when you load a raw image in DS9.}
 \label{fig:mecube}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics{raw_flat.jpeg}
-\caption[Example of DS9 cube diaglog box]{}
+\caption[Example of DS9 cube diaglog box]{This is an example raw image. Specifically this is a flat image, but you can also open the raw science and arcs. Each row you see is a fiber, and in the x direction is wavelength.}
 \label{fig:rawflat}
 \end{figure}
 
-\subsection{What is an MDF file?}
+\subsection{What is an MDF?}
+The mask definition file (MDF) stores important information about the image and is ``attached'' to the raw images as one of the first steps in the data reduction process. The actual file is in binary fits format and comes with the Gemini IRAF package. It is called either ``gsifu\_slitr\_mdf.fits'' or ``gsifu\_slits\_mdf.fits'' for the 1- and 2-slit data, respectively. The information stored includes the x and y spatial positions of each fiber number, as well as which fibers are good and bad. As a part of the data reduction, you will inspect and number each fiber, and if you find a fiber that is bad, but is not marked as bad in the MDF, you will have to edit the MDF manually. If this happens, email Elaine since the pipeline assumes the default MDF is fine.
 
 \chapter{Setting Up Your Workspace}
 
@@ -189,7 +195,6 @@ The package used here is a main part of the Gemini IRAF package and is called `g
 \label{fig:overscan}
 \end{figure}
 
-
 \begin{enumerate}
 \item The MDF attachment is done without user input needed. A file is produced in your working directory with the prefix `g'.
 \item The bias and overscan subtraction is mostly done without user input needed. For the overscan subtraction, a PyRAF window will open with the overscan level being plotted.There is a also fit to the overscan level being plotting, and this normally looks fine as is. Press \ty{q} inside the PyRAF window to move on. There is a plot for each amplifier in the CCDs, so you will see 12 individual plots. If the fit does not look fine, you can type \ty{:order \#} and then \ty{f} inside the PyRAF window to change the order of the fit to a different number (with that number instead of \# in the previous command). Higher orders typically do better at fitting any strange features. Unless something is very wrong, you probably won't need to worry about this. See Figure \autoref{fig:overscan} for an example of what you should be seeing. This step produces a file with the prefix `rg', where the `g' comes from the previous step, i.e. the `rg' is both overscan and bias subtracted and has the MDF attached.
@@ -263,30 +268,52 @@ If you're in the blue setup (1-slit mode), this is the end of IDing for you! If 
 \end{figure}
 
 
-\section{Reduction of the Arcs}
+\section{Overscan Subtraction of the Arcs}
 
 The next step is to add the MDF and overscan subtract the arcs. A bias subtraction isn't needed here since the arcs are read out ``faster'' than the bias frames. There is nothing interactive for this step.
 
-\section{Identifying and Removing Bad Pixels from the Flats and Arcs}
+\section{Identification and Removal of Bad Pixels from the Flats and Arcs}
+\label{badpix}
 
-Before we get too into the reduction, we must look at our bias-subtracted images and find any hot pixels that could later affect the reduction. The pixels affected could be different for images taken at different exposure times, so we'll need to create a bad pixel map (BPM) for the flats, arc, and science frames separately (though the separate dithers can use the same BPM).
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.8]{CRvsBP.jpeg}
+\caption[Cosmic Rays vs. Bad Pixels]{This image shows you both cosmic rays and bad pixels. The long line on the right side is a bad column, whereas the other three bright spots are probably cosmic rays.}
+\label{fig:badpix}
+\end{figure}
 
-The pipeline will open a DS9 window with one of the flats first. It will then prompt you to look through all twelve extensions and identify any bad columns or other sections you see. If you don't see any bad pixels, you can enter \ty{0} and move on to the arcs. If you do see some bad areas, enter \ty{1}, which will bring up another prompt for you to enter the extension number, and x and y values of the bad region. The extension number will be 1-12, and x and y can extend to the size of your image. To enter a bad rectangle, you can say x = 132:140 and y = 444:450. For a full column, you can enter *.
+Before we get too into the reduction, we must look at our bias-subtracted images and find any hot pixels that could later affect the reduction. The bad pixels may be different for images taken at different exposure times, so we'll need to create a bad pixel map (BPM) for the flat, arc, and science frames separately (though the separate dithers can use the same BPM).
 
-It is important to discern between cosmic rays and bad pixels too. I usually find that cosmic rays will be curved and erratic looking, while actual bad pixels will be in straight lines and will be much larger. See figure \#\# for examples. You will repeat this for an arc image, and later in the reduction will do this for the science frames as well.
+The pipeline will open a DS9 window with one of the flats first. It will then prompt you to look through all twelve extensions and identify any bad pixels or columns you see. If you don't see any bad pixels, you can enter \ty{0} and move on to the arcs. If you do see some bad areas, enter \ty{1}, which will bring up another prompt for you to enter the extension number, and x and y values of the bad region. The extension number can be 1-12, and x and y can extend to the full size of your image. To enter a bad rectangle, you can say x = 132:140 and y = 444:450. For a full column, you can enter * for y.
 
-\section{Extracting the Arcs}
+It is important to discern between cosmic rays and bad pixels too. I usually find that cosmic rays will be curved and erratic looking, while actual bad pixels will be in straight lines and will be much larger. See \autoref{badpix} for examples. Generally, you'll have the same bad areas in all images, but the extent of the damage due to these pixels can vary due to exposure time. So, if you're unsure of a bad pixel vs. cosmic ray, look in the other images to see if there's any there. We will clean the cosmic rays from the science data in a separate step. You will repeat this for an arc image, and later in the reduction will do this for the science frames as well.
+
+\section{Extraction of the Arcs}
 
 This step will use the fiber IDs you created from the flat images to extract the spectra from the arcs. There is nothing interactive for this step.
 
-\section{Wavelength Calibration of the Arcs}
+\section{Creation of the Wavelength Solution}
+\label{waves}
 
-This step is twofold: first we must find the wavelength solution for each arc lamp, and second, we must actually apply it to the arc as a check.
+Next, a PyRAF window will open and you will see an image that looks like \autoref{fig:wave}. With the smaller line list that was included in your downloads, only $\sim 15$ will be chosen automatically. Press \ty{f} to see the fit residuals, which should look something like \autoref{fig:resids}. The number we want to pay attention to here is the RMS. I try to keep this under $\sim0.09$\AA, which, after some experimenting, I've found produces a good wavelength solution. You can also change the order of the fit using \ty{order: \#}. This default order is 4, which seems to work well most of the time. 
 
-\subsection{Find the Wavelenth Calibration}
+At times, especially when going from slit 1 to slit 2, the first line on the left will be misidentified. You can delete lines with \ty{d} and then re-identify them by hovering your mouse above the correct line, typing \ty{m}, and then entering the correct wavelength. Refitting with \ty{f} should then yield a better RMS value.
 
-Now we are going to 
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{wavelength_example_new}
+\caption[Example of the wavelength solution]{This image shows the arc spectrum in one of the fibers. The arc lamps have certain emission lines that will appear, and we know the wavelengths of those lines automatically. This lets us create a function that assigns a wavelength to all of our image pixels.}
+\label{fig:wave}
+\end{figure}
 
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{wave_red_bad_new}
+\caption[Example of the residuals of the wavelength fit]{This image shows the residuals of the wavelength function fit.  To improve this fit, I would delete, using \ty{d}, the circled point. You can also change the order of the fit if the default (4) doesn't fit well enough.}
+\label{fig:resids}
+\end{figure}
+
+You will see on your PyRAF screen some text that looks like this:
 
 \begin{verbatim}
           Image Data    Found          Fit   Pix Shift    User Shift Z Shift      RMS
@@ -304,22 +331,85 @@ ergS20151108S0106_001 - Ap 445 10/10   10/10     0.0256     -0.0259  -4.7E-6   0
 Fit dispersion function interactively? (no|yes|NO|YES) (`no'): 
 ergS20151108S0106_001 - Ap 446 10/10   10/10      0.084     -0.0855  -1.4E-5    0.126
 Fit dispersion function interactively? (no|yes|NO|YES) (`no'): yes
-
-
 \end{verbatim}
 
-\subsection{Apply the Calibration to the Arcs}
+My way of conquering this task is to answer \ty{no} to each prompt until I see an RMS value that needs attention. For example, the last row in the above text is where I said yes to fit the wavelength function interactively when the RMS was 0.126. If the RMS is okay, I won't fit it interactively. You will need to do this for each fiber. The new output for this step are files in the database named ``idergS....\_001" and ``\_002'' (if in 2-slit mode).
+
+\section{Application of the Calibration to the Arcs}
+
+This step simply applies the wavelength solution you just found to the arc lamps itself. A good way to check our work here is to make sure the arc lines in the output image (which will start with the prefix ``terg") are straight, as opposed to curved. See Figure XX for a before and after. If everything looks good, we can use this same solution for our science data as well. If something looks wrong, an easy way to fix this is to delete the ID files created in the previous step, and start again. If you're in 2-slit mode and see that only one of the slits is bad, you can delete only the bad one of these files (either ``\_001'' for the first slit and ``\_002" for the second slit), and move the other one to a temporary file name. For example, if you find slit 2 is bad for one of the arcs, you can \ty{rm} IDergS...arc1\_002, and \ty{mv} IDergS...arc2\_001 to a temporary file name. Now you can restart the pipeline, go to the wavelength calibration step, answer \ty{NO} for slit 1 and redo the fits for slit 2. There will now be two new ID files, and you can replace IDergS...arc1\_001 with your temp file.
+
+\begin{figure}[t]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+\includegraphics[width=\textwidth]{arc_before.jpeg}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+\includegraphics[width=\textwidth]{ds9}
+\end{subfigure}
+\caption[Before and After Wavelength Calibration]{\textbf{(a).} A DS9 view of the arc before the wavelength transformation has been applied. \textbf{(b).} The same, but after the wavelength transformation has been applied.}
+\label{fig:skysub}
+\end{figure}
+
+\section{Quantum Efficiency Correction of Flats}
+\label{qecorr}
+
+Some CCDs will have different quantum efficiency levels between CCD sections or amplifiers, so this step corrects for this effect. Nothing interactive is required. This step creates files with the prefix `q'.
+
+\section{Re-extraction of the Flats}
+
+Now the flat spectra will be re-extracted, using the same fiber IDs as before, but this time pulling out the QE-corrected spectra. Again, nothing interactive must be done. After this step, our flats will have the prefix `eqprg'.
+
+\section{Bias and Overscan Subtraction of Science Data}
+
+Next, we perform the bias and overscan subtraction of the science frames. Nothing interactive is needed here.
+
+\section{Identification and Removal of Bad Pixels from the Science Data}
+We now make the BPM for the science data. See \autoref{badpix} for more information on this step. A file with the prefix ``p'' is made here.
+
+\section{Cosmic Ray Rejection}
+
+Next, we use L.A. Cosmic to find and remove cosmic rays from our science spectra. The code will iterate many times, and may take a few minutes to complete. Nothing interactive is required, and a file with the prefix `x' is created.
+
+\section{QE Correction of Science}
+
+We now QE correct the science frames, much like we did for the flats in \autoref{qecorr}. Again, nothing interactive is needed here, and you should have a file made with the prefixes ``qxprg".
+
+\section{Flat Fielding and Extraction of Science}
+Next, we use the response functions made from the twilights to flat field our science data, and then extract it. Nothing interactive is needed here, and a file with the prefix ``e'' is made.
+
+\section{Wavelength Calibration of Science}
+In this step, we apply the wavelength solution we found in \autoref{waves} to the science frames. There is nothing interactive for this step, and file is created with the prefix `t'.
+
+\section{Sky Subtraction of Science}
+
+Now, we can pull out the spectra of the sky fibers and use them to subtract the sky spectra from the science. A PyRAF window will open that looks like the left image in \autoref{fig:skysub}. The peaks that we see are probably cosmic rays that were not well subtracted, so if you hover your mouse near the peak and type \ty{d}, we can remove these artificial peaks. You can redraw the spectra after deleting using \ty{r}. When done, you should see an image like the right frame of \autoref{fig:skysub}. A file with the prefix ``s'' is made here.
+\begin{figure}[t]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+\includegraphics[width=\textwidth]{skysub_before}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+\includegraphics[width=\textwidth]{skysub_good_example}
+\end{subfigure}
+\caption[Examples of sky subtraction]{\textbf{(a).} An example of the sky subtraction PyRAF window you'll see initially. \textbf{(b).} An example of the remaining spectra after the peaks have been deleted.}
+\label{fig:skysub}
+\end{figure}
+
+\section{Flux Calibration of Science}
+The second to last step of the reduction uses the flux responses from the standard star data to flux calibrate our science data. Nothing interactive is needed here, and a file with the prefix ``c" is created.
 
 
+\section{Data Cube Creation}
+Now that we've reaching the end of the reduction process, we resample our spectra into data cubes. There will be as many data cubes as there are science images. We then sum the cubes in the spectral direction to fill the chip gaps and increase the signal to noise ratio. If there are spatial offsets, we can use the offsets in noted in the image headers to align and sum these as well. In the end, there is a final data cube for us to analyze. Files with the prefix ``d" are created here. Congratulations, you are done (for now)!
 
 
 \chapter{Derivation of Kinematics}
 
 \section{Deriving Velocity Dispersions}
 \section{Deriving Rotation Curves}
-
-\chapter{Timeline of Pipeline Updates}
-
 
 %\end{multicols*}
 
