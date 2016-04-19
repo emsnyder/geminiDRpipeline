@@ -8,25 +8,28 @@
 \BOOKMARK [2][-]{subsection.1.5.2}{What is an MDF?}{section.1.5}% 8
 \BOOKMARK [0][-]{chapter.2}{Setting Up Your Workspace}{}% 9
 \BOOKMARK [0][-]{chapter.3}{Data Reduction Guide}{}% 10
-\BOOKMARK [1][-]{section.3.1}{Entering and Exiting the Pipeline}{chapter.3}% 11
-\BOOKMARK [1][-]{section.3.2}{Organizing and Identifying Your Data}{chapter.3}% 12
-\BOOKMARK [1][-]{section.3.3}{Reduction of the Flats}{chapter.3}% 13
-\BOOKMARK [1][-]{section.3.4}{Overscan Subtraction of the Arcs}{chapter.3}% 14
-\BOOKMARK [1][-]{section.3.5}{Identification and Removal of Bad Pixels from the Flats and Arcs}{chapter.3}% 15
-\BOOKMARK [1][-]{section.3.6}{Extraction of the Arcs}{chapter.3}% 16
-\BOOKMARK [1][-]{section.3.7}{Creation of the Wavelength Solution}{chapter.3}% 17
-\BOOKMARK [1][-]{section.3.8}{Application of the Calibration to the Arcs}{chapter.3}% 18
-\BOOKMARK [1][-]{section.3.9}{Quantum Efficiency Correction of Flats}{chapter.3}% 19
-\BOOKMARK [1][-]{section.3.10}{Re-extraction of the Flats}{chapter.3}% 20
-\BOOKMARK [1][-]{section.3.11}{Bias and Overscan Subtraction of Science Data}{chapter.3}% 21
-\BOOKMARK [1][-]{section.3.12}{Identification and Removal of Bad Pixels from the Science Data}{chapter.3}% 22
-\BOOKMARK [1][-]{section.3.13}{Cosmic Ray Rejection}{chapter.3}% 23
-\BOOKMARK [1][-]{section.3.14}{QE Correction of Science}{chapter.3}% 24
-\BOOKMARK [1][-]{section.3.15}{Flat Fielding and Extraction of Science}{chapter.3}% 25
-\BOOKMARK [1][-]{section.3.16}{Wavelength Calibration of Science}{chapter.3}% 26
-\BOOKMARK [1][-]{section.3.17}{Sky Subtraction of Science}{chapter.3}% 27
-\BOOKMARK [1][-]{section.3.18}{Flux Calibration of Science}{chapter.3}% 28
-\BOOKMARK [1][-]{section.3.19}{Data Cube Creation}{chapter.3}% 29
-\BOOKMARK [0][-]{chapter.4}{Derivation of Kinematics}{}% 30
-\BOOKMARK [1][-]{section.4.1}{Deriving Velocity Dispersions}{chapter.4}% 31
-\BOOKMARK [1][-]{section.4.2}{Deriving Rotation Curves}{chapter.4}% 32
+\BOOKMARK [1][-]{section.3.1}{How to Use This Guide}{chapter.3}% 11
+\BOOKMARK [1][-]{section.3.2}{Entering and Exiting the Pipeline}{chapter.3}% 12
+\BOOKMARK [1][-]{section.3.3}{Organizing and Identifying Your Data}{chapter.3}% 13
+\BOOKMARK [1][-]{section.3.4}{Reduction of the Flats}{chapter.3}% 14
+\BOOKMARK [1][-]{section.3.5}{Overscan Subtraction of the Arcs}{chapter.3}% 15
+\BOOKMARK [1][-]{section.3.6}{Identification and Removal of Bad Pixels from the Flats and Arcs}{chapter.3}% 16
+\BOOKMARK [1][-]{section.3.7}{Extraction of the Arcs}{chapter.3}% 17
+\BOOKMARK [1][-]{section.3.8}{Creation of the Wavelength Solution}{chapter.3}% 18
+\BOOKMARK [1][-]{section.3.9}{Application of the Calibration to the Arcs}{chapter.3}% 19
+\BOOKMARK [1][-]{section.3.10}{Quantum Efficiency Correction of Flats}{chapter.3}% 20
+\BOOKMARK [1][-]{section.3.11}{Re-extraction of the Flats}{chapter.3}% 21
+\BOOKMARK [1][-]{section.3.12}{Bias and Overscan Subtraction of Science Data}{chapter.3}% 22
+\BOOKMARK [1][-]{section.3.13}{Identification and Removal of Bad Pixels from the Science Data}{chapter.3}% 23
+\BOOKMARK [1][-]{section.3.14}{Cosmic Ray Rejection}{chapter.3}% 24
+\BOOKMARK [1][-]{section.3.15}{QE Correction of Science}{chapter.3}% 25
+\BOOKMARK [1][-]{section.3.16}{Flat Fielding and Extraction of Science}{chapter.3}% 26
+\BOOKMARK [1][-]{section.3.17}{Wavelength Calibration of Science}{chapter.3}% 27
+\BOOKMARK [1][-]{section.3.18}{Sky Subtraction of Science}{chapter.3}% 28
+\BOOKMARK [1][-]{section.3.19}{Flux Calibration of Science}{chapter.3}% 29
+\BOOKMARK [1][-]{section.3.20}{Data Cube Creation}{chapter.3}% 30
+\BOOKMARK [1][-]{section.3.21}{Creation of a WCS Solution}{chapter.3}% 31
+\BOOKMARK [1][-]{section.3.22}{Summation of the Data Cubes}{chapter.3}% 32
+\BOOKMARK [0][-]{chapter.4}{Derivation of Kinematics}{}% 33
+\BOOKMARK [1][-]{section.4.1}{Deriving Velocity Dispersions}{chapter.4}% 34
+\BOOKMARK [1][-]{section.4.2}{Deriving Rotation Curves}{chapter.4}% 35

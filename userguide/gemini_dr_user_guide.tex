@@ -43,9 +43,9 @@ Greetings, Gemini Multi-Object Spectrograph (GMOS) integral field unit (IFU) dat
 
 \section{What is an IFU and why would we want to use one?}
 \label{ifu}
-The basic idea of any spectrograph is that incoming light from an object goes through a slit, is dispersed by a grating/prism/grism, and then focused onto your detector to create an image of your spectrum. Most of the time the slit is long and narrow ($\sim0.5-2''$ typically), and most astronomers would align it along a galaxy's major axis. This image will thus has spectral information in the x direction and spatial information in the y direction. The GMOS IFU is different in that instead of having one slit aligned along a galaxy's major axis, you will have multiple fibers that cover the entire galaxy. These fibers act as ``mini slits'', and each one will be dispersed and refocused onto the detector. This means you receive spectral information from all parts of the galaxy, not just where a single slit falls, and therefore are getting x, y, and wavelength at once. Thus, the main benefit of using an IFU is that it enables the 3D spatial analysis of the kinematics, metallicities, or whatever else you may want to derive from your spectra.
+The basic idea of any spectrograph is that incoming light from an object goes through a slit, is dispersed by a grating/prism/grism, and then focused onto the CCD detector to create an image of the spectrum. Most of the time the slit is long and narrow ($\sim0.5-2''$ typically), and most astronomers would align it along a galaxy's major axis. This image will thus have spectral information in the x direction and spatial information in the y direction. The GMOS IFU is different in that instead of having one slit aligned along a galaxy's major axis, you will have multiple fibers that cover the entire galaxy. These fibers act as ``mini slits'', and each one will be dispersed and refocused onto the detector. This means you receive spectral information from all parts of the galaxy, not just where a single slit falls, and therefore are getting x, y, and wavelength at once. Thus, the main benefit of using an IFU is that it enables the 3D spatial analysis of the kinematics, metallicities, or whatever else you may want to derive from your spectra.
 
-In the case of the GMOS IFU setups for RESOLVE observations, you will have either 750 or 1500 hexagonal fibers (depending on which setup was used) that cover an on-sky area of $5''\times3.5''$ or $7''\times5''$. See the top portion of \autoref{figure:1}, which shows the positions of the fibers over an example galaxy. As \autoref{figure:1} shows, the GMOS IFU is designed in such a way that not all of the fibers are centered on the object -- either 250 or 500 of the fibers are positioned on a region of sky away from the target (but not too far away), which enables the sky level to be later subtracted during data reduction. The sky level can be affected by moon illumination, clouds, etc. so it is important to be able to subtract any extra sky light there may be. Note that sometimes in online documents, the fibers may be called ``spaxels'', which is short for ``spectral pixels'' -- don't be confused by this hip IFU lingo.
+In the case of the GMOS IFU setups for RESOLVE observations, you will have either 750 or 1500 hexagonal fibers (depending on which setup was used) that cover an on-sky area of $5''\times3.5''$ or $7''\times5''$. The top-right portion of \autoref{figure:1} gives an example of the positions of the fibers over a galaxy. As the top left portion of \autoref{figure:1} shows, the GMOS IFU is designed in such a way that not all of the fibers are centered on the object -- either 250 or 500 of the fibers are positioned on a region of sky away from the target (but not too far away). This lets us observe separate spectra of the scattered light from our atmosphere, which can later be subtracted from the science spectra during data reduction. This ``sky level'' can be affected by moon illumination, clouds, etc. so it is important to be able to subtract any extra light there may be. Note that sometimes in online documents, the fibers may be called ``spaxels'', which is short for ``spectral pixels'' -- don't be confused by this hip IFU lingo.
 
 \begin{figure}[h]
 \centering
@@ -119,7 +119,35 @@ Simply opening one of the S....fits files with DS9 will yield a strange result. 
 \end{figure}
 
 \subsection{What is an MDF?}
-The mask definition file (MDF) stores important information about the image and is ``attached'' to the raw images as one of the first steps in the data reduction process. The actual file is in binary fits format and comes with the Gemini IRAF package. It is called either ``gsifu\_slitr\_mdf.fits'' or ``gsifu\_slits\_mdf.fits'' for the 1- and 2-slit data, respectively. The information stored includes the x and y spatial positions of each fiber number, as well as which fibers are good and bad. As a part of the data reduction, you will inspect and number each fiber, and if you find a fiber that is bad, but is not marked as bad in the MDF, you will have to edit the MDF manually. If this happens, email Elaine since the pipeline assumes the default MDF is fine.
+The mask definition file (MDF) stores information about the IFU and is ``attached'' to the raw images as one of the first steps in the data reduction process. The actual file is in binary fits format and comes with the Gemini IRAF package. The files are called either ``gsifu\_slitr\_mdf.fits'' or ``gsifu\_slits\_mdf.fits'' for the 1- and 2-slit data, respectively, and can be found in your IRAF/Gemini folder (probably a directory path similar to \ty{$\sim$/iraf/gemini/gmos/data/}) or by typing \ty{cd gmos\$data} in the IRAF/PyRAF environment. Reading the file into Python (example below) as a fits table reveals all the table columns: the fiber number (column name ``NO''), x and y spatial position of each fiber in both arcseconds (``XINST"/``YINST") and pixels (``XLDIS"/``YLDIS"), which block (bundles of 50 fibers) that the fiber is in (``BLOCK"), and whether the fiber is good or bad (``BEAM"). 
+
+\autoref{figure:1} shows the spatial positions of the fibers over an example galaxy on the top, while the bottom image shows the 2D information that is recorded on the CCD (wavelength on the x axis and fiber number on the y axis). This illustrates why we need the MDF to map the 2D image we get from the CCD to a 3D data cube of x and y position and wavelength later in the reduction.
+
+The ``BEAM'' column tells us which fibers are good and bad. See \autoref{fig:bad} for an example of what good/bad fibers look like and see \autoref{fibers} for an example of why you may need to use/change this information. Good fibers will have BEAM=1 while bad will have BEAM=-1. To mark a fiber as bad, you can read in the appropriate fits file in IDL or Python, and change the BEAM entry for the fiber(s) of your choice. In Python, this process will probably look something like this (for the example of marking fiber 745 as bad):
+
+\begin{verbatim}
+>>> from astropy.io import fits
+>>> import numpy as np
+>>> hdulist = fits.open(`gsifu_slits_mdf.fits')
+>>> table = hdulist[1].data
+>>> table
+FITS_rec(
+ [(1, 0.34640503, 4.8000002, `I_1', 1, 49, 57),
+  (2, 0.34640503, 4.5999999, `I_2', 1, 47, 57),
+  (3, 0.34640503, 4.4000001, `I_3', 1, 45, 57), ...,
+  (1498, 3.117645, 4.4000001, `A_3', 1, 45, 41),
+  (1499, 3.117645, 4.5999999, `A_2', 1, 47, 41),
+  (1500, 3.117645, 4.8000002, `A_1', -1, 49, 41)], 
+  dtype=[(`NO', `>i4'), (`XINST', `>f4'), (`YINST', `>f4'), (`BLOCK', `S5'),
+  	   (`BEAM', `>i4'), (`XLDIS', `>i4'), (`YLDIS', `>i4')])
+>>> sel = np.where(table[`NO'] == 745)[0][0]
+>>> sel
+744
+>>> table[`BEAM'][sel] = -1
+>>> hdulist.writeto(`newMDF.fits')
+\end{verbatim}
+
+\noindent Once created, you can feed the file to the pipeline code as one of your first steps of the reduction process.
 
 \chapter{Setting Up Your Workspace}
 
@@ -151,8 +179,7 @@ This pipeline also makes use of a PyRAF script called PyFU which was written by 
 
 You may also need to download L.A.Cosmic, an algorithm that finds and removes cosmic rays. You can read more about it at \url{http://www.astro.yale.edu/dokkum/lacosmic/}. You can download the IRAF spectroscopic version from that website, and will need to add a line in your login.cl: ``task lacos\_spec = /path/to/where/you/put/it/lacos\_spec.cl''. The pipeline will call this task during the cosmic ray removal step.
 
-(For future, may add Voronoi binning algorithm download, too.)
-
+%(For future, may add Voronoi binning algorithm download, too.)
 If you are new to data reduction in general, you will want to download DS9, an astronomical imaging application that you'll use to view our data as you progess through the pipeline. Download DS9 from this site: \url{http://ds9.si.edu/site/Home.html}.
 
 Next, you'll want data to actually reduce! You should have flats, arcs, science frames, and a bias image before getting started. You should also have response flats from the baseline twilights and a flux calibration from the standard star data. See \autoref{files} for more info on how to get your data and on each specific file you'll need. There should also be an observing log to inspect (RESOLVE data has obslog.txt or just log.txt) as well as an alternative line list file ``smalllinelist.dat'' that will be helpful during the wavelength calibration steps. Place all of these files in the same folder, since that's where the pipeline looks for them. 
@@ -161,13 +188,16 @@ Lastly, you'll want to download the actual pipeline. You can access the code and
 
 \chapter{Data Reduction Guide}
 
+\section{How to Use This Guide}
+The author's goals for this user guide are threefold: to make it clear what you are doing in each step, to explain why each step is important and necessary, and to demonstrate how to successfully complete each step when user interaction is needed. Also included with each step is the name of the Gemini IRAF tasks being used. For a more in depth look at what is going on, typing \ty{help <name of task>} inside of PyRAF will open a detailed document with information about the task and what parameters you can change. This should make editing the task parameters in the pipeline easier, if it is ever needed.
+
 \section{Entering and Exiting the Pipeline}
 Here are the basic start up commands: 
 \begin{enumerate}
 \item cd to the directory where you put your data
 \item enter the Ureka environment by typing \ty{ur\_setup} in the command line 
 \item enter PyRAF by typing \ty{pyraf} in the command line
-\item open a DS9 window by typing \ty{!ds9 \&} at the prompt
+%\item open a DS9 window by typing \ty{!ds9 \&} at the prompt
 \item enter the pipeline by typing \ty{execfile(`/path/to/your/code/gemreductionpipeline.py')}
 \end{enumerate}
 
@@ -180,13 +210,17 @@ Here are the basic start up commands:
 
 \section{Organizing and Identifying Your Data}
 
-\noindent The first thing the pipeline does is look in your folder and identify which files are there. It will print out the files it found and whether there are arcs/flats/science/etc. It is good to check this against your observing log! If you find mistakes, please email Elaine, since the pipeline doesn't have a way to let you manually fix IDs yet. Every files is identified by looking in the image headers, so problems here most likely will be missing images. If these all look correct, type \ty{1} to go on.
+\noindent The very first thing the pipeline does is ask you for the folder you are working in. Be sure to include the full path to your folder (including a trailing forward slash `/'), which can be found by typing \ty{pwd} in your PyRAF window but outside of the pipeline. The pipeline checks that you are actually working inside this folder next, and will direct you to fix this if you are not. Next, it will ask if you are using a special MDF file. If you are, be sure to give the full path to that file, and if not, just type \ty{default}.
 
+Next, the pipeline will look in your working folder and identify which files are there. It will print out the files it finds and whether they are arcs/flats/science/etc. and which central wavelength they were observed at. It is good at this very first step to open up your raw images in a ds9 to visually inspect your data files for any strange data. Also, be sure check the identifications against your observing log! Every file is identified by looking in the image headers, so problems here most likely will be missing images. If these all look correct, type \ty{1} to go on, if not, press \ty{0} which will exit the pipeline and let you figure out what's wrong/missing.
+
+\bigskip
 \section{Reduction of the Flats}
+\label{fibers}
 
-This very first step is often (in the author's experience) the most time-consuming and frustrating step of the entire reduction. We use the flats not only for flat fielding the science data, but also to identify the fibers as a reference for all the other files.
+\noindent Gemini IRAF task used: \texttt{gfreduce} \\
 
-The package used here is a main part of the Gemini IRAF package and is called `gfreduce'. It has many different options, but for the flat, we are just going to attach the MDF file, do a bias subtraction, overscan subtraction, and fiber ID so that we may extract all the spectra.
+\noindent This very first step is often (in the author's experience) the most time-consuming and frustrating step of the entire reduction. We use the flats not only for flat fielding the science data, but also to correctly order the fibers in the raw data. See bottom of \autoref{figure:1} -- each row is an individual fiber spectrum that must be correctly numbered, which ensures that we can successfully map our raw data to a 3D (x, y, wavelength) data cube. The IRAF task \texttt{gfreduce} has many different options, but for this very first step, we are just going to attach the MDF file, do a bias subtraction, overscan subtraction, and fiber ID so that we may extract all the spectra.
 
 \begin{figure}[h]
 \centering
@@ -197,7 +231,7 @@ The package used here is a main part of the Gemini IRAF package and is called `g
 
 \begin{enumerate}
 \item The MDF attachment is done without user input needed. A file is produced in your working directory with the prefix `g'.
-\item The bias and overscan subtraction is mostly done without user input needed. For the overscan subtraction, a PyRAF window will open with the overscan level being plotted.There is a also fit to the overscan level being plotting, and this normally looks fine as is. Press \ty{q} inside the PyRAF window to move on. There is a plot for each amplifier in the CCDs, so you will see 12 individual plots. If the fit does not look fine, you can type \ty{:order \#} and then \ty{f} inside the PyRAF window to change the order of the fit to a different number (with that number instead of \# in the previous command). Higher orders typically do better at fitting any strange features. Unless something is very wrong, you probably won't need to worry about this. See Figure \autoref{fig:overscan} for an example of what you should be seeing. This step produces a file with the prefix `rg', where the `g' comes from the previous step, i.e. the `rg' is both overscan and bias subtracted and has the MDF attached.
+\item The bias and overscan subtraction is mostly done without user input needed. The overscan is the regions of the image with no data on it, i.e., between the chips and amplifiers as well as around the edges of the image. We want to measure this overscan level and also trim these regions from our images. To do this, a PyRAF window will open with the overscan level being plotted. Also plotted is a best fit line to the overscan level, and this normally looks fine as is. Press \ty{q} inside the PyRAF window to move on. There is a plot for each amplifier in the CCDs, so you will see 12 individual plots. If the fit does not look fine, you can type \ty{:order \#} and then \ty{f} inside the PyRAF window to change the order of the fit to a different number (with that number instead of \# in the previous command). Higher orders typically do better at fitting any strange features (spikes/dips). Unless something is very wrong, you probably won't need to worry about this. See \autoref{fig:overscan} for an example of what you should be seeing. This step produces a file with the prefix `rg', where the `g' comes from the previous step, i.e. the `rg' is both overscan and bias subtracted and has the MDF attached.
 \item Lastly, we must tackle the fiber identification. Your command window is going to ask you a few questions:
 \begin{verbatim}
 Extracting slit 1
@@ -207,9 +241,9 @@ Here I recommend saying `yes', as usually IRAF will be able to identify the fibe
 \begin{verbatim}
 Edit apertures for ergS20151108S0053_1? (`yes'): 
 \end{verbatim}
-Say `yes' to this one as well, so we can inspect the fiber IDs and make sure everything looks correct. \autoref{fig:aps} shows what this will look like -- a complete mess! But we can zoom in by typing \ty{w} in the PyRAF window, and then typing \ty{e} at the bottom-left of the first `fiber bundle' and again at its top-right. [Note: use \ty{w} and \ty{a} to un-zoom the window.] You should now have a screen that looks like \autoref{fig:aps}. I find that making this plot full-screen helps immensely. Each `bundle' contains a set of 50 fibers, which you will see numbered at the top of your screen (though not very apparent in \autoref{fig:aps}). Your job is to make sure each fiber is identified correctly -- this means no repeated numbers or missing fibers. Often I find that the low level of fiber 50 makes it get skipped in IRAF's auto-finding scheme, which makes the first fiber of the second `bundle' start at 50 instead of 51. If this happens, you can use \ty{d} in the plot window to delete the IDs for fibers 50--750, and then use \ty{m} to re-mark the fibers. This is where it can get frustrating! \\
+Say `yes' to this one as well, so we can inspect the fiber IDs and make sure everything looks correct. \autoref{fig:aps} shows what this will look like -- a complete mess! But we can zoom in by typing \ty{w} in the PyRAF window, and then typing \ty{e} at the bottom-left of the first `fiber bundle' and again at its top-right. [Note: use \ty{w} and \ty{a} to un-zoom the window.] You should now have a screen that looks like \autoref{fig:aps}. I find that making this plot full-screen helps immensely. Each `bundle' contains a set of 50 fibers, which you will see numbered at the top of your screen (these are hard to see in \autoref{fig:aps}). Your job is to make sure each fiber is identified correctly -- this means no fiber is identified twice, and any bad fibers are skipped in the numbering. Often I find that the low level of fiber 50 makes it get skipped in IRAF's auto-finding scheme, which makes the first fiber of the second `bundle' start at 50 instead of 51. If this happens, you can use \ty{d} in the plot window to delete the IDs for fibers 50--750, and then use \ty{m} to re-mark the fibers. This is where it can get frustrating! \\
 
-Figure \autoref{fig:bad} shows an example of a bad fiber not being marked in the identification process. This is exactly what we want to happen in this case. If you find another fiber that looks bad, you will have to edit the MDF file to `turn off' that fiber number. For the 2014-2015B slit-1 data, you will end with either fiber 742 or 743 (the rest up to 750 are bad). \\
+Figure \autoref{fig:bad} shows an example of a bad fiber not being marked in the identification process. This is exactly what we want to happen in this case. If you find another fiber that looks bad, you will have to edit the MDF file to ``turn off'' that fiber number. For the 2014-2015B slit-1 data, you will end with either fiber 742 or 743 (the rest up to 750 are bad). \\
 
 If you are pleased with your IDs, type \ty{q}. More questions will appear in the terminal, but it will want your answer inside the PyRAF graphics window.
 
@@ -256,24 +290,23 @@ If you're in the blue setup (1-slit mode), this is the end of IDing for you! If 
 \begin{subfigure}[t]{0.49\textwidth}
 \includegraphics[width=\textwidth]{apertures2}
 \end{subfigure}
-\caption[Examples of the Fiber ID Step]{\textbf{(a).} A zoomed-out example of the fiber ID window that PyRAF will open during the reduction of the flats step. \textbf{(b).} An example of the fiber ID window that is zoomed-in on one set of fiber bundles.}
+\caption[Examples of the Fiber ID Step]{\textbf{(a).} A zoomed-out example of the fiber ID window that PyRAF will open during the reduction of the flats step. The numbers above each fiber are blurred together here. \textbf{(b).} An example of the fiber ID window that is zoomed-in on one set of fiber bundles. The numbers for each fiber aren't visible in this example but will be above the aperture marks at the top.}
 \label{fig:aps}
 \end{figure}
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.8]{badfiber}
-\caption[Example Image of a Bad Fiber]{For this image, fiber 138 is bad. The MDF knows this though, and that number is skipped during the identification routine.}
+\includegraphics[scale=0.6]{badfiber_num}
+\caption[Example Image of a Bad Fiber]{For this image, fiber 138 is bad. However, the MDF shows that BEAM = -1 for this fiber number, and thus that number is skipped during the identification routine.}
 \label{fig:bad}
 \end{figure}
 
-
+\bigskip
 \section{Overscan Subtraction of the Arcs}
 
-The next step is to add the MDF and overscan subtract the arcs. A bias subtraction isn't needed here since the arcs are read out ``faster'' than the bias frames. There is nothing interactive for this step.
+\noindent Gemini IRAF task used: \texttt{gfreduce} \\
 
-\section{Identification and Removal of Bad Pixels from the Flats and Arcs}
-\label{badpix}
+\noindent Similarly for the flats, we are using this package to attach the MDF file and do an overscan subtraction. We do not perform a bias subtraction on the arcs because they are read out from the CCD faster than our other data, meaning the read noise for them will be different than what's in our bias frame. We still do the overscan subtraction as a rough estimate of the bias level to subtract. There is nothing interactive for this step. \\
 
 \begin{figure}[h]
 \centering
@@ -282,27 +315,39 @@ The next step is to add the MDF and overscan subtract the arcs. A bias subtracti
 \label{fig:badpix}
 \end{figure}
 
-Before we get too into the reduction, we must look at our bias-subtracted images and find any hot pixels that could later affect the reduction. The bad pixels may be different for images taken at different exposure times, so we'll need to create a bad pixel map (BPM) for the flat, arc, and science frames separately (though the separate dithers can use the same BPM).
+\section{Identification and Removal of Bad Pixels from the Flats and Arcs}
+\label{badpix}
 
-The pipeline will open a DS9 window with one of the flats first. It will then prompt you to look through all twelve extensions and identify any bad pixels or columns you see. If you don't see any bad pixels, you can enter \ty{0} and move on to the arcs. If you do see some bad areas, enter \ty{1}, which will bring up another prompt for you to enter the extension number, and x and y values of the bad region. The extension number can be 1-12, and x and y can extend to the full size of your image. To enter a bad rectangle, you can say x = 132:140 and y = 444:450. For a full column, you can enter * for y.
+\noindent Gemini IRAF tasks used: \texttt{addbpm} and \texttt{gemfix}\\
 
-It is important to discern between cosmic rays and bad pixels too. I usually find that cosmic rays will be curved and erratic looking, while actual bad pixels will be in straight lines and will be much larger. See \autoref{badpix} for examples. Generally, you'll have the same bad areas in all images, but the extent of the damage due to these pixels can vary due to exposure time. So, if you're unsure of a bad pixel vs. cosmic ray, look in the other images to see if there's any there. We will clean the cosmic rays from the science data in a separate step. You will repeat this for an arc image, and later in the reduction will do this for the science frames as well.
+\noindent Before we get too into the reduction, we must look at our bias-subtracted (or overscan-subtracted in the case of the arcs) images and find any hot pixels or bad columns on the CCD itself that could later affect the reduction. The bad pixels are usually  different for images taken at different exposure times since bleeding can occur, so we'll need to create a bad pixel map (BPM) for the flat, arc, and science frames separately. A BPM is a fits image that has the same dimensions and number of extensions as the arc/flat/science image, but the pixel values are only zeros and ones. The zeros denote where the pixels are good, and the ones flag where the pixels are bad. A useful caveat to bad pixels or columns on a CCD is that they will normally not change quickly, so it is okay to flag the same pixels for data sets taken in the same semester. So, it may save you some time to copy down the coordinates you find in this step to reuse for the next galaxy.
+
+The pipeline starts by creating an image of the correct size that's entirely made of zeros. Now, we must identify the bad pixels in our data, making note of their x and y positions and which extension they are on. The pipeline will open a DS9 window with one of the flats first. It will then prompt you to look through all twelve extensions and identify any bad pixels or columns you see. If you don't see any bad pixels, you can enter \ty{0} and move on to the arcs. If you do see some bad areas, enter \ty{1}, which will bring up another prompt for you to enter the extension number, and x and y values of the bad region. The extension number can be 1-12, and x and y can extend to the full size of your image. To enter a bad rectangle, you can say x = 132:140 and y = 444:450. For a full column, you can enter * for y.
+
+After feeding the pipeline the coordinates of the bad pixels, it will change the BPM values to 1 from 0 at those locations. We then use the task \texttt{addbpm} to attach the BPM to our data file, so that \texttt{gemfix} can find it and interpolate over the bad pixels.
+
+It is important to discern between cosmic rays and bad pixels/columns too. I usually find that cosmic rays will be curved and erratic looking, while actual bad columns will be in straight lines and will be much larger. See \autoref{badpix} for an example. Generally, you'll have the same bad areas in all of your images, but the extent of the damage due to these pixels can vary due to exposure time. So, if you're unsure of bad pixels vs. a cosmic ray, look in the other images to see if there are bad pixels in the same spot. We will clean the cosmic rays from the science data in a separate step. You will repeat this for an arc image, and later in the reduction will do this for the science frames as well.
 
 \section{Extraction of the Arcs}
+\noindent Gemini IRAF task used: \texttt{gfextract}\\
 
-This step will use the fiber IDs you created from the flat images to extract the spectra from the arcs. There is nothing interactive for this step.
+\noindent This step will use the fiber IDs you created from the flat images to extract the spectra from the arcs. Extracting takes out the sky spectra, reorders the science spectra, and arranges them by slit. This means our output files will go from having 12 extensions to having only one or two, depending on whether you're working with 1- or 2-slit data. There is nothing interactive for this step, and all extracted spectra will have a file name with `e' in front.
 
+
+\bigskip
 \section{Creation of the Wavelength Solution}
 \label{waves}
 
-Next, a PyRAF window will open and you will see an image that looks like \autoref{fig:wave}. With the smaller line list that was included in your downloads, only $\sim 15$ will be chosen automatically. Press \ty{f} to see the fit residuals, which should look something like \autoref{fig:resids}. The number we want to pay attention to here is the RMS. I try to keep this under $\sim0.09$\AA, which, after some experimenting, I've found produces a good wavelength solution. You can also change the order of the fit using \ty{order: \#}. This default order is 4, which seems to work well most of the time. 
+\noindent Gemini IRAF task used: \texttt{gswavelength}\\
+
+\noindent Next, the pipeline calls \texttt{gswavelength} and a PyRAF window will open with an image that looks like \autoref{fig:wave}. This is a 1D spectrum of the arc lamp, which we'll use to assign a wavelength to each pixel for our science data (this is called a ``wavelength solution"). With the smaller line list that was included in your downloads, only $\sim 15$ of the emission lines will be chosen automatically. Press \ty{f} to see the fit residuals, which should look something like \autoref{fig:resids}. The number we want to pay attention to here is the RMS. I try to keep this under $\sim0.09$\AA, which, after some experimenting, I've found produces a good wavelength solution. You can also change the order of the fit using \ty{order: \#}. This default order is 4, which seems to work well most of the time. 
 
 At times, especially when going from slit 1 to slit 2, the first line on the left will be misidentified. You can delete lines with \ty{d} and then re-identify them by hovering your mouse above the correct line, typing \ty{m}, and then entering the correct wavelength. Refitting with \ty{f} should then yield a better RMS value.
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.6]{wavelength_example_new}
-\caption[Example of the wavelength solution]{This image shows the arc spectrum in one of the fibers. The arc lamps have certain emission lines that will appear, and we know the wavelengths of those lines automatically. This lets us create a function that assigns a wavelength to all of our image pixels.}
+\caption[Example of the wavelength solution]{This image shows an arc spectrum. The arc lamps have certain unchanging emission lines, by knowing the wavelengths of those lines we can create a function that assigns a wavelength to all of our image pixels.}
 \label{fig:wave}
 \end{figure}
 
@@ -337,7 +382,9 @@ My way of conquering this task is to answer \ty{no} to each prompt until I see a
 
 \section{Application of the Calibration to the Arcs}
 
-This step simply applies the wavelength solution you just found to the arc lamps itself. A good way to check our work here is to make sure the arc lines in the output image (which will start with the prefix ``terg") are straight, as opposed to curved. See Figure XX for a before and after. If everything looks good, we can use this same solution for our science data as well. If something looks wrong, an easy way to fix this is to delete the ID files created in the previous step, and start again. If you're in 2-slit mode and see that only one of the slits is bad, you can delete only the bad one of these files (either ``\_001'' for the first slit and ``\_002" for the second slit), and move the other one to a temporary file name. For example, if you find slit 2 is bad for one of the arcs, you can \ty{rm} IDergS...arc1\_002, and \ty{mv} IDergS...arc2\_001 to a temporary file name. Now you can restart the pipeline, go to the wavelength calibration step, answer \ty{NO} for slit 1 and redo the fits for slit 2. There will now be two new ID files, and you can replace IDergS...arc1\_001 with your temp file.
+\noindent Gemini IRAF task used: \texttt{gftransform}\\
+
+\noindent This step simply applies the wavelength solution you just found to the arc lamps itself. A good way to check our work here is to make sure the arc lines in the output image (which will start with the prefix ``terg") are straight, as opposed to curved. See \autoref{fig:wavecal} for a before and after. If everything looks good, we can use this same solution for our science data as well. If something looks wrong, an easy way to fix this is to delete the ID files created in the previous step along with the ``terg" files, and start again. If you're in 2-slit mode and see that only one of the slits is bad, you can delete only the bad one of these files (either ``\_001'' for the first slit and ``\_002" for the second slit), and move the other one to a temporary file name. For example, if you find slit 2 is bad for one of the arcs, you can \ty{rm} IDergS...arc1\_002, and \ty{mv} IDergS...arc2\_001 to a temporary file name. Now you can restart the pipeline, go to the wavelength calibration step, answer \ty{NO} for slit 1 and redo the fits for slit 2. There will now be two new ID files, and you can replace IDergS...arc1\_001 with your temp file.
 
 \begin{figure}[t]
 \centering
@@ -349,42 +396,64 @@ This step simply applies the wavelength solution you just found to the arc lamps
 \includegraphics[width=\textwidth]{ds9}
 \end{subfigure}
 \caption[Before and After Wavelength Calibration]{\textbf{(a).} A DS9 view of the arc before the wavelength transformation has been applied. \textbf{(b).} The same, but after the wavelength transformation has been applied.}
-\label{fig:skysub}
+\label{fig:wavecal}
 \end{figure}
 
 \section{Quantum Efficiency Correction of Flats}
 \label{qecorr}
 
-Some CCDs will have different quantum efficiency levels between CCD sections or amplifiers, so this step corrects for this effect. Nothing interactive is required. This step creates files with the prefix `q'.
+\noindent Gemini IRAF task used: \texttt{gqecorr}\\
+
+\noindent Some CCDs will have different quantum efficiency levels between CCD sections or amplifiers, so this step corrects for this effect. The files used for these corrections is in \ty{gmos\$data} (like the MDF) and is called \ty{gmosQEfactors.dat}. Nothing interactive is required. This step creates files with the prefix `q'.
 
 \section{Re-extraction of the Flats}
 
-Now the flat spectra will be re-extracted, using the same fiber IDs as before, but this time pulling out the QE-corrected spectra. Again, nothing interactive must be done. After this step, our flats will have the prefix `eqprg'.
+\noindent Gemini IRAF task used: \texttt{gfextract}\\
+
+\noindent Now the flat spectra will be re-extracted, using the same fiber IDs as before, but this time pulling out the QE-corrected spectra. Again, nothing interactive must be done. After this step, our flats will have the prefix `eqprg'.
 
 \section{Bias and Overscan Subtraction of Science Data}
 
-Next, we perform the bias and overscan subtraction of the science frames. Nothing interactive is needed here.
+\noindent Gemini IRAF task used: \texttt{gfreduce}\\
+
+\noindent Next, we perform the bias and overscan subtraction of the science frames. Nothing interactive is needed here.
 
 \section{Identification and Removal of Bad Pixels from the Science Data}
-We now make the BPM for the science data. See \autoref{badpix} for more information on this step. A file with the prefix ``p'' is made here.
+
+\noindent Gemini IRAF tasks used: \texttt{addbpm} and \texttt{gemfix}\\
+
+\noindent We now make the BPM for the science data. See \autoref{badpix} for more information on this step. A file with the prefix ``p'' is made here.
 
 \section{Cosmic Ray Rejection}
 
-Next, we use L.A. Cosmic to find and remove cosmic rays from our science spectra. The code will iterate many times, and may take a few minutes to complete. Nothing interactive is required, and a file with the prefix `x' is created.
+\noindent Gemini IRAF task used: \texttt{gemcrspec}\\
+
+\noindent Next, we use L.A. Cosmic to find and remove cosmic rays from our science spectra. The code will iterate many times, and may take a few minutes to complete. Nothing interactive is required, and a file with the prefix `x' is created.
 
 \section{QE Correction of Science}
 
-We now QE correct the science frames, much like we did for the flats in \autoref{qecorr}. Again, nothing interactive is needed here, and you should have a file made with the prefixes ``qxprg".
+\noindent Gemini IRAF task used: \texttt{gqecorr}\\
+
+\noindent We now QE correct the science frames, much like we did for the flats in \autoref{qecorr}. Again, nothing interactive is needed here, and you should have a file made with the prefixes ``qxprg".
 
 \section{Flat Fielding and Extraction of Science}
-Next, we use the response functions made from the twilights to flat field our science data, and then extract it. Nothing interactive is needed here, and a file with the prefix ``e'' is made.
+
+\noindent Gemini IRAF task used: \texttt{gfreduce}\\
+
+\noindent Next, we use the response functions made from the twilights to flat field our science data, and then extract it. Nothing interactive is needed here, and a file with the prefix ``e'' is made.
 
 \section{Wavelength Calibration of Science}
-In this step, we apply the wavelength solution we found in \autoref{waves} to the science frames. There is nothing interactive for this step, and file is created with the prefix `t'.
+
+\noindent Gemini IRAF task used: \texttt{gftransform}\\
+
+\noindent In this step, we apply the wavelength solution we found in \autoref{waves} to the science frames. There is nothing interactive for this step, and file is created with the prefix `t'.
 
 \section{Sky Subtraction of Science}
 
-Now, we can pull out the spectra of the sky fibers and use them to subtract the sky spectra from the science. A PyRAF window will open that looks like the left image in \autoref{fig:skysub}. The peaks that we see are probably cosmic rays that were not well subtracted, so if you hover your mouse near the peak and type \ty{d}, we can remove these artificial peaks. You can redraw the spectra after deleting using \ty{r}. When done, you should see an image like the right frame of \autoref{fig:skysub}. A file with the prefix ``s'' is made here.
+\noindent Gemini IRAF task used: \texttt{gfskysub}\\
+
+\noindent Now, we can pull out the spectra of the sky fibers and use them to subtract the scattered sky light from the science spectra. A PyRAF window will open that looks like the left image in \autoref{fig:skysub}. The peaks that we see are probably cosmic rays that were not well subtracted, so if you hover your mouse near the peak and type \ty{d}, we can remove these artificial peaks. You can redraw the spectra after deleting using \ty{r}. When done, you should see an image like the right frame of \autoref{fig:skysub}. A file with the prefix ``s'' is made here.
+
 \begin{figure}[t]
 \centering
 \begin{subfigure}[t]{0.49\textwidth}
@@ -392,19 +461,33 @@ Now, we can pull out the spectra of the sky fibers and use them to subtract the 
 \end{subfigure}
 \hfill
 \begin{subfigure}[t]{0.49\textwidth}
-\includegraphics[width=\textwidth]{skysub_good_example}
+\includegraphics[width=\textwidth]{newskysubexample}
 \end{subfigure}
 \caption[Examples of sky subtraction]{\textbf{(a).} An example of the sky subtraction PyRAF window you'll see initially. \textbf{(b).} An example of the remaining spectra after the peaks have been deleted.}
 \label{fig:skysub}
 \end{figure}
 
 \section{Flux Calibration of Science}
-The second to last step of the reduction uses the flux responses from the standard star data to flux calibrate our science data. Nothing interactive is needed here, and a file with the prefix ``c" is created.
 
+\noindent Gemini IRAF task used: \texttt{gscalibrate}\\
+
+\noindent The second to last step of the reduction uses the flux responses from the standard star data to flux calibrate our science data. Nothing interactive is needed here, and a file with the prefix ``c" is created.
 
 \section{Data Cube Creation}
-Now that we've reaching the end of the reduction process, we resample our spectra into data cubes. There will be as many data cubes as there are science images. We then sum the cubes in the spectral direction to fill the chip gaps and increase the signal to noise ratio. If there are spatial offsets, we can use the offsets in noted in the image headers to align and sum these as well. In the end, there is a final data cube for us to analyze. Files with the prefix ``d" are created here. Congratulations, you are done (for now)!
 
+\noindent Gemini IRAF task used: \texttt{gfcube}\\
+
+\noindent Now that we're nearing the end of the reduction process, we resample our spectra into data cubes. I choose to sample the data into 0.2$''$ pixels, since that's the size of the fiber, and it will make the next step (making the WCS easier). There will be as many data cubes as there are science images. We use the task \texttt{gfcube} map the 2D images into 3D data cubes that we can later sum in the spectral direction to fill the chip gaps and increase the signal to noise ratio. If there are spatial offsets, we can use the offsets in noted in the image headers to align and sum these as well (detailed in the next steps). Files with the prefix ``d" are created here.
+
+\section{Creation of a WCS Solution}
+
+Before we can sum the data cubes, we need to assign a coordinate system to the individual cubes. To do this, we first use the information in the headers of the first extracted science file, which will have the final telescope pointing coordinate system information. In the header, there will be CRPIX1 and CRPIX2 that give the reference x and y pixels, along with CRVAL1 and CRVAL2 that are the RA and Dec values at the reference coordinates. We look inside the extracted science file for this information because we want to be able to assign an RA/Dec value to a certain fiber number. From there, we can use the spatial position of that fiber (given in our MDF) along with position angle of the galaxy observation to assign an RA/Dec to every other fiber.
+
+A complication to this is that there an offset from the telescope pointing position to the IFU field of view. Thus, we need to correct the CRPIX1 and CRPIX2 values to reflect this small offset before assigning our coordinates. Thanks to the Gemini-South data reduction gurus James Turner and German Gimeno, we have these offsets and the pipeline can correct for this automatically. 
+
+\section{Summation of the Data Cubes}
+
+Now that the data cubes have image headers with accurate WCS coordinates, we can use the tasks included in the PyFU package to mosaic the cubes together. The Python script \texttt{pyfmosaic} looks into the headers of the supplied input data cubes and pulls out both the WCS information and the spectral offsets. It will then rebin the spectra, preserving the flux in each pixel, into one final data cube, named galaxy\_final.fits.
 
 \chapter{Derivation of Kinematics}
 

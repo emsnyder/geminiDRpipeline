@@ -7,27 +7,30 @@
 \contentsline {section}{\numberline {1.5}How the data is stored}{5}{section.1.5}
 \contentsline {subsection}{\numberline {1.5.1}The raw fits files}{5}{subsection.1.5.1}
 \contentsline {subsection}{\numberline {1.5.2}What is an MDF?}{5}{subsection.1.5.2}
-\contentsline {chapter}{\numberline {2}Setting Up Your Workspace}{8}{chapter.2}
-\contentsline {chapter}{\numberline {3}Data Reduction Guide}{10}{chapter.3}
-\contentsline {section}{\numberline {3.1}Entering and Exiting the Pipeline}{10}{section.3.1}
-\contentsline {section}{\numberline {3.2}Organizing and Identifying Your Data}{10}{section.3.2}
-\contentsline {section}{\numberline {3.3}Reduction of the Flats}{10}{section.3.3}
-\contentsline {section}{\numberline {3.4}Overscan Subtraction of the Arcs}{12}{section.3.4}
-\contentsline {section}{\numberline {3.5}Identification and Removal of Bad Pixels from the Flats and Arcs}{13}{section.3.5}
-\contentsline {section}{\numberline {3.6}Extraction of the Arcs}{13}{section.3.6}
-\contentsline {section}{\numberline {3.7}Creation of the Wavelength Solution}{13}{section.3.7}
-\contentsline {section}{\numberline {3.8}Application of the Calibration to the Arcs}{16}{section.3.8}
-\contentsline {section}{\numberline {3.9}Quantum Efficiency Correction of Flats}{16}{section.3.9}
-\contentsline {section}{\numberline {3.10}Re-extraction of the Flats}{16}{section.3.10}
-\contentsline {section}{\numberline {3.11}Bias and Overscan Subtraction of Science Data}{16}{section.3.11}
-\contentsline {section}{\numberline {3.12}Identification and Removal of Bad Pixels from the Science Data}{16}{section.3.12}
-\contentsline {section}{\numberline {3.13}Cosmic Ray Rejection}{16}{section.3.13}
-\contentsline {section}{\numberline {3.14}QE Correction of Science}{17}{section.3.14}
-\contentsline {section}{\numberline {3.15}Flat Fielding and Extraction of Science}{17}{section.3.15}
-\contentsline {section}{\numberline {3.16}Wavelength Calibration of Science}{17}{section.3.16}
-\contentsline {section}{\numberline {3.17}Sky Subtraction of Science}{17}{section.3.17}
-\contentsline {section}{\numberline {3.18}Flux Calibration of Science}{17}{section.3.18}
-\contentsline {section}{\numberline {3.19}Data Cube Creation}{17}{section.3.19}
-\contentsline {chapter}{\numberline {4}Derivation of Kinematics}{18}{chapter.4}
-\contentsline {section}{\numberline {4.1}Deriving Velocity Dispersions}{18}{section.4.1}
-\contentsline {section}{\numberline {4.2}Deriving Rotation Curves}{18}{section.4.2}
+\contentsline {chapter}{\numberline {2}Setting Up Your Workspace}{9}{chapter.2}
+\contentsline {chapter}{\numberline {3}Data Reduction Guide}{11}{chapter.3}
+\contentsline {section}{\numberline {3.1}How to Use This Guide}{11}{section.3.1}
+\contentsline {section}{\numberline {3.2}Entering and Exiting the Pipeline}{11}{section.3.2}
+\contentsline {section}{\numberline {3.3}Organizing and Identifying Your Data}{11}{section.3.3}
+\contentsline {section}{\numberline {3.4}Reduction of the Flats}{11}{section.3.4}
+\contentsline {section}{\numberline {3.5}Overscan Subtraction of the Arcs}{14}{section.3.5}
+\contentsline {section}{\numberline {3.6}Identification and Removal of Bad Pixels from the Flats and Arcs}{15}{section.3.6}
+\contentsline {section}{\numberline {3.7}Extraction of the Arcs}{16}{section.3.7}
+\contentsline {section}{\numberline {3.8}Creation of the Wavelength Solution}{16}{section.3.8}
+\contentsline {section}{\numberline {3.9}Application of the Calibration to the Arcs}{18}{section.3.9}
+\contentsline {section}{\numberline {3.10}Quantum Efficiency Correction of Flats}{18}{section.3.10}
+\contentsline {section}{\numberline {3.11}Re-extraction of the Flats}{18}{section.3.11}
+\contentsline {section}{\numberline {3.12}Bias and Overscan Subtraction of Science Data}{18}{section.3.12}
+\contentsline {section}{\numberline {3.13}Identification and Removal of Bad Pixels from the Science Data}{19}{section.3.13}
+\contentsline {section}{\numberline {3.14}Cosmic Ray Rejection}{19}{section.3.14}
+\contentsline {section}{\numberline {3.15}QE Correction of Science}{19}{section.3.15}
+\contentsline {section}{\numberline {3.16}Flat Fielding and Extraction of Science}{19}{section.3.16}
+\contentsline {section}{\numberline {3.17}Wavelength Calibration of Science}{19}{section.3.17}
+\contentsline {section}{\numberline {3.18}Sky Subtraction of Science}{19}{section.3.18}
+\contentsline {section}{\numberline {3.19}Flux Calibration of Science}{19}{section.3.19}
+\contentsline {section}{\numberline {3.20}Data Cube Creation}{19}{section.3.20}
+\contentsline {section}{\numberline {3.21}Creation of a WCS Solution}{20}{section.3.21}
+\contentsline {section}{\numberline {3.22}Summation of the Data Cubes}{20}{section.3.22}
+\contentsline {chapter}{\numberline {4}Derivation of Kinematics}{21}{chapter.4}
+\contentsline {section}{\numberline {4.1}Deriving Velocity Dispersions}{21}{section.4.1}
+\contentsline {section}{\numberline {4.2}Deriving Rotation Curves}{21}{section.4.2}
