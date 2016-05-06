@@ -11,16 +11,16 @@
 \BOOKMARK [1][-]{section.3.1}{How to Use This Guide}{chapter.3}% 11
 \BOOKMARK [1][-]{section.3.2}{Entering and Exiting the Pipeline}{chapter.3}% 12
 \BOOKMARK [1][-]{section.3.3}{Organizing and Identifying Your Data}{chapter.3}% 13
-\BOOKMARK [1][-]{section.3.4}{Reduction of the Flats}{chapter.3}% 14
-\BOOKMARK [1][-]{section.3.5}{Overscan Subtraction of the Arcs}{chapter.3}% 15
-\BOOKMARK [1][-]{section.3.6}{Identification and Removal of Bad Pixels from the Flats and Arcs}{chapter.3}% 16
-\BOOKMARK [1][-]{section.3.7}{Extraction of the Arcs}{chapter.3}% 17
-\BOOKMARK [1][-]{section.3.8}{Creation of the Wavelength Solution}{chapter.3}% 18
-\BOOKMARK [1][-]{section.3.9}{Application of the Calibration to the Arcs}{chapter.3}% 19
-\BOOKMARK [1][-]{section.3.10}{Quantum Efficiency Correction of Flats}{chapter.3}% 20
-\BOOKMARK [1][-]{section.3.11}{Re-extraction of the Flats}{chapter.3}% 21
-\BOOKMARK [1][-]{section.3.12}{Bias and Overscan Subtraction of Science Data}{chapter.3}% 22
-\BOOKMARK [1][-]{section.3.13}{Identification and Removal of Bad Pixels from the Science Data}{chapter.3}% 23
+\BOOKMARK [1][-]{section.3.4}{Bias + Overscan Subtraction and Trimming of the Flats and Fiber Identification}{chapter.3}% 14
+\BOOKMARK [1][-]{section.3.5}{Overscan Subtraction and Trimming of the Arcs}{chapter.3}% 15
+\BOOKMARK [1][-]{section.3.6}{Bias + Overscan Subtraction and Trimming of Science Data}{chapter.3}% 16
+\BOOKMARK [1][-]{section.3.7}{Identification and Removal of Bad Pixels from the Science, Flats, and Arcs}{chapter.3}% 17
+\BOOKMARK [1][-]{section.3.8}{Extraction of the Arcs}{chapter.3}% 18
+\BOOKMARK [1][-]{section.3.9}{Creation of the Wavelength Solution}{chapter.3}% 19
+\BOOKMARK [1][-]{section.3.10}{Application of the Calibration to the Arcs}{chapter.3}% 20
+\BOOKMARK [1][-]{section.3.11}{Quantum Efficiency Correction of Flats}{chapter.3}% 21
+\BOOKMARK [1][-]{section.3.12}{Re-extraction of the Flats}{chapter.3}% 22
+\BOOKMARK [1][-]{section.3.13}{Creation of the Response Functions}{chapter.3}% 23
 \BOOKMARK [1][-]{section.3.14}{Cosmic Ray Rejection}{chapter.3}% 24
 \BOOKMARK [1][-]{section.3.15}{QE Correction of Science}{chapter.3}% 25
 \BOOKMARK [1][-]{section.3.16}{Flat Fielding and Extraction of Science}{chapter.3}% 26
@@ -30,6 +30,10 @@
 \BOOKMARK [1][-]{section.3.20}{Data Cube Creation}{chapter.3}% 30
 \BOOKMARK [1][-]{section.3.21}{Creation of a WCS Solution}{chapter.3}% 31
 \BOOKMARK [1][-]{section.3.22}{Summation of the Data Cubes}{chapter.3}% 32
-\BOOKMARK [0][-]{chapter.4}{Derivation of Kinematics}{}% 33
-\BOOKMARK [1][-]{section.4.1}{Deriving Velocity Dispersions}{chapter.4}% 34
-\BOOKMARK [1][-]{section.4.2}{Deriving Rotation Curves}{chapter.4}% 35
+\BOOKMARK [0][-]{chapter.4}{Other Things You'll Want to Know}{}% 33
+\BOOKMARK [1][-]{section.4.1}{Creating the Bias Frame}{chapter.4}% 34
+\BOOKMARK [1][-]{section.4.2}{Reducing the Standard Star and Twilight Data}{chapter.4}% 35
+\BOOKMARK [1][-]{section.4.3}{When Things Go Wrong...}{chapter.4}% 36
+\BOOKMARK [2][-]{subsection.4.3.1}{A Bad Fiber Identification}{section.4.3}% 37
+\BOOKMARK [2][-]{subsection.4.3.2}{A Bad Wavelength Solution}{section.4.3}% 38
+\BOOKMARK [2][-]{subsection.4.3.3}{Correcting the 2014B Data with Bad Amplifier Effects}{section.4.3}% 39

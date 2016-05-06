@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  6 APR 2016 16:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  25 APR 2016 10:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -436,6 +436,9 @@ Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
 \c@subfigure=\count125
 \c@subtable=\count126
 )
+(/usr/local/texlive/2014/texmf-dist/tex/latex/multirow/multirow.sty
+\bigstrutjot=\dimen179
+)
 (/usr/local/texlive/2014/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2014/03/24 3.9k The Babel package
 
@@ -445,7 +448,7 @@ Language: english 2012/08/20 v3.3p English support from the babel system
 (/usr/local/texlive/2014/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2014/03/24 3.9k Babel common definitions
 \babel@savecnt=\count127
-\U@D=\dimen179
+\U@D=\dimen180
 )
 \l@canadian = a dialect from \language\l@american 
 \l@australian = a dialect from \language\l@british 
@@ -455,21 +458,21 @@ File: babel.def 2014/03/24 3.9k Babel common definitions
 Package: multicol 2014/04/23 v1.8e multicolumn formatting (FMi)
 \c@tracingmulticols=\count128
 \mult@box=\box31
-\multicol@leftmargin=\dimen180
+\multicol@leftmargin=\dimen181
 \c@unbalance=\count129
 \c@collectmore=\count130
 \doublecol@number=\count131
 \multicoltolerance=\count132
 \multicolpretolerance=\count133
-\full@width=\dimen181
-\page@free=\dimen182
-\premulticols=\dimen183
-\postmulticols=\dimen184
+\full@width=\dimen182
+\page@free=\dimen183
+\premulticols=\dimen184
+\postmulticols=\dimen185
 \multicolsep=\skip60
 \multicolbaselineskip=\skip61
 \partial@page=\box32
 \last@line=\box33
-\maxbalancingoverflow=\dimen185
+\maxbalancingoverflow=\dimen186
 \mult@rightbox=\box34
 \mult@grightbox=\box35
 \mult@gfirstbox=\box36
@@ -493,9 +496,9 @@ Package: multicol 2014/04/23 v1.8e multicolumn formatting (FMi)
 \@tempa=\box54
 \c@columnbadness=\count134
 \c@finalcolumnbadness=\count135
-\last@try=\dimen186
-\multicolovershoot=\dimen187
-\multicolundershoot=\dimen188
+\last@try=\dimen187
+\multicolovershoot=\dimen188
+\multicolundershoot=\dimen189
 \mult@nat@firstbox=\box55
 \colbreak@box=\box56
 \mc@col@check@num=\count136
@@ -519,34 +522,37 @@ File: uni-global.def 2013/05/13 UCS: Unicode global data
 \uc@combtoksb=\toks37
 \uc@temptokena=\toks38
 )
-(./gemini_dr_user_guide.aux)
+(./gemini_dr_user_guide.aux
+
+LaTeX Warning: Label `badfiber' multiply defined.
+
+)
 \openout1 = `gemini_dr_user_guide.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-
-(/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+ (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count138
-\scratchdimen=\dimen189
+\scratchdimen=\dimen190
 \scratchbox=\box57
 \nofMPsegments=\count139
 \nofMParguments=\count140
 \everyMPshowfont=\toks39
 \MPscratchCnt=\count141
-\MPscratchDim=\dimen190
+\MPscratchDim=\dimen191
 \MPnumerator=\count142
 \makeMPintoPDFobject=\count143
 \everyMPtoPDFconversion=\toks40
@@ -566,7 +572,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box58
-Package hyperref Info: Link coloring ON on input line 21.
+Package hyperref Info: Link coloring ON on input line 22.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -576,23 +582,23 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count144
 )
-LaTeX Info: Redefining \ref on input line 21.
-LaTeX Info: Redefining \pageref on input line 21.
-LaTeX Info: Redefining \nameref on input line 21.
+LaTeX Info: Redefining \ref on input line 22.
+LaTeX Info: Redefining \pageref on input line 22.
+LaTeX Info: Redefining \nameref on input line 22.
 
 (./gemini_dr_user_guide.out) (./gemini_dr_user_guide.out)
 \@outlinefile=\write3
 \openout3 = `gemini_dr_user_guide.out'.
 
-LaTeX Info: Redefining \celsius on input line 21.
-Package gensymb Info: Faking symbols for \degree and \celsius on input line 21.
+LaTeX Info: Redefining \celsius on input line 22.
+Package gensymb Info: Faking symbols for \degree and \celsius on input line 22.
 
 
 
 Package gensymb Warning: Not defining \perthousand.
 
-LaTeX Info: Redefining \ohm on input line 21.
-Package gensymb Info: Using \Omega for \ohm on input line 21.
+LaTeX Info: Redefining \ohm on input line 22.
+Package gensymb Info: Using \Omega for \ohm on input line 22.
 
 Package gensymb Warning: Not defining \micro.
 
@@ -635,47 +641,45 @@ Package caption Info: End \AtBeginDocument code.
 (/usr/local/texlive/2014/texmf-dist/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 30.
+LaTeX Font Info:    Try loading font information for U+msa on input line 31.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 30.
+LaTeX Font Info:    Try loading font information for U+msb on input line 31.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-(./gemini_dr_user_guide.toc)
+(./gemini_dr_user_guide.tocpdfTeX warning (ext4): destination with the same ide
+ntifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.41 ...d Amplifier Effects}{23}{subsection.4.3.3}
+                                                   [1
+
+])
 \tf@toc=\write4
 \openout4 = `gemini_dr_user_guide.toc'.
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.33 \listoffigures
-                    [1
 
-] (./gemini_dr_user_guide.lof)
+(./gemini_dr_user_guide.lof)
 \tf@lof=\write5
 \openout5 = `gemini_dr_user_guide.lof'.
 
-
-(./gemini_dr_user_guide.lot)
+ (./gemini_dr_user_guide.lot)
 \tf@lot=\write6
 \openout6 = `gemini_dr_user_guide.lot'.
 
- [2
-
-]
+ [2]
 Chapter 1.
-<fiber_examples.jpeg, id=228, 503.481pt x 618.40125pt>
+<fiber_examples.jpeg, id=255, 503.481pt x 618.40125pt>
 File: fiber_examples.jpeg Graphic file (type jpg)
 
 <use fiber_examples.jpeg>
-Package pdftex.def Info: fiber_examples.jpeg used on input line 52.
+Package pdftex.def Info: fiber_examples.jpeg used on input line 53.
 (pdftex.def)             Requested size: 411.43756pt x 505.35608pt.
 
 
@@ -683,27 +687,37 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [3
 
-] [4]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 96.
+]
+Overfull \vbox (3.90202pt too high) detected at line 99
+ []
+
+
+Overfull \hbox (2.27377pt too wide) in paragraph at lines 99--99
+[][] 
+ []
+
+[4]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 114.
+
  (/usr/local/texlive/2014/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 96.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 114.
 
-<mecube_raw.jpeg, id=259, 385.44pt x 153.57375pt>
+<mecube_raw.jpeg, id=290, 385.44pt x 153.57375pt>
 File: mecube_raw.jpeg Graphic file (type jpg)
  <use mecube_raw.jpeg>
-Package pdftex.def Info: mecube_raw.jpeg used on input line 109.
+Package pdftex.def Info: mecube_raw.jpeg used on input line 129.
 (pdftex.def)             Requested size: 385.43906pt x 153.57336pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<raw_flat.jpeg, id=260, 208.78pt x 369.5625pt>
+<raw_flat.jpeg, id=291, 208.78pt x 369.5625pt>
 File: raw_flat.jpeg Graphic file (type jpg)
  <use raw_flat.jpeg>
-Package pdftex.def Info: raw_flat.jpeg used on input line 116.
+Package pdftex.def Info: raw_flat.jpeg used on input line 136.
 (pdftex.def)             Requested size: 208.77946pt x 369.5616pt.
 
 
@@ -716,206 +730,195 @@ Chapter 2.
 ] [10]
 Chapter 3.
 
-Underfull \hbox (badness 10000) in paragraph at lines 221--222
+Underfull \hbox (badness 10000) in paragraph at lines 222--223
 
  []
 
 [11
 
-] <overscan_example.pdf, id=313, 469.755pt x 313.17pt>
+] <overscan_example.pdf, id=348, 469.755pt x 313.17pt>
 File: overscan_example.pdf Graphic file (type pdf)
 
 <use overscan_example.pdf>
-Package pdftex.def Info: overscan_example.pdf used on input line 227.
+Package pdftex.def Info: overscan_example.pdf used on input line 228.
 (pdftex.def)             Requested size: 469.75386pt x 313.16922pt.
  [12 <./overscan_example.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 244--245
+Underfull \hbox (badness 10000) in paragraph at lines 245--246
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 246--247
+Underfull \hbox (badness 10000) in paragraph at lines 247--248
 
  []
 
-<apertures1.pdf, id=328, 469.755pt x 313.17pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 279--280
+
+ []
+
+[13] <apertures1.pdf, id=369, 469.755pt x 313.17pt>
 File: apertures1.pdf Graphic file (type pdf)
  <use apertures1.pdf>
-Package pdftex.def Info: apertures1.pdf used on input line 287.
+Package pdftex.def Info: apertures1.pdf used on input line 288.
 (pdftex.def)             Requested size: 252.00737pt x 168.00542pt.
 
-<apertures2.pdf, id=329, 469.755pt x 313.17pt>
+<apertures2.pdf, id=370, 469.755pt x 313.17pt>
 File: apertures2.pdf Graphic file (type pdf)
  <use apertures2.pdf>
-Package pdftex.def Info: apertures2.pdf used on input line 291.
+Package pdftex.def Info: apertures2.pdf used on input line 292.
 (pdftex.def)             Requested size: 252.00737pt x 168.00542pt.
 
-<badfiber_num.pdf, id=330, 515.45699pt x 390.17369pt>
+<badfiber_num.pdf, id=371, 515.45699pt x 390.17369pt>
 File: badfiber_num.pdf Graphic file (type pdf)
  <use badfiber_num.pdf>
-Package pdftex.def Info: badfiber_num.pdf used on input line 299.
+Package pdftex.def Info: badfiber_num.pdf used on input line 300.
 (pdftex.def)             Requested size: 309.27658pt x 234.10602pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 307--308
+Underfull \hbox (badness 10000) in paragraph at lines 308--309
 
  []
 
-[13]
-Underfull \hbox (badness 10000) in paragraph at lines 309--310
+
+Underfull \hbox (badness 10000) in paragraph at lines 310--311
 
  []
 
-<CRvsBP.jpeg, id=336, 274.77657pt x 338.76563pt>
+<CRvsBP.jpeg, id=372, 274.77657pt x 338.76563pt>
 File: CRvsBP.jpeg Graphic file (type jpg)
  <use CRvsBP.jpeg>
-Package pdftex.def Info: CRvsBP.jpeg used on input line 313.
+Package pdftex.def Info: CRvsBP.jpeg used on input line 314.
 (pdftex.def)             Requested size: 219.82153pt x 271.01285pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 321--322
+Underfull \hbox (badness 10000) in paragraph at lines 322--323
 
  []
 
-[14 <./apertures1.pdf> <./apertures2.pdf> <./badfiber_num.pdf>] [15 <./CRvsBP.j
-peg>]
-Underfull \hbox (badness 10000) in paragraph at lines 332--333
+[14 <./apertures1.pdf> <./apertures2.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 330--331
+
+ []
+
+[15 <./badfiber_num.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 346--347
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 341--342
+Underfull \hbox (badness 10000) in paragraph at lines 354--355
 
  []
 
-<wavelength_example_new.pdf, id=365, 510.98923pt x 386.41023pt>
+[16 <./CRvsBP.jpeg>]
+<wavelength_example_new.pdf, id=406, 510.98923pt x 386.41023pt>
 File: wavelength_example_new.pdf Graphic file (type pdf)
 
 <use wavelength_example_new.pdf>
-Package pdftex.def Info: wavelength_example_new.pdf used on input line 349.
+Package pdftex.def Info: wavelength_example_new.pdf used on input line 366.
 (pdftex.def)             Requested size: 306.5959pt x 231.84792pt.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<wave_red_bad_new.pdf, id=366, 517.66422pt x 384.8515pt>
+<wave_red_bad_new.pdf, id=407, 517.66422pt x 384.8515pt>
 File: wave_red_bad_new.pdf Graphic file (type pdf)
 
 <use wave_red_bad_new.pdf>
-Package pdftex.def Info: wave_red_bad_new.pdf used on input line 356.
+Package pdftex.def Info: wave_red_bad_new.pdf used on input line 373.
 (pdftex.def)             Requested size: 310.60092pt x 230.91267pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Overfull \hbox (10.58026pt too wide) in paragraph at lines 379--379
+Overfull \hbox (10.58026pt too wide) in paragraph at lines 396--396
 []          \OT1/cmtt/m/n/12 Image Data    Found          Fit   Pix Shift    Us
 er Shift Z Shift      RMS[] 
  []
 
 
-Overfull \hbox (10.58026pt too wide) in paragraph at lines 379--379
+Overfull \hbox (10.58026pt too wide) in paragraph at lines 396--396
 []\OT1/cmtt/m/n/12 ergS20151108S0106_001 - Ap 440 10/10   10/10   -0.00557     
 0.00522  1.82E-6   0.0749[] 
  []
 
 
-Overfull \hbox (10.58026pt too wide) in paragraph at lines 379--379
+Overfull \hbox (10.58026pt too wide) in paragraph at lines 396--396
 []\OT1/cmtt/m/n/12 ergS20151108S0106_001 - Ap 441 10/10   10/10    -0.0793     
   0.081  1.36E-5   0.0731[] 
  []
 
 
-Overfull \hbox (10.58026pt too wide) in paragraph at lines 379--379
+Overfull \hbox (10.58026pt too wide) in paragraph at lines 396--396
 []\OT1/cmtt/m/n/12 ergS20151108S0106_001 - Ap 442 10/10   10/10    -0.0694     
  0.0711  1.12E-5    0.034[] 
  []
 
 
-Overfull \hbox (10.58026pt too wide) in paragraph at lines 379--379
+Overfull \hbox (10.58026pt too wide) in paragraph at lines 396--396
 []\OT1/cmtt/m/n/12 ergS20151108S0106_001 - Ap 443 10/10   10/10   -0.00833     
 0.00873  9.11E-7   0.0476[] 
  []
 
-
-Overfull \hbox (10.58026pt too wide) in paragraph at lines 379--379
+[17 <./wavelength_example_new.pdf>]
+Overfull \hbox (10.58026pt too wide) in paragraph at lines 396--396
 []\OT1/cmtt/m/n/12 ergS20151108S0106_001 - Ap 444 10/10   10/10     0.0222     
 -0.0225  -4.0E-6     0.07[] 
  []
 
 
-Overfull \hbox (10.58026pt too wide) in paragraph at lines 379--379
+Overfull \hbox (10.58026pt too wide) in paragraph at lines 396--396
 []\OT1/cmtt/m/n/12 ergS20151108S0106_001 - Ap 445 10/10   10/10     0.0256     
 -0.0259  -4.7E-6   0.0896[] 
  []
 
 
-Overfull \hbox (10.58026pt too wide) in paragraph at lines 379--379
+Overfull \hbox (10.58026pt too wide) in paragraph at lines 396--396
 []\OT1/cmtt/m/n/12 ergS20151108S0106_001 - Ap 446 10/10   10/10      0.084     
 -0.0855  -1.4E-5    0.126[] 
  []
 
-[16]
-Underfull \hbox (badness 10000) in paragraph at lines 385--386
+
+Underfull \hbox (badness 10000) in paragraph at lines 402--403
 
  []
 
-[17 <./wavelength_example_new.pdf> <./wave_red_bad_new.pdf>]
-<arc_before.jpeg, id=406, 568.524pt x 335.07pt>
+
+LaTeX Warning: Reference `badwavecal' on page 18 undefined on input line 404.
+
+<arc_before.jpeg, id=427, 568.524pt x 335.07pt>
 File: arc_before.jpeg Graphic file (type jpg)
  <use arc_before.jpeg>
-Package pdftex.def Info: arc_before.jpeg used on input line 392.
+Package pdftex.def Info: arc_before.jpeg used on input line 411.
 (pdftex.def)             Requested size: 252.00737pt x 148.52538pt.
 
-<ds9.pdf, id=407, 648.39113pt x 366.87718pt>
+<ds9.pdf, id=428, 648.39113pt x 366.87718pt>
 File: ds9.pdf Graphic file (type pdf)
  <use ds9.pdf>
-Package pdftex.def Info: ds9.pdf used on input line 396.
+Package pdftex.def Info: ds9.pdf used on input line 415.
 (pdftex.def)             Requested size: 252.00737pt x 142.59448pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 405--406
+Underfull \hbox (badness 10000) in paragraph at lines 425--426
+
+ []
+
+[18 <./wave_red_bad_new.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 432--433
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 411--412
+Underfull \hbox (badness 10000) in paragraph at lines 439--440
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 417--418
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 423--424
-
- []
-
-[18 <./arc_before.jpeg> <./ds9.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 429--430
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 435--436
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 441--442
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 447--448
+Underfull \hbox (badness 10000) in paragraph at lines 446--447
 
  []
 
@@ -924,65 +927,98 @@ Underfull \hbox (badness 10000) in paragraph at lines 453--454
 
  []
 
-<skysub_before.pdf, id=437, 469.755pt x 313.17pt>
+[19 <./arc_before.jpeg> <./ds9.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 460--461
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 474--475
+
+ []
+
+<skysub_before.pdf, id=478, 469.755pt x 313.17pt>
 File: skysub_before.pdf Graphic file (type pdf)
  <use skysub_before.pdf>
-Package pdftex.def Info: skysub_before.pdf used on input line 460.
+Package pdftex.def Info: skysub_before.pdf used on input line 481.
 (pdftex.def)             Requested size: 252.00737pt x 168.00542pt.
 
-<newskysubexample.pdf, id=438, 469.755pt x 313.17pt>
+<newskysubexample.pdf, id=479, 469.755pt x 313.17pt>
 File: newskysubexample.pdf Graphic file (type pdf)
 
 <use newskysubexample.pdf>
-Package pdftex.def Info: newskysubexample.pdf used on input line 464.
+Package pdftex.def Info: newskysubexample.pdf used on input line 485.
 (pdftex.def)             Requested size: 252.00737pt x 168.00542pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 472--473
+Underfull \hbox (badness 10000) in paragraph at lines 494--495
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 478--479
+[20 <./skysub_before.pdf> <./newskysubexample.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 501--502
 
  []
 
-[19] [20 <./skysub_before.pdf> <./newskysubexample.pdf>]
+[21]
 Chapter 4.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 500.
-[21
+[22
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 500.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 597.
+ [23]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 597.
  (./gemini_dr_user_guide.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 500.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 500.
-Package rerunfilecheck Info: File `gemini_dr_user_guide.out' has not changed.
-(rerunfilecheck)             Checksum: AFD2E743B0C152A9BFC49C53C27FDCBA;2639.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 500.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 597.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 597.
+
+
+Package rerunfilecheck Warning: File `gemini_dr_user_guide.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `gemini_dr_user_guide.out':
+(rerunfilecheck)             Before: A473DD5F2832AA94265557EFC932B407;3168
+(rerunfilecheck)             After:  02896F9B49348D07135E844BD23695C2;3058.
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 597.
  ) 
 Here is how much of TeX's memory you used:
- 10055 strings out of 493117
- 148509 string characters out of 6135433
- 268239 words of memory out of 5000000
- 13249 multiletter control sequences out of 15000+600000
+ 10088 strings out of 493117
+ 149066 string characters out of 6135433
+ 272983 words of memory out of 5000000
+ 13270 multiletter control sequences out of 15000+600000
  12948 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 53i,10n,92p,1263b,554s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
-</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
-usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
-r/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/
-local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/loc
-al/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/
-texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/t
-exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/tex
-live/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texl
-ive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on gemini_dr_user_guide.pdf (22 pages, 3158747 bytes).
+ 53i,18n,92p,1431b,554s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{section.3.23} has been referenced but does not ex
+ist, replaced by a fixed one
+
+</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
+/usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></
+usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
+r/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
+local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/lo
+cal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loca
+l/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/t
+exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texl
+ive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texli
+ve/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive
+/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/
+2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on gemini_dr_user_guide.pdf (24 pages, 3177122 bytes).
 PDF statistics:
- 513 PDF objects out of 1000 (max. 8388607)
- 446 compressed objects within 5 object streams
- 85 named destinations out of 1000 (max. 500000)
- 351 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 563 PDF objects out of 1000 (max. 8388607)
+ 493 compressed objects within 5 object streams
+ 93 named destinations out of 1000 (max. 500000)
+ 391 words of extra memory for PDF output out of 10000 (max. 10000000)
 

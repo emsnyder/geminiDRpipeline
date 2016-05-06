@@ -12,25 +12,29 @@
 \contentsline {section}{\numberline {3.1}How to Use This Guide}{11}{section.3.1}
 \contentsline {section}{\numberline {3.2}Entering and Exiting the Pipeline}{11}{section.3.2}
 \contentsline {section}{\numberline {3.3}Organizing and Identifying Your Data}{11}{section.3.3}
-\contentsline {section}{\numberline {3.4}Reduction of the Flats}{11}{section.3.4}
-\contentsline {section}{\numberline {3.5}Overscan Subtraction of the Arcs}{14}{section.3.5}
-\contentsline {section}{\numberline {3.6}Identification and Removal of Bad Pixels from the Flats and Arcs}{15}{section.3.6}
-\contentsline {section}{\numberline {3.7}Extraction of the Arcs}{16}{section.3.7}
-\contentsline {section}{\numberline {3.8}Creation of the Wavelength Solution}{16}{section.3.8}
-\contentsline {section}{\numberline {3.9}Application of the Calibration to the Arcs}{18}{section.3.9}
-\contentsline {section}{\numberline {3.10}Quantum Efficiency Correction of Flats}{18}{section.3.10}
-\contentsline {section}{\numberline {3.11}Re-extraction of the Flats}{18}{section.3.11}
-\contentsline {section}{\numberline {3.12}Bias and Overscan Subtraction of Science Data}{18}{section.3.12}
-\contentsline {section}{\numberline {3.13}Identification and Removal of Bad Pixels from the Science Data}{19}{section.3.13}
+\contentsline {section}{\numberline {3.4}Bias + Overscan Subtraction and Trimming of the Flats and Fiber Identification}{12}{section.3.4}
+\contentsline {section}{\numberline {3.5}Overscan Subtraction and Trimming of the Arcs}{14}{section.3.5}
+\contentsline {section}{\numberline {3.6}Bias + Overscan Subtraction and Trimming of Science Data}{14}{section.3.6}
+\contentsline {section}{\numberline {3.7}Identification and Removal of Bad Pixels from the Science, Flats, and Arcs}{15}{section.3.7}
+\contentsline {section}{\numberline {3.8}Extraction of the Arcs}{16}{section.3.8}
+\contentsline {section}{\numberline {3.9}Creation of the Wavelength Solution}{16}{section.3.9}
+\contentsline {section}{\numberline {3.10}Application of the Calibration to the Arcs}{18}{section.3.10}
+\contentsline {section}{\numberline {3.11}Quantum Efficiency Correction of Flats}{18}{section.3.11}
+\contentsline {section}{\numberline {3.12}Re-extraction of the Flats}{19}{section.3.12}
+\contentsline {section}{\numberline {3.13}Creation of the Response Functions}{19}{section.3.13}
 \contentsline {section}{\numberline {3.14}Cosmic Ray Rejection}{19}{section.3.14}
-\contentsline {section}{\numberline {3.15}QE Correction of Science}{19}{section.3.15}
-\contentsline {section}{\numberline {3.16}Flat Fielding and Extraction of Science}{19}{section.3.16}
-\contentsline {section}{\numberline {3.17}Wavelength Calibration of Science}{19}{section.3.17}
-\contentsline {section}{\numberline {3.18}Sky Subtraction of Science}{19}{section.3.18}
-\contentsline {section}{\numberline {3.19}Flux Calibration of Science}{19}{section.3.19}
-\contentsline {section}{\numberline {3.20}Data Cube Creation}{19}{section.3.20}
-\contentsline {section}{\numberline {3.21}Creation of a WCS Solution}{20}{section.3.21}
-\contentsline {section}{\numberline {3.22}Summation of the Data Cubes}{20}{section.3.22}
-\contentsline {chapter}{\numberline {4}Derivation of Kinematics}{21}{chapter.4}
-\contentsline {section}{\numberline {4.1}Deriving Velocity Dispersions}{21}{section.4.1}
-\contentsline {section}{\numberline {4.2}Deriving Rotation Curves}{21}{section.4.2}
+\contentsline {section}{\numberline {3.15}QE Correction of Science}{20}{section.3.15}
+\contentsline {section}{\numberline {3.16}Flat Fielding and Extraction of Science}{20}{section.3.16}
+\contentsline {section}{\numberline {3.17}Wavelength Calibration of Science}{20}{section.3.17}
+\contentsline {section}{\numberline {3.18}Sky Subtraction of Science}{20}{section.3.18}
+\contentsline {section}{\numberline {3.19}Flux Calibration of Science}{21}{section.3.19}
+\contentsline {section}{\numberline {3.20}Data Cube Creation}{21}{section.3.20}
+\contentsline {section}{\numberline {3.21}Creation of a WCS Solution}{21}{section.3.21}
+\contentsline {section}{\numberline {3.22}Summation of the Data Cubes}{21}{section.3.22}
+\contentsline {chapter}{\numberline {4}Other Things You'll Want to Know}{22}{chapter.4}
+\contentsline {section}{\numberline {4.1}Creating the Bias Frame}{22}{section.4.1}
+\contentsline {section}{\numberline {4.2}Reducing the Standard Star and Twilight Data}{22}{section.4.2}
+\contentsline {section}{\numberline {4.3}When Things Go Wrong...}{22}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}A Bad Fiber Identification}{22}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}A Bad Wavelength Solution}{23}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Correcting the 2014B Data with Bad Amplifier Effects}{23}{subsection.4.3.3}
